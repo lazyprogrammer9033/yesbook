@@ -75,7 +75,6 @@ export function Footer() {
         <p>
           © {year} {site.legalName}. Made in Ontario, Canada.
         </p>
-        <p>yesbook.ca · yesbook.ai · yesbookapp.com</p>
       </div>
     </footer>
   );
