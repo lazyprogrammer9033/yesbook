@@ -4,6 +4,7 @@ import { PageHero, CtaBand, Mark } from "@/components/site/section";
 import { FeatureDemo } from "@/components/demos/feature-demos";
 import { IconTile } from "@/components/site/icon-tile";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollTilt } from "@/components/motion/scroll-tilt";
 import { JsonLd } from "@/components/site/json-ld";
 import { t } from "@/content/en";
 import { pageMeta, productLd, breadcrumbLd } from "@/lib/seo";
@@ -51,7 +52,7 @@ export default function ProductPage() {
 
       <div className="grid gap-6 pb-12">
         {t.features.map((f, i) => (
-          <section key={f.id} id={f.id} aria-labelledby={`${f.id}-title`} className={cn("py-14 sm:py-20", i % 2 === 1 && "bg-soft")}>
+          <section key={f.id} id={f.id} aria-labelledby={`${f.id}-title`} className={cn("overflow-x-clip py-14 sm:py-20", i % 2 === 1 && "bg-soft")}>
             <div className="container-x grid items-center gap-12 lg:grid-cols-2">
               <Reveal className={cn("grid gap-5", i % 2 === 1 && "lg:order-2")}>
                 <IconTile id={f.id} tone={f.tone} size="lg" />
@@ -75,9 +76,9 @@ export default function ProductPage() {
                   </Link>
                 )}
               </Reveal>
-              <Reveal delay={0.1} className={cn(i % 2 === 1 && "lg:order-1")}>
+              <ScrollTilt flip={i % 2 === 1} className={cn(i % 2 === 1 && "lg:order-1")}>
                 <FeatureDemo id={f.id} tone={f.tone} className="mx-auto w-full max-w-md" />
-              </Reveal>
+              </ScrollTilt>
             </div>
           </section>
         ))}
