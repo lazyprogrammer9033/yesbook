@@ -4,18 +4,19 @@ import { site, absoluteUrl } from "./site";
 type PageMeta = { title: string; description: string; path: string; ogImage?: string; keywords?: string[] };
 
 const baseKeywords = [
-  "booking website for salons",
-  "salon booking website Toronto",
+  "booking app for salons",
+  "salon booking app Toronto",
   "salon booking software GTA",
-  "barbershop booking website Ontario",
+  "barbershop booking app Ontario",
   "spa booking system Canada",
-  "clinic appointment booking website",
-  "custom booking website",
-  "badminton court booking website",
+  "clinic appointment booking app",
+  "custom booking app",
+  "badminton court booking",
   "pickleball court booking Toronto",
+  "AI receptionist for salons",
   "online booking Mississauga",
   "online booking Brampton",
-  "online booking Hamilton",
+  "appointment app Hamilton",
 ];
 
 /** Builds per-page metadata with canonical URL and Open Graph / Twitter cards. */
@@ -73,11 +74,11 @@ export const websiteLd = {
 export const productLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Yesbook booking website",
+  name: "The Salon App by Yesbook",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   description:
-    "A custom, branded booking website for salons, sports courts and local businesses: online and in-store booking, client records, staff and services, reminders, reports and automatic secure backups.",
+    "A custom, branded booking and business app for salons: online and in-store booking, client records, staff and services, reminders, reports, automatic secure backups and an optional AI phone agent.",
   provider: { "@id": `${site.url}/#org` },
   areaServed: "Greater Toronto Area, Ontario, Canada",
   offers: { "@type": "Offer", priceCurrency: "CAD", availability: "https://schema.org/InStock", url: absoluteUrl("/pricing/") },

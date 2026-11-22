@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { BellRing, CalendarCheck, Check, ShieldCheck, Star } from "lucide-react";
+import { BellRing, Check, Phone, ShieldCheck, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const slots = [
   { time: "9:30", name: "Cut & style", who: "Jess · with Priya", tone: "bg-tint-pink", badge: "Booked", badgeTone: "bg-pink" },
   { time: "10:30", name: "Balayage", who: "Sara · with Priya", tone: "bg-tint-green", badge: "Booked", badgeTone: "bg-green" },
-  { time: "11:45", name: "Beard trim", who: "Dev · with Marco", tone: "bg-tint-red", badge: "Online", badgeTone: "bg-red" },
-  { time: "1:00", name: "Gel nails", who: "Maya · with Ana", tone: "bg-tint-blue", badge: "Walk-in", badgeTone: "bg-blue" },
+  { time: "11:45", name: "Beard trim", who: "Dev · with Marco", tone: "bg-tint-red", badge: "AI booked", badgeTone: "bg-red" },
+  { time: "1:00", name: "Gel nails", who: "Maya · with Ana", tone: "bg-tint-blue", badge: "Online", badgeTone: "bg-blue" },
 ];
 
 /** Animated phone mockup for the home hero. Builds up a booked-out day, then loops. */
@@ -29,7 +29,7 @@ export function HeroMockup() {
   return (
     <div
       role="img"
-      aria-label="Animated preview of a Yesbook salon booking website: a day of appointments fills up from online bookings and walk-ins, and reminders are sent."
+      aria-label="Animated preview of a Yesbook salon app: a day of appointments fills up, the AI agent books a call, and reminders are sent."
       className="relative mx-auto w-full max-w-[30rem] py-6"
     >
       <div aria-hidden>
@@ -83,11 +83,11 @@ export function HeroMockup() {
           className="glass absolute -left-2 top-[9.5rem] hidden sm:flex items-center gap-2.5 rounded-2xl px-3 py-2.5 shadow-soft sm:-left-12"
         >
           <span className="grid size-9 place-items-center rounded-xl bg-red text-pine">
-            <CalendarCheck className="size-4" />
+            <Phone className="size-4" />
           </span>
           <span className="text-[12px] leading-tight">
-            <b className="block">New online booking</b>
-            <span className="text-muted">11:45 beard trim, 11:04 PM</span>
+            <b className="block">AI answered a call</b>
+            <span className="text-muted">Booked 11:45 trim</span>
           </span>
         </m.div>
         <m.div

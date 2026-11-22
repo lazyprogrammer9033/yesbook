@@ -4,7 +4,6 @@ import { PageHero, CtaBand, Mark } from "@/components/site/section";
 import { FeatureDemo } from "@/components/demos/feature-demos";
 import { IconTile } from "@/components/site/icon-tile";
 import { Reveal } from "@/components/motion/reveal";
-import { ScrollTilt } from "@/components/motion/scroll-tilt";
 import { JsonLd } from "@/components/site/json-ld";
 import { t } from "@/content/en";
 import { pageMeta, productLd, breadcrumbLd } from "@/lib/seo";
@@ -12,11 +11,11 @@ import { tone } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 
 export const metadata = pageMeta({
-  title: "Booking website features",
+  title: "The Salon App: features",
   description:
-    "Online and in-store booking, client records, staff and services, SMS reminders, reports and automatic secure backups. Everything your business needs in one branded booking website.",
+    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and an optional AI phone agent. Everything your salon needs in one branded app.",
   path: "/product/",
-  keywords: ["salon software features", "salon booking website", "custom booking website"],
+  keywords: ["salon software features", "salon scheduling app", "salon client records app"],
 });
 
 export default function ProductPage() {
@@ -24,10 +23,10 @@ export default function ProductPage() {
     <>
       <JsonLd data={[productLd, breadcrumbLd([{ name: "Home", path: "/" }, { name: "Product", path: "/product/" }])]} />
       <PageHero
-        eyebrow="Your booking website"
+        eyebrow="The Salon App"
         title={
           <>
-            One website. <Mark>Every</Mark> booking tool you need.
+            One app. <Mark>Every</Mark> booking tool you need.
           </>
         }
         lede="Built for the way salons, studios and clinics really work, then branded as your own. Here's everything inside."
@@ -52,7 +51,7 @@ export default function ProductPage() {
 
       <div className="grid gap-6 pb-12">
         {t.features.map((f, i) => (
-          <section key={f.id} id={f.id} aria-labelledby={`${f.id}-title`} className={cn("overflow-x-clip py-14 sm:py-20", i % 2 === 1 && "bg-soft")}>
+          <section key={f.id} id={f.id} aria-labelledby={`${f.id}-title`} className={cn("py-14 sm:py-20", i % 2 === 1 && "bg-soft")}>
             <div className="container-x grid items-center gap-12 lg:grid-cols-2">
               <Reveal className={cn("grid gap-5", i % 2 === 1 && "lg:order-2")}>
                 <IconTile id={f.id} tone={f.tone} size="lg" />
@@ -70,10 +69,15 @@ export default function ProductPage() {
                     </li>
                   ))}
                 </ul>
+                {f.id === "ai-agent" && (
+                  <Link href="/ai-agent/" className="w-fit font-semibold text-green-ink underline decoration-2 underline-offset-4">
+                    Meet the AI agent
+                  </Link>
+                )}
               </Reveal>
-              <ScrollTilt flip={i % 2 === 1} className={cn(i % 2 === 1 && "lg:order-1")}>
+              <Reveal delay={0.1} className={cn(i % 2 === 1 && "lg:order-1")}>
                 <FeatureDemo id={f.id} tone={f.tone} className="mx-auto w-full max-w-md" />
-              </ScrollTilt>
+              </Reveal>
             </div>
           </section>
         ))}

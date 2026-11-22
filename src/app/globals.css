@@ -113,7 +113,6 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-fredoka), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
   --shadow-soft: var(--shadow);
   --radius-4xl: 2rem;
 }

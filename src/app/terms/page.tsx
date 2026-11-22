@@ -20,7 +20,7 @@ export default function TermsPage() {
         {
           h: "Our services",
           p: [
-            "Information on the Website describes our services in general. Features, availability and prices may change. Your use of a Yesbook booking website is covered by a separate service agreement that we sign with you, and that agreement wins if it differs from these terms.",
+            "Information on the Website describes our services in general. Features, availability and prices may change. Your use of a Yesbook app is covered by a separate service agreement that we sign with you, and that agreement wins if it differs from these terms.",
           ],
         },
         { h: "Prices", p: ["Prices shown are in Canadian dollars and do not include applicable taxes such as HST, unless we say otherwise. A quote is only binding once confirmed in writing."] },

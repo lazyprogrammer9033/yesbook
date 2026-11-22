@@ -10,7 +10,7 @@ import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Book a free demo",
-  description: "Book a free 20-minute demo of Yesbook. See how a custom booking website would work for your salon, sports courts, clinic or studio in the GTA.",
+  description: "Book a free 20-minute demo of Yesbook. See how a custom booking app would work for your salon, spa, clinic or studio in the GTA.",
   path: "/contact/",
 });
 

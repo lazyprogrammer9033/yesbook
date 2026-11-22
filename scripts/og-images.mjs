@@ -6,11 +6,12 @@ import { readFileSync, mkdirSync } from "node:fs";
 
 const logo = readFileSync(new URL("../brand/logo/yesbook-logo.svg", import.meta.url), "utf8");
 const pages = [
-  { slug: "home", title: "Say yes to every booking.", sub: "Custom booking websites for salons, sports courts and studios across the GTA", c: "#FFC928" },
-  { slug: "product", title: "Your booking website", sub: "Online and in-store booking, reminders, client records, reports and backups", c: "#12A150" },
+  { slug: "home", title: "Say yes to every booking.", sub: "Custom booking apps for salons, clinics and studios across the GTA", c: "#FFC928" },
+  { slug: "product", title: "The Salon App", sub: "Online and in-store booking, reminders, client records, reports and backups", c: "#12A150" },
   { slug: "industries", title: "Built for appointment businesses", sub: "Salons, sports courts, spas, clinics, trainers and tutors", c: "#FF5FA2" },
+  { slug: "ai-agent", title: "An AI receptionist that never misses a call", sub: "Answers 24/7 and books straight into your calendar", c: "#FF5A4E" },
   { slug: "pricing", title: "Simple pricing", sub: "Monthly or yearly plans in CAD, setup included", c: "#2EA8FF" },
-  { slug: "about", title: "Made in Ontario", sub: "Booking websites for local businesses, from Hamilton to Ajax", c: "#12A150" },
+  { slug: "about", title: "Made in Ontario", sub: "Booking apps for local businesses, from Hamilton to Ajax", c: "#12A150" },
   { slug: "contact", title: "Book a free demo", sub: "See how Yesbook would work for your business", c: "#FFC928" },
   { slug: "privacy", title: "Privacy policy", sub: "How we protect your information (PIPEDA)", c: "#2EA8FF" },
   { slug: "terms", title: "Terms of service", sub: "yesbook.ca", c: "#FF9A1F" },

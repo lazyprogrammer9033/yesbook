@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
-import { ParallaxShapes } from "@/components/home/parallax-shapes";
 import { Button } from "@/components/ui/button";
 import { t } from "@/content/en";
 import { cn } from "@/lib/utils";
@@ -76,7 +74,6 @@ export function PageHero({
   return (
     <section className="relative isolate overflow-hidden pb-16 pt-14 sm:pb-24 sm:pt-20">
       <Blobs a={blobs[0]} b={blobs[1]} />
-      <ParallaxShapes />
       <div className="container-x">
         <SectionHeading as="h1" eyebrow={eyebrow} title={title} lede={lede} className="mb-0" />
         {children && <div className="mt-10">{children}</div>}
@@ -118,13 +115,11 @@ export function CtaBand({ title, body }: { title?: string; body?: string }) {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/90">{body ?? t.home.finalBody}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Magnetic>
-              <Button asChild variant="cta" size="lg">
-                <Link href="/contact/">
-                  {t.cta.demo} <ArrowRight aria-hidden />
-                </Link>
-              </Button>
-            </Magnetic>
+            <Button asChild variant="cta" size="lg">
+              <Link href="/contact/">
+                {t.cta.demo} <ArrowRight aria-hidden />
+              </Link>
+            </Button>
           </div>
         </Reveal>
       </div>

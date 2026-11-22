@@ -12,10 +12,12 @@ import {
   Bell,
   Check,
   CloudUpload,
+  Phone,
   ShieldCheck,
   Sparkles,
   Star,
   MessageSquareText,
+  CalendarDays,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -365,63 +367,49 @@ function Backups() {
   );
 }
 
-/* ---------- Court booking: a player grabs an evening pickleball court ---------- */
-function CourtBooking() {
-  const { ref, step } = useLoop(4, 1500);
-  const courts = ["Court 1", "Court 2", "Court 3"];
-  const hours = ["6 PM", "7 PM", "8 PM"];
-  const taken = new Set(["0-0", "1-0", "2-1", "0-2"]);
+/* ---------- AI agent: live call ---------- */
+export function AiCall({ lines }: { lines?: readonly { who: string; text: string }[] }) {
+  const convo = lines ?? [
+    { who: "caller", text: "Hi, can I book a haircut for Saturday morning?" },
+    { who: "agent", text: "Of course! Priya has 10:30 or 11:15. Which works better?" },
+    { who: "caller", text: "10:30 please." },
+    { who: "agent", text: "You're booked with Priya at 10:30. I'll text you a confirmation." },
+  ];
+  const { ref, step } = useLoop(convo.length + 1, 1700);
   return (
-    <div ref={ref} className="grid gap-3 p-4 text-[13px]">
-      <p className="font-display text-base font-bold">Book a court · Smash Club</p>
-      <div className="flex flex-wrap gap-1.5">
-        {["Pickleball", "Badminton"].map((s, i) => (
-          <span key={s} className={cn("rounded-full border-2 px-3 py-1 font-semibold transition-colors", step >= 1 && i === 0 ? "border-green bg-tint-green" : "border-line")}>
-            {s}
+    <div ref={ref} className="grid min-h-[19rem] content-start gap-2 p-4 text-[13px]">
+      <div className="mb-1 flex items-center justify-between rounded-2xl bg-ink px-3 py-2 text-bg">
+        <span className="flex items-center gap-2 font-semibold">
+          <span className="relative grid size-7 place-items-center rounded-full bg-green text-pine">
+            <Phone className="size-3.5" />
+            <span className="absolute inset-0 animate-ping rounded-full bg-green opacity-40" />
           </span>
-        ))}
+          Incoming call
+        </span>
+        <span className="rounded-full bg-yellow px-2 py-0.5 text-[11px] font-bold text-pine">AI answering</span>
       </div>
-      <div className="grid grid-cols-[3.5rem_repeat(3,1fr)] gap-1.5 text-center">
-        <span />
-        {courts.map((c) => (
-          <span key={c} className="text-[11px] font-bold text-muted">{c}</span>
-        ))}
-        {hours.map((h, r) => (
-          <div key={h} className="contents">
-            <span className="self-center text-left text-[11px] font-semibold text-muted">{h}</span>
-            {courts.map((c, k) => {
-              const pick = step >= 2 && r === 1 && k === 1;
-              const busy = taken.has(`${k}-${r}`);
-              return (
-                <m.span
-                  key={c}
-                  animate={pick ? { scale: [1, 1.1, 1] } : {}}
-                  className={cn(
-                    "rounded-lg border-2 py-1.5 font-semibold",
-                    pick ? "border-blue bg-blue text-pine" : busy ? "border-transparent bg-soft text-muted line-through" : "border-line",
-                  )}
-                >
-                  {busy ? "Full" : "Free"}
-                </m.span>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-      <div className="relative h-12">
-        <AnimatePresence mode="wait">
-          {step >= 3 ? (
-            <m.div key="ok" initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={spring} className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-green font-bold text-pine">
-              <span className="grid size-6 place-items-center rounded-full bg-white"><Check className="size-4 text-green-ink" strokeWidth={3} /></span>
-              Court 2 · 7 PM booked!
-            </m.div>
-          ) : (
-            <m.div key="btn" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex h-12 items-center justify-center rounded-2xl bg-yellow font-bold text-pine">
-              Book 1 hour
-            </m.div>
+      {convo.map((l, i) => (
+        <AnimatePresence key={i}>
+          {step >= i && (
+            <m.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={spring}
+              className={cn(
+                "max-w-[85%] rounded-2xl px-3.5 py-2",
+                l.who === "agent" ? "justify-self-end rounded-br-md bg-tint-green" : "rounded-bl-md bg-soft",
+              )}
+            >
+              {l.text}
+            </m.p>
           )}
         </AnimatePresence>
-      </div>
+      ))}
+      {step >= convo.length && (
+        <m.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={spring} className="mt-1 flex items-center gap-2 justify-self-center rounded-full bg-green px-3 py-1.5 text-xs font-bold text-pine">
+          <CalendarDays className="size-4" /> Added to calendar · Sat 10:30
+        </m.div>
+      )}
     </div>
   );
 }
@@ -434,7 +422,7 @@ export const demoScenes: Record<string, { el: () => React.ReactElement; label: s
   reminders: { el: Reminders, label: "Animated preview: an SMS reminder, the client replies C, and the booking is confirmed.", device: "phone" },
   reports: { el: Reports, label: "Animated preview: a revenue report with daily bars growing to $10,980 for the month." },
   backups: { el: Backups, label: "Animated preview: a nightly encrypted backup runs to 100 percent and completes." },
-  "court-booking": { el: CourtBooking, label: "Animated preview: a player picks pickleball, chooses a free court at 7 PM and gets an instant confirmation.", device: "phone" },
+  "ai-agent": { el: () => <AiCall />, label: "Animated preview: the AI agent answers a call and books a Saturday appointment.", device: "phone" },
 };
 
 export function FeatureDemo({ id, tone, className }: { id: string; tone?: string; className?: string }) {
