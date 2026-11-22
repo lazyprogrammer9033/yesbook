@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 import type { Tone } from "@/content/en";
 
 const chapters: { id: string; tone: Tone; time: string; title: string; body: string; tint: string }[] = [
-  { id: "online-booking", tone: "green", time: "11:04 PM", title: "A client books from bed.", body: "Your salon is closed, but your app isn't. Sara picks a balayage with Priya and gets an instant confirmation.", tint: "bg-tint-green" },
+  { id: "online-booking", tone: "green", time: "11:04 PM", title: "A client books from bed.", body: "Your salon is closed, but your booking website isn't. Sara picks a balayage with Priya and gets an instant confirmation.", tint: "bg-tint-green" },
   { id: "in-store-booking", tone: "blue", time: "10:15 AM", title: "A walk-in? Tap, booked.", body: "The front desk sees every chair at a glance and slots a walk-in between appointments in two taps.", tint: "bg-tint-blue" },
-  { id: "ai-agent", tone: "red", time: "1:32 PM", title: "The phone rings. You're mid-cut.", body: "The AI receptionist answers, checks the calendar and books the caller. You never break your flow.", tint: "bg-tint-red" },
+  { id: "court-booking", tone: "red", time: "6:20 PM", title: "Court 2 at 7? Done.", body: "Not just salons: badminton and pickleball players see which courts are free and book an hour in seconds.", tint: "bg-tint-red" },
   { id: "reminders", tone: "yellow", time: "9:00 AM", title: "A friendly nudge, no no-show.", body: "The day before, clients get a text. One tap confirms. Empty chairs become a thing of the past.", tint: "bg-tint-yellow" },
 ];
 

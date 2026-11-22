@@ -9,7 +9,7 @@ export const site = {
   altDomains: ["https://yesbook.ai", "https://yesbookapp.com"],
   tagline: "Say yes to every booking.",
   description:
-    "Yesbook builds custom, branded booking apps for salons, barbers, spas, clinics, tutors and trainers across the GTA. Online and in-store booking, reminders, client records and an AI phone receptionist.",
+    "Yesbook builds custom, branded booking websites for salons, barbers, spas, clinics, sports courts, tutors and trainers across the GTA. Online and in-store booking, reminders and client records.",
   // Contact inbox (also set in public/api/config.php)
   email: "contact@yesbook.ca",
   phone: "", // TODO: optional public phone number, e.g. "+1 905 555 0100"

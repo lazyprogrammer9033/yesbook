@@ -87,7 +87,7 @@ export function HorizontalIndustries() {
             className="grid w-[70vw] shrink-0 place-content-center justify-items-center gap-3 rounded-[2.25rem] border-2 border-dashed border-muted/50 p-8 text-center sm:w-[20rem]"
           >
             <span className="font-hand text-4xl">and yours?</span>
-            <span className="text-muted">If you take appointments, we can build your app.</span>
+            <span className="text-muted">If you take appointments, we can build your booking website.</span>
           </Link>
         </m.div>
         <div className="container-x mt-8">

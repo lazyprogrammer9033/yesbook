@@ -27,7 +27,7 @@ npm run build    # writes the finished site to out/
 
 ## Pages
 
-Home · Product · Industries · AI Agent · Pricing · About · Book a demo · Privacy · Terms · 404
+Home · Product · Industries · Pricing · About · Book a demo · Privacy · Terms · 404
 
 ## Brand
 

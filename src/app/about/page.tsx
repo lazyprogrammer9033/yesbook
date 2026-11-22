@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata = pageMeta({
   title: "About Yesbook",
-  description: "Yesbook is an Ontario company building custom booking apps for local, appointment-based businesses across the GTA, from Hamilton to Ajax.",
+  description: "Yesbook is an Ontario company building custom booking websites for local, appointment-based businesses across the GTA, from Hamilton to Ajax.",
   path: "/about/",
 });
 
@@ -60,7 +60,7 @@ export default function AboutPage() {
           ))}
         </RevealGroup>
       </Section>
-      <CtaBand title="Let's build your app together" />
+      <CtaBand title="Let's build your booking website together" />
     </>
   );
 }

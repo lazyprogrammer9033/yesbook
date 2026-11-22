@@ -8,9 +8,9 @@ import { pageMeta, faqLd, breadcrumbLd } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Pricing",
-  description: "Simple monthly or yearly plans for Yesbook booking apps, in Canadian dollars. Every plan includes setup, your own branded app and local Ontario support.",
+  description: "Simple monthly or yearly plans for Yesbook booking websites, in Canadian dollars. Every plan includes setup, your own branded booking website and local Ontario support.",
   path: "/pricing/",
-  keywords: ["salon booking app price Canada", "salon software cost Ontario"],
+  keywords: ["booking website price Canada", "salon software cost Ontario"],
 });
 
 export default function PricingPage() {

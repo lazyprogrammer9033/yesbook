@@ -10,11 +10,11 @@ import { tone } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 
 export const metadata = pageMeta({
-  title: "Booking apps for salons, barbers, spas, clinics, trainers and tutors",
+  title: "Booking websites for salons, sports courts, spas, clinics and more",
   description:
-    "Yesbook builds custom booking apps for hair salons, barbershops, spas and nail studios, clinics, personal trainers and tutors across Toronto and the GTA.",
+    "Yesbook builds custom booking websites for hair salons, barbershops, badminton and pickleball courts, spas and nail studios, clinics, personal trainers and tutors across Toronto and the GTA.",
   path: "/industries/",
-  keywords: ["barbershop booking app", "spa booking app", "clinic booking app Ontario", "tutor scheduling app"],
+  keywords: ["barbershop booking website", "badminton court booking", "pickleball court booking", "clinic booking website Ontario"],
 });
 
 export default function IndustriesPage() {
@@ -28,7 +28,7 @@ export default function IndustriesPage() {
             Made for businesses that run on <Mark color="blue">appointments</Mark>.
           </>
         }
-        lede="Every industry books a little differently. Your Yesbook app is set up around your services, your team and your clients."
+        lede="Every industry books a little differently. Your Yesbook website is set up around your services, your team and your clients."
         blobs={["pink", "blue"]}
       />
       <Section className="pt-0 sm:pt-0">
@@ -62,7 +62,7 @@ export default function IndustriesPage() {
               className="grid h-full min-h-64 content-center justify-items-center gap-3 rounded-[2rem] border-2 border-dashed border-muted/50 p-7 text-center transition-colors hover:border-ink hover:bg-soft"
             >
               <span className="font-display text-2xl font-bold">Don&apos;t see your business?</span>
-              <span className="max-w-xs text-muted">If you take appointments, we can build your app. Tell us how you work.</span>
+              <span className="max-w-xs text-muted">If you take appointments, we can build your booking website. Tell us how you work.</span>
               <span className="inline-flex items-center gap-1 font-semibold text-green-ink">
                 Talk to us <ArrowRight aria-hidden className="size-4" />
               </span>

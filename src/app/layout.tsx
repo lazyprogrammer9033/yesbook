@@ -20,7 +20,7 @@ const fredoka = Fredoka({ variable: "--font-fredoka", subsets: ["latin"], weight
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} | Booking apps for salons & local businesses in the GTA`, template: `%s | ${site.name}` },
+  title: { default: `${site.name} | Booking websites for salons, courts & local businesses in the GTA`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.name }],

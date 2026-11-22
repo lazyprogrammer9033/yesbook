@@ -17,9 +17,9 @@ import { t } from "@/content/en";
 import { pageMeta, productLd } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "Booking apps for salons & local businesses in Toronto and the GTA",
+  title: "Booking websites for salons, sports courts & local businesses in the GTA",
   description:
-    "Yesbook builds your own branded booking app for your salon, barbershop, spa, clinic or studio in the GTA. Online and in-store booking, reminders, client records and an AI phone receptionist.",
+    "Yesbook builds your own branded booking website for your salon, barbershop, spa, clinic, badminton or pickleball courts in the GTA. Online and in-store booking, reminders and client records.",
   path: "/",
 });
 
@@ -76,7 +76,7 @@ export default function Home() {
       <Section>
         <WordReveal
           className="max-w-5xl text-[clamp(2rem,5.2vw,4rem)] font-bold leading-[1.08] tracking-[-0.01em] [font-family:var(--font-display)]"
-          text="No more paper books. No more missed calls. No more empty chairs. Just one app with your name on it that says *yes* to every booking."
+          text="No more paper books. No more phone tag. No more empty slots. Just one booking website with your name on it that says *yes* to every booking."
         />
       </Section>
 
@@ -85,7 +85,7 @@ export default function Home() {
 
       {/* STICKY NOTES WALL */}
       <Section className="overflow-x-clip">
-        <SectionHeading eyebrow="Everything in the app" title={t.home.valueTitle} lede={t.home.valueLede} />
+        <SectionHeading eyebrow="Everything in your website" title={t.home.valueTitle} lede={t.home.valueLede} />
         <StickyNotesWall />
         <Reveal className="mt-12">
           <Button asChild variant="link">

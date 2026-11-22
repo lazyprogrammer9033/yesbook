@@ -31,13 +31,13 @@ export default function PrivacyPage() {
               "Anonymous analytics: pages viewed, referring website, device type and approximate country. This is collected without cookies and cannot identify you.",
               "Server logs: our web host keeps standard technical logs (such as IP address and browser type) for security, for a limited time.",
             ],
-            "When a business uses a Yesbook app, that business decides what client information is collected (for example names, contact details and appointment history). For that information, the business is responsible and Yesbook processes it on their behalf.",
+            "When a business uses a Yesbook booking website, that business decides what client information is collected (for example names, contact details and appointment history). For that information, the business is responsible and Yesbook processes it on their behalf.",
           ],
         },
         {
           h: "Why we use it",
           p: [
-            "We use your information to reply to your enquiry, arrange and give demos, provide and support our services, send service messages you need (like appointment confirmations from a business's app), and keep our services secure. We do not sell or rent personal information.",
+            "We use your information to reply to your enquiry, arrange and give demos, provide and support our services, send service messages you need (like appointment confirmations from a business's booking website), and keep our services secure. We do not sell or rent personal information.",
           ],
         },
         {

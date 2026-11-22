@@ -12,11 +12,11 @@ import { tone } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 
 export const metadata = pageMeta({
-  title: "The Salon App: features",
+  title: "Booking website features",
   description:
-    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and an optional AI phone agent. Everything your salon needs in one branded app.",
+    "Online and in-store booking, client records, staff and services, SMS reminders, reports and automatic secure backups. Everything your business needs in one branded booking website.",
   path: "/product/",
-  keywords: ["salon software features", "salon scheduling app", "salon client records app"],
+  keywords: ["salon software features", "salon booking website", "custom booking website"],
 });
 
 export default function ProductPage() {
@@ -24,10 +24,10 @@ export default function ProductPage() {
     <>
       <JsonLd data={[productLd, breadcrumbLd([{ name: "Home", path: "/" }, { name: "Product", path: "/product/" }])]} />
       <PageHero
-        eyebrow="The Salon App"
+        eyebrow="Your booking website"
         title={
           <>
-            One app. <Mark>Every</Mark> booking tool you need.
+            One website. <Mark>Every</Mark> booking tool you need.
           </>
         }
         lede="Built for the way salons, studios and clinics really work, then branded as your own. Here's everything inside."
@@ -70,11 +70,6 @@ export default function ProductPage() {
                     </li>
                   ))}
                 </ul>
-                {f.id === "ai-agent" && (
-                  <Link href="/ai-agent/" className="w-fit font-semibold text-green-ink underline decoration-2 underline-offset-4">
-                    Meet the AI agent
-                  </Link>
-                )}
               </Reveal>
               <ScrollTilt flip={i % 2 === 1} className={cn(i % 2 === 1 && "lg:order-1")}>
                 <FeatureDemo id={f.id} tone={f.tone} className="mx-auto w-full max-w-md" />
