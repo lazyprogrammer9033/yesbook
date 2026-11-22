@@ -25,12 +25,12 @@ for (const name of names) {
   const cdp = await page.context().newCDPSession(page);
   const frames = [];
   cdp.on("Page.screencastFrame", async (f) => {
-    const file = path.join(tmp, String(frames.length).padStart(5, "0") + ".jpg");
+    const file = path.join(tmp, String(frames.length).padStart(5, "0") + ".png");
     fs.writeFileSync(file, Buffer.from(f.data, "base64"));
     frames.push({ file, t: f.metadata.timestamp });
     cdp.send("Page.screencastFrameAck", { sessionId: f.sessionId }).catch(() => {});
   });
-  await cdp.send("Page.startScreencast", { format: "jpeg", quality: 95, everyNthFrame: 1, maxWidth: 1280, maxHeight: 720 });
+  await cdp.send("Page.startScreencast", { format: "png", everyNthFrame: 1, maxWidth: 1280, maxHeight: 720 });
   await page.waitForTimeout(300);
   await page.evaluate(() => window.__start());
   await page.waitForFunction(() => window.__done, null, { timeout: 120000, polling: 100 });
@@ -48,7 +48,9 @@ for (const name of names) {
   fs.writeFileSync(listFile, list);
   const mp4 = path.join(outDir, name + ".mp4");
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", listFile,
-    "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-preset", "slow", "-crf", "24", "-tune", "animation",
+    "-vf", "fps=30,format=rgb24,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p",
+    "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv",
+    "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-tune", "animation",
     "-movflags", "+faststart", "-an", mp4]);
   // Poster: the last frame (finished state) reads best as a still.
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-sseof", "-1.2", "-i", mp4, "-frames:v", "1", "-q:v", "4", path.join(outDir, name + ".jpg")]);

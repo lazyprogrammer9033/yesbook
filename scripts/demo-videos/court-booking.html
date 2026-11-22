@@ -2,8 +2,8 @@
 <html><head><meta charset="utf-8"><title>Court booking demo</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-  :root { --navy: #0f2742; --lime: #c8f23a; --sky: #e9f4ff; --accent: #2b7de9; }
-  .stage { background: radial-gradient(circle at 90% 10%, #c8f23a 0, transparent 35%), radial-gradient(circle at 5% 100%, #7cc4ff 0, transparent 40%), linear-gradient(135deg, #eef7ff, #f6fbe6); }
+  :root { --navy: #0b3b8c; --lime: #ffc928; --sky: #e6f5ff; --accent: #2ea8ff; }
+  .stage { background: radial-gradient(circle at 92% 6%, #ffc928 0, transparent 32%), radial-gradient(circle at 0% 100%, #2ea8ff 0, transparent 42%), radial-gradient(circle at 100% 100%, #12a150 0, transparent 30%), linear-gradient(135deg, #dff1ff, #fff6d6); }
   .top { position: absolute; left: 48px; right: 48px; top: 22px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
   .top .badge { position: static; }
   .say { font-size: 25px; font-weight: 800; color: #0b2a22; letter-spacing: -.02em; transition: opacity .25s; }
@@ -28,10 +28,10 @@
   .grid { margin-top: 16px; display: grid; grid-template-columns: 70px repeat(4, 1fr); gap: 7px; }
   .h { font-size: 12.5px; font-weight: 800; text-align: center; color: #6b7a8a; padding-bottom: 2px; }
   .hr { font-size: 13px; font-weight: 700; color: #6b7a8a; align-self: center; }
-  .slot { height: 40px; border-radius: 10px; border: 2px solid #dfe7f0; background: #fff; display: grid; place-items: center; font-size: 12.5px; font-weight: 700; color: #2b7de9; transition: all .3s; }
+  .slot { height: 40px; border-radius: 10px; border: 2px solid #9fd4ff; background: #eef8ff; display: grid; place-items: center; font-size: 12.5px; font-weight: 800; color: #0b69b8; transition: all .3s; }
   .slot.busy { background: repeating-linear-gradient(-45deg, #f2f5f9 0 6px, #e9eef4 6px 12px); border-color: transparent; color: #9aa8b6; }
-  .slot.sel { background: var(--lime); border-color: var(--navy); color: var(--navy); }
-  .side { border-left: 1px solid #e3e8ef; background: #f8fafc; padding: 20px; display: flex; flex-direction: column; gap: 12px; color: var(--navy); }
+  .slot.sel { background: #12a150; border-color: #0b2a22; color: #fff; }
+  .side { border-left: 1px solid #e3e8ef; background: #f2f9ff; padding: 20px; display: flex; flex-direction: column; gap: 12px; color: var(--navy); }
   .side h4 { font-size: 17px; }
   .card { border-radius: 16px; background: #fff; border: 1px solid #e3e8ef; padding: 14px; font-size: 14px; line-height: 1.6; }
   .empty { color: #8a98a7; font-size: 14px; }
@@ -46,7 +46,7 @@
   .modal.on { opacity: 1; }
   .mcard { width: 400px; border-radius: 24px; background: #fff; padding: 28px; text-align: center; color: var(--navy); transform: translateY(30px) scale(.95); transition: transform .45s cubic-bezier(.3,1.5,.5,1); }
   .modal.on .mcard { transform: none; }
-  .ok { width: 76px; height: 76px; margin: 0 auto; border-radius: 50%; background: var(--lime); display: grid; place-items: center; }
+  .ok { width: 76px; height: 76px; margin: 0 auto; border-radius: 50%; background: #12a150; display: grid; place-items: center; }
   .qr { width: 96px; height: 96px; margin: 14px auto 0; border-radius: 10px; background:
       conic-gradient(from 90deg at 30% 30%, #0f2742 25%, transparent 0) 0 0/24px 24px,
       repeating-linear-gradient(90deg, #0f2742 0 6px, #fff 6px 12px); opacity: .9; }
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="modal" id="modal"><div class="mcard">
-      <div class="ok"><svg viewBox="0 0 24 24" width="40" fill="none" stroke="#0f2742" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <div class="ok"><svg viewBox="0 0 24 24" width="40" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h3 style="margin-top:14px;font-size:24px">You're on Court 3!</h3>
       <p style="margin-top:6px;color:#4b5b6b">Badminton · Fri, Nov 21 · 7–9 PM · 4 players</p>
       <div class="qr"></div>
