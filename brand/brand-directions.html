@@ -1,0 +1,427 @@
+<title>Yesbook Brand Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: a presentation board. Intro, then one full-width chapter per direction, then taglines and a pick. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#14161c; --muted:#5b6170; --line:#e3e6ec; --accent:#0f8a5f;
+  --f-ui:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-head:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1015;--surface:#161921;--fg:#eef0f4;--muted:#a1a7b5;--line:#272b36;--accent:#34d399;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1015;--surface:#161921;--fg:#eef0f4;--muted:#a1a7b5;--line:#272b36;--accent:#34d399;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-ui);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 80px;display:grid;gap:56px}
+h1,h2,h3{font-family:var(--f-head);text-wrap:balance;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,48px);font-weight:800;line-height:1.05}
+h2{font-size:clamp(24px,3.4vw,34px);font-weight:700}
+h3{font-size:13px;font-family:var(--f-ui);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+p{margin:0;max-width:65ch}
+.eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+.intro{display:grid;gap:14px}
+.intro p{color:var(--muted);font-size:16px}
+.how{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.how span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.dir{display:grid;gap:22px;border-top:1px solid var(--line);padding-top:36px}
+.dir-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px}
+.dir-head .letter{font-family:var(--f-head);font-weight:800;color:var(--muted);font-size:14px;letter-spacing:.08em}
+.dir-lede{color:var(--muted);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.cell{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
+.c-logo{grid-column:span 5}.c-pal{grid-column:span 7}.c-type{grid-column:span 7}.c-icon{grid-column:span 5}.c-mock{grid-column:span 12}
+@media (max-width:860px){.c-logo,.c-pal,.c-type,.c-icon{grid-column:span 12}}
+.logo-stage{border-radius:12px;display:grid;place-items:center;padding:28px 12px;min-height:150px}
+.logo-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.logo-pair .logo-stage{min-height:110px;padding:18px 8px}
+.note{font-size:13px;color:var(--muted)}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}
+.chip{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.chip i{display:block;height:58px}
+.chip div{padding:7px 9px;font-size:12px;line-height:1.35;background:var(--surface)}
+.chip b{display:block;font-weight:600}
+.chip code{font-family:ui-monospace,Menlo,monospace;color:var(--muted);font-size:11px}
+.specimen{display:grid;gap:8px}
+.specimen .big{font-size:clamp(34px,5vw,52px);line-height:1;letter-spacing:-.02em}
+.specimen .body{font-size:15px;max-width:52ch}
+.specimen .meta{font-size:12px;color:var(--muted)}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.icons figure{margin:0;display:grid;gap:6px;justify-items:center;font-size:11px;color:var(--muted)}
+.icons .ib{width:100%;aspect-ratio:1;max-width:72px;border-radius:14px;display:grid;place-items:center}
+.icons svg{width:30px;height:30px}
+.mocks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.mocks{grid-template-columns:1fr}}
+.mock{border-radius:16px;padding:22px;display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:center;position:relative;overflow:hidden;min-height:250px}
+@media (max-width:460px){.mock{grid-template-columns:1fr}}
+.mock .mtag{position:absolute;top:10px;right:12px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.65}
+.mock h4{margin:0 0 8px;line-height:1.05;text-wrap:balance}
+.mock p{font-size:13px;opacity:.82;margin-bottom:14px}
+.btn{display:inline-block;font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px}
+.phone{border-radius:22px;padding:10px;display:grid;gap:7px;font-size:11px;max-width:190px;justify-self:center;width:100%}
+.slot{border-radius:10px;padding:8px 9px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.slot small{opacity:.7}
+.pill{font-size:10px;font-weight:700;padding:3px 7px;border-radius:999px;white-space:nowrap}
+.who{display:flex;flex-wrap:wrap;gap:6px}
+.who span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted)}
+.tag-list{display:grid;gap:10px;counter-reset:t}
+.tag{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:4px}
+.tag q{font-family:var(--f-head);font-size:clamp(19px,2.6vw,24px);font-weight:700;quotes:none;letter-spacing:-.01em}
+.tag span{font-size:13px;color:var(--muted)}
+.tag.orig{border-style:dashed}
+.pick{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:10px}
+.pick ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:4px}
+/* Direction A: Fresh Confirm */
+.A-head{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+.A-body{font-family:"Inter",system-ui,sans-serif}
+/* Direction B: Salon Luxe */
+.B-head{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+.B-body{font-family:"Manrope",system-ui,sans-serif}
+/* Direction C: Bold Signal */
+.C-head{font-family:"Unbounded",system-ui,sans-serif}
+.C-body{font-family:"DM Sans",system-ui,sans-serif}
+@media (prefers-reduced-motion:no-preference){
+  .pulse{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+}
+</style>
+
+<div class="wrap">
+
+<header class="intro">
+  <span class="eyebrow">Milestone 1 · Brand identity</span>
+  <h1>Three ways Yesbook could look and feel</h1>
+  <p>Each direction has a logo idea, colours, fonts, an icon style and a small sample of the website hero in light and dark mode. Pick one, or mix parts (for example the logo from A with the colours from C). Nothing gets built until you choose.</p>
+  <div class="how"><span>Logo concepts are early sketches, not final artwork</span><span>All colour pairs pass WCAG AA for text</span><span>Fonts are free (Google Fonts)</span></div>
+</header>
+
+<!-- ============ DIRECTION A+ (CHOSEN) ============ -->
+<section class="dir" aria-labelledby="ap-title" style="border-top:3px solid #FFC928">
+  <div class="dir-head"><h2 id="ap-title">A+ · Fresh Confirm, Bright</h2><span class="letter" style="color:#12A150">YOUR PICK, UPDATED</span></div>
+  <p class="dir-lede">Direction A, now with a cheerful kids-show colour strategy: a family of bright, saturated primaries on clean white, big rounded shapes, and every feature or industry gets its own colour. Bright colours are used for shapes, icons and backgrounds. Text stays dark (or white in dark mode) so it always passes WCAG AA.</p>
+  <div class="grid">
+    <div class="cell c-logo">
+      <h3>Logo, brightened</h3>
+      <div class="logo-stage" style="background:#fff;border:1px solid #eef2f0">
+        <svg viewBox="0 0 260 64" width="240" role="img" aria-label="Yesbook bright logo">
+          <rect x="2" y="6" width="52" height="52" rx="15" fill="#12A150"/>
+          <rect x="15" y="1" width="7" height="13" rx="3.5" fill="#FFC928"/><rect x="34" y="1" width="7" height="13" rx="3.5" fill="#FF5A4E"/>
+          <path d="M16 33 l8 8 l16 -18" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="66" y="44" font-family="Bricolage Grotesque, sans-serif" font-size="36" font-weight="800" fill="#0B2A22" letter-spacing="-1">yes<tspan font-weight="500">book</tspan></text>
+        </svg>
+      </div>
+      <div class="logo-pair">
+        <div class="logo-stage" style="background:#FFC928"><svg viewBox="0 0 64 64" width="56" role="img" aria-label="App icon on yellow"><rect x="2" y="6" width="52" height="52" rx="15" fill="#12A150"/><rect x="15" y="1" width="7" height="13" rx="3.5" fill="#fff"/><rect x="34" y="1" width="7" height="13" rx="3.5" fill="#FF5A4E"/><path d="M16 33 l8 8 l16 -18" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="logo-stage" style="background:#2EA8FF"><svg viewBox="0 0 64 64" width="56" role="img" aria-label="App icon on blue"><rect x="2" y="6" width="52" height="52" rx="15" fill="#fff"/><rect x="15" y="1" width="7" height="13" rx="3.5" fill="#FFC928"/><rect x="34" y="1" width="7" height="13" rx="3.5" fill="#FF5A4E"/><path d="M16 33 l8 8 l16 -18" fill="none" stroke="#12A150" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <p class="note">Same tick-in-calendar idea. The calendar tabs become yellow and red, so the mark itself carries the colour family.</p>
+    </div>
+    <div class="cell c-pal">
+      <h3>Bright palette</h3>
+      <div class="sw">
+        <div class="chip"><i style="background:#12A150"></i><div><b>Yes Green</b><code>#12A150</code></div></div>
+        <div class="chip"><i style="background:#FFC928"></i><div><b>Sunny Yellow</b><code>#FFC928</code></div></div>
+        <div class="chip"><i style="background:#2EA8FF"></i><div><b>Sky Blue</b><code>#2EA8FF</code></div></div>
+        <div class="chip"><i style="background:#FF5A4E"></i><div><b>Cherry Red</b><code>#FF5A4E</code></div></div>
+        <div class="chip"><i style="background:#FF9A1F"></i><div><b>Tangerine</b><code>#FF9A1F</code></div></div>
+        <div class="chip"><i style="background:#FF5FA2"></i><div><b>Bubblegum</b><code>#FF5FA2</code></div></div>
+        <div class="chip"><i style="background:#0B2A22"></i><div><b>Deep Pine (text)</b><code>#0B2A22</code></div></div>
+        <div class="chip"><i style="background:#0F1530"></i><div><b>Night Sky (dark)</b><code>#0F1530</code></div></div>
+      </div>
+      <p class="note">How it is used: white page, soft pastel tints of each colour for cards, full-strength colour for icons, blobs and badges, and a Sunny Yellow "Book a free demo" button that pops on every page.</p>
+    </div>
+    <div class="cell c-mock">
+      <h3>Website hero sample</h3>
+      <div class="mocks">
+        <div class="mock A-body" style="background:radial-gradient(40% 50% at 95% 5%,#FFE48A 0 60%,transparent 61%),radial-gradient(30% 40% at 0% 100%,#BDE3FF 0 60%,transparent 61%),#ffffff;color:#0B2A22;border:1px solid #eef2f0">
+          <span class="mtag">Light</span>
+          <div><h4 class="A-head" style="font-size:26px;font-weight:800">Say <span style="background:#FFC928;border-radius:10px;padding:0 6px">yes</span> to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#FFC928;color:#0B2A22;box-shadow:0 4px 0 #E0A800">Book a free demo</span></div>
+          <div class="phone" style="background:#fff;border:2px solid #0B2A22;box-shadow:6px 6px 0 #2EA8FF">
+            <div class="slot" style="background:#DDF7E8"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill" style="background:#12A150;color:#fff">Booked</span></div>
+            <div class="slot" style="background:#FFE4E1"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#FF5A4E;color:#fff">AI booked</span></div>
+            <div class="slot" style="background:#E0F2FF"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:#0B2A22;color:#fff">Free</span></div>
+          </div>
+        </div>
+        <div class="mock A-body" style="background:radial-gradient(40% 50% at 95% 5%,rgba(255,201,40,.35) 0 60%,transparent 61%),radial-gradient(30% 40% at 0% 100%,rgba(46,168,255,.3) 0 60%,transparent 61%),#0F1530;color:#fff">
+          <span class="mtag">Dark</span>
+          <div><h4 class="A-head" style="font-size:26px;font-weight:800">Say <span style="background:#FFC928;color:#0B2A22;border-radius:10px;padding:0 6px">yes</span> to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#FFC928;color:#0B2A22">Book a free demo</span></div>
+          <div class="phone" style="background:#1A2246;border:2px solid #2EA8FF">
+            <div class="slot" style="background:rgba(18,161,80,.25)"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill" style="background:#3DDC84;color:#0B2A22">Booked</span></div>
+            <div class="slot" style="background:rgba(255,90,78,.22)"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#FF8A80;color:#2a0705">AI booked</span></div>
+            <div class="slot" style="background:rgba(46,168,255,.22)"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:#fff;color:#0F1530">Free</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who"><span>Inspired by bright kids-show colour strategy, not copied</span><span>Feels: happy, welcoming, memorable</span><span>Text contrast still WCAG AA</span></div>
+</section>
+
+<!-- ============ DIRECTION A ============ -->
+<section class="dir" aria-labelledby="a-title">
+  <div class="dir-head"><h2 id="a-title">A · Fresh Confirm</h2><span class="letter">FRIENDLY · CLEAR · TRUSTWORTHY</span></div>
+  <p class="dir-lede">Built around the green tick that means "booked". Feels like a calm, reliable tool any salon owner or clinic manager trusts on day one. The closest to modern software brands like Linear or Cal.com, but warmer.</p>
+  <div class="grid">
+    <div class="cell c-logo">
+      <h3>Logo concept</h3>
+      <div class="logo-stage" style="background:#f3faf6">
+        <svg viewBox="0 0 260 64" width="240" role="img" aria-label="Yesbook logo, direction A">
+          <rect x="2" y="6" width="52" height="52" rx="15" fill="#0f8a5f"/>
+          <rect x="15" y="2" width="6" height="12" rx="3" fill="#0b2a22"/><rect x="35" y="2" width="6" height="12" rx="3" fill="#0b2a22"/>
+          <path d="M16 33 l8 8 l16 -18" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="66" y="44" font-family="Bricolage Grotesque, sans-serif" font-size="36" font-weight="800" fill="#0b2a22" letter-spacing="-1">yes<tspan font-weight="500">book</tspan></text>
+        </svg>
+      </div>
+      <div class="logo-pair">
+        <div class="logo-stage" style="background:#0b2a22">
+          <svg viewBox="0 0 64 64" width="56" aria-label="App icon on dark" role="img"><rect x="2" y="6" width="52" height="52" rx="15" fill="#34d399"/><rect x="15" y="2" width="6" height="12" rx="3" fill="#ecfdf5"/><rect x="35" y="2" width="6" height="12" rx="3" fill="#ecfdf5"/><path d="M16 33 l8 8 l16 -18" fill="none" stroke="#0b2a22" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="logo-stage" style="background:#ff7a59">
+          <svg viewBox="0 0 64 64" width="56" aria-label="App icon on coral" role="img"><rect x="2" y="6" width="52" height="52" rx="15" fill="#fff"/><rect x="15" y="2" width="6" height="12" rx="3" fill="#0b2a22"/><rect x="35" y="2" width="6" height="12" rx="3" fill="#0b2a22"/><path d="M16 33 l8 8 l16 -18" fill="none" stroke="#0f8a5f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <p class="note">A calendar tile with a tick inside. "yes" is heavy, "book" is lighter, so the name reads as the promise. Works as a phone app icon and a favicon.</p>
+    </div>
+    <div class="cell c-pal">
+      <h3>Colour palette</h3>
+      <div class="sw">
+        <div class="chip"><i style="background:#0f8a5f"></i><div><b>Confirm Green</b><code>#0F8A5F</code></div></div>
+        <div class="chip"><i style="background:#0b2a22"></i><div><b>Deep Pine</b><code>#0B2A22</code></div></div>
+        <div class="chip"><i style="background:#34d399"></i><div><b>Mint (dark mode)</b><code>#34D399</code></div></div>
+        <div class="chip"><i style="background:#ff7a59"></i><div><b>Coral spark</b><code>#FF7A59</code></div></div>
+        <div class="chip"><i style="background:#f3faf6"></i><div><b>Mist</b><code>#F3FAF6</code></div></div>
+        <div class="chip"><i style="background:#0d1412"></i><div><b>Night</b><code>#0D1412</code></div></div>
+      </div>
+      <p class="note">Gradients go green to mint with a soft coral glow. Coral is used sparingly, mostly for the "Book a free demo" button and highlights.</p>
+    </div>
+    <div class="cell c-type">
+      <h3>Typography</h3>
+      <div class="specimen">
+        <div class="big A-head" style="font-weight:800">Booked solid.</div>
+        <div class="body A-body">Online and in-store booking, client records, reminders and an AI receptionist, in one app with your name on it.</div>
+        <div class="meta">Headings: Bricolage Grotesque (bold, a little quirky) · Text: Inter (very readable on phones)</div>
+      </div>
+    </div>
+    <div class="cell c-icon">
+      <h3>Icon style</h3>
+      <div class="icons">
+        <figure><div class="ib" style="background:#e3f5ec;color:#0f8a5f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="4" fill="currentColor" fill-opacity=".15"/><path d="M8 3v4M16 3v4M8.5 14l2.5 2.5 4.5-5"/></svg></div>Booking</figure>
+        <figure><div class="ib" style="background:#e3f5ec;color:#0f8a5f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="currentColor" fill-opacity=".15"/></svg></div>AI calls</figure>
+        <figure><div class="ib" style="background:#e3f5ec;color:#0f8a5f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4" fill="currentColor" fill-opacity=".15"/><path d="M2 21a7 7 0 0 1 14 0M16 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg></div>Clients</figure>
+        <figure><div class="ib" style="background:#e3f5ec;color:#0f8a5f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" fill-opacity=".15"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg></div>Reports</figure>
+      </div>
+      <p class="note">Rounded 2px line icons with a soft tinted fill. Friendly and easy to read at small sizes.</p>
+    </div>
+    <div class="cell c-mock">
+      <h3>Website hero sample</h3>
+      <div class="mocks">
+        <div class="mock A-body" style="background:radial-gradient(120% 90% at 100% 0%,#ffe3d9 0%,transparent 45%),linear-gradient(160deg,#f3faf6,#e1f4ea);color:#0b2a22">
+          <span class="mtag">Light</span>
+          <div><h4 class="A-head" style="font-size:26px;font-weight:800">Say yes to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#0b2a22;color:#fff">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.7);border:1px solid rgba(11,42,34,.1);backdrop-filter:blur(8px)">
+            <div class="slot" style="background:#fff"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill pulse" style="background:#0f8a5f;color:#fff">Booked</span></div>
+            <div class="slot" style="background:#fff"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#ffe3d9;color:#9a3412">AI booked</span></div>
+            <div class="slot" style="background:#fff"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:#e3f5ec;color:#0b5c40">Free</span></div>
+          </div>
+        </div>
+        <div class="mock A-body" style="background:radial-gradient(120% 90% at 100% 0%,rgba(52,211,153,.25) 0%,transparent 50%),#0d1412;color:#ecfdf5">
+          <span class="mtag">Dark</span>
+          <div><h4 class="A-head" style="font-size:26px;font-weight:800">Say yes to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#34d399;color:#0b2a22">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)">
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill" style="background:#34d399;color:#0b2a22">Booked</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#ff7a59;color:#1f0a04">AI booked</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:rgba(52,211,153,.18);color:#a7f3d0">Free</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who"><span>Best for: every industry equally</span><span>Feels: dependable, upbeat</span><span>Risk: closest to other SaaS brands</span></div>
+</section>
+
+<!-- ============ DIRECTION B ============ -->
+<section class="dir" aria-labelledby="b-title">
+  <div class="dir-head"><h2 id="b-title">B · Salon Luxe</h2><span class="letter">ELEGANT · WARM · PREMIUM</span></div>
+  <p class="dir-lede">Speaks the language of beauty and wellness first. Deep plum with blush and a soft gold, plus an elegant serif. It makes the apps you build feel like a premium upgrade for a salon or spa, while staying clean enough for clinics and tutors.</p>
+  <div class="grid">
+    <div class="cell c-logo">
+      <h3>Logo concept</h3>
+      <div class="logo-stage" style="background:#fbf5f7">
+        <svg viewBox="0 0 270 64" width="250" role="img" aria-label="Yesbook logo, direction B">
+          <circle cx="30" cy="32" r="27" fill="#3d1736"/>
+          <path d="M18 18 L30 34 L42 18" fill="none" stroke="#f2c6d2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30 34 V47" stroke="#d9b779" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="34" r="3.2" fill="#d9b779"/>
+          <text x="68" y="45" font-family="Instrument Serif, Georgia, serif" font-size="42" fill="#3d1736">Yes<tspan font-style="italic">book</tspan></text>
+        </svg>
+      </div>
+      <div class="logo-pair">
+        <div class="logo-stage" style="background:#3d1736">
+          <svg viewBox="0 0 64 64" width="56" role="img" aria-label="App icon on plum"><circle cx="32" cy="32" r="28" fill="#f2c6d2"/><path d="M20 18 L32 34 L44 18" fill="none" stroke="#3d1736" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 34 V47" stroke="#3d1736" stroke-width="4.5" stroke-linecap="round"/><circle cx="32" cy="34" r="3.2" fill="#b08a45"/></svg>
+        </div>
+        <div class="logo-stage" style="background:#d9b779">
+          <svg viewBox="0 0 64 64" width="56" role="img" aria-label="App icon on gold"><circle cx="32" cy="32" r="28" fill="#3d1736"/><path d="M20 18 L32 34 L44 18" fill="none" stroke="#f2c6d2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 34 V47" stroke="#d9b779" stroke-width="4.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <p class="note">A "Y" monogram that also reads as an open pair of scissors or a ribbon, with a gold pin where the strokes meet. Italic "book" adds a boutique touch.</p>
+    </div>
+    <div class="cell c-pal">
+      <h3>Colour palette</h3>
+      <div class="sw">
+        <div class="chip"><i style="background:#3d1736"></i><div><b>Aubergine</b><code>#3D1736</code></div></div>
+        <div class="chip"><i style="background:#8c2f6b"></i><div><b>Orchid</b><code>#8C2F6B</code></div></div>
+        <div class="chip"><i style="background:#f2c6d2"></i><div><b>Blush</b><code>#F2C6D2</code></div></div>
+        <div class="chip"><i style="background:#d9b779"></i><div><b>Soft Gold</b><code>#D9B779</code></div></div>
+        <div class="chip"><i style="background:#fbf5f7"></i><div><b>Pearl</b><code>#FBF5F7</code></div></div>
+        <div class="chip"><i style="background:#1a0c18"></i><div><b>Velvet night</b><code>#1A0C18</code></div></div>
+      </div>
+      <p class="note">Gradients blend orchid into blush, like a soft studio light. Gold is only for small accents (icons, dividers, the logo pin), never for text.</p>
+    </div>
+    <div class="cell c-type">
+      <h3>Typography</h3>
+      <div class="specimen">
+        <div class="big B-head">Every chair, <i>beautifully</i> booked.</div>
+        <div class="body B-body">Online and in-store booking, client records, reminders and an AI receptionist, in one app with your name on it.</div>
+        <div class="meta">Headings: Instrument Serif (elegant, editorial) · Text: Manrope (modern, rounded, readable)</div>
+      </div>
+    </div>
+    <div class="cell c-icon">
+      <h3>Icon style</h3>
+      <div class="icons">
+        <figure><div class="ib" style="background:#f7e6ec;color:#3d1736"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.6" fill="#b08a45" stroke="none"/></svg></div>Booking</figure>
+        <figure><div class="ib" style="background:#f7e6ec;color:#3d1736"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/><path d="M15 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#b08a45" stroke="#b08a45"/></svg></div>AI calls</figure>
+        <figure><div class="ib" style="background:#f7e6ec;color:#3d1736"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><circle cx="17.5" cy="5" r="1.4" fill="#b08a45" stroke="none"/></svg></div>Clients</figure>
+        <figure><div class="ib" style="background:#f7e6ec;color:#3d1736"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 16v-3M12 16V7M17 16v-6"/><circle cx="12" cy="5" r="1.4" fill="#b08a45" stroke="none"/></svg></div>Reports</figure>
+      </div>
+      <p class="note">Fine 1.4px line icons with one small gold dot each. Light and refined, like a spa menu.</p>
+    </div>
+    <div class="cell c-mock">
+      <h3>Website hero sample</h3>
+      <div class="mocks">
+        <div class="mock B-body" style="background:radial-gradient(110% 80% at 90% 10%,#f6d3de 0%,transparent 55%),linear-gradient(170deg,#fbf5f7,#f4e7ee);color:#3d1736">
+          <span class="mtag">Light</span>
+          <div><h4 class="B-head" style="font-size:32px">Say yes to every <i>booking.</i></h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#3d1736;color:#fbf5f7">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.6);border:1px solid rgba(61,23,54,.12);backdrop-filter:blur(8px)">
+            <div class="slot" style="background:#fff"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill" style="background:#3d1736;color:#f2c6d2">Booked</span></div>
+            <div class="slot" style="background:#fff"><span>11:45 Facial<br><small>with Ana</small></span><span class="pill" style="background:#f7ecd8;color:#6b4f1d">AI booked</span></div>
+            <div class="slot" style="background:#fff"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:#f7e6ec;color:#8c2f6b">Free</span></div>
+          </div>
+        </div>
+        <div class="mock B-body" style="background:radial-gradient(110% 80% at 90% 10%,rgba(140,47,107,.55) 0%,transparent 55%),#1a0c18;color:#fbeef3">
+          <span class="mtag">Dark</span>
+          <div><h4 class="B-head" style="font-size:32px">Say yes to every <i>booking.</i></h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#f2c6d2;color:#3d1736">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.06);border:1px solid rgba(242,198,210,.18)">
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>10:30 Balayage<br><small>with Priya</small></span><span class="pill" style="background:#f2c6d2;color:#3d1736">Booked</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>11:45 Facial<br><small>with Ana</small></span><span class="pill" style="background:#d9b779;color:#2a1a05">AI booked</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>13:00 Gel nails<br><small>Open</small></span><span class="pill" style="background:rgba(242,198,210,.15);color:#f2c6d2">Free</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who"><span>Best for: salons, spas, nail studios</span><span>Feels: boutique, premium</span><span>Risk: may feel too "beauty" for clinics and trainers later</span></div>
+</section>
+
+<!-- ============ DIRECTION C ============ -->
+<section class="dir" aria-labelledby="c-title">
+  <div class="dir-head"><h2 id="c-title">C · Bold Signal</h2><span class="letter">CONFIDENT · TECH-FORWARD · AI</span></div>
+  <p class="dir-lede">Leads with the AI phone agent. A speech bubble that says "yes" is the logo, so the brand itself feels like a receptionist answering. Electric cobalt and a sunshine highlight stand out next to competitors and fit yesbook.ai well.</p>
+  <div class="grid">
+    <div class="cell c-logo">
+      <h3>Logo concept</h3>
+      <div class="logo-stage" style="background:#eef2ff">
+        <svg viewBox="0 0 290 64" width="260" role="img" aria-label="Yesbook logo, direction C">
+          <path d="M8 8 h56 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-34 l-12 10 v-10 h-10 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8z" fill="#2f4bff"/>
+          <text x="15" y="38" font-family="Unbounded, sans-serif" font-size="17" font-weight="800" fill="#ffe14d">yes</text>
+          <text x="84" y="44" font-family="Unbounded, sans-serif" font-size="30" font-weight="700" fill="#0a0f2e" letter-spacing="-.5">book</text>
+        </svg>
+      </div>
+      <div class="logo-pair">
+        <div class="logo-stage" style="background:#0a0f2e">
+          <svg viewBox="0 0 80 64" width="64" role="img" aria-label="App icon on navy"><path d="M8 8 h56 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-34 l-12 10 v-10 h-10 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8z" fill="#ffe14d"/><text x="15" y="38" font-family="Unbounded, sans-serif" font-size="17" font-weight="800" fill="#0a0f2e">yes</text></svg>
+        </div>
+        <div class="logo-stage" style="background:#2f4bff">
+          <svg viewBox="0 0 80 64" width="64" role="img" aria-label="App icon on cobalt"><path d="M8 8 h56 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-34 l-12 10 v-10 h-10 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8z" fill="#fff"/><text x="15" y="38" font-family="Unbounded, sans-serif" font-size="17" font-weight="800" fill="#2f4bff">yes</text></svg>
+        </div>
+      </div>
+      <p class="note">"yes" lives inside a chat bubble, the answer every caller wants to hear. The bubble alone becomes the app icon and favicon.</p>
+    </div>
+    <div class="cell c-pal">
+      <h3>Colour palette</h3>
+      <div class="sw">
+        <div class="chip"><i style="background:#2f4bff"></i><div><b>Signal Cobalt</b><code>#2F4BFF</code></div></div>
+        <div class="chip"><i style="background:#0a0f2e"></i><div><b>Midnight</b><code>#0A0F2E</code></div></div>
+        <div class="chip"><i style="background:#ffe14d"></i><div><b>Sunshine</b><code>#FFE14D</code></div></div>
+        <div class="chip"><i style="background:#7c8cff"></i><div><b>Periwinkle (dark)</b><code>#7C8CFF</code></div></div>
+        <div class="chip"><i style="background:#f4f6ff"></i><div><b>Ice</b><code>#F4F6FF</code></div></div>
+        <div class="chip"><i style="background:#060918"></i><div><b>Deep space</b><code>#060918</code></div></div>
+      </div>
+      <p class="note">Cobalt carries the brand, sunshine marks the single most important thing on a screen (the call to action, the "yes"). Gradients stay blue to periwinkle, no purple.</p>
+    </div>
+    <div class="cell c-type">
+      <h3>Typography</h3>
+      <div class="specimen">
+        <div class="big C-head" style="font-weight:800;font-size:clamp(28px,4.2vw,44px)">Never miss a call.</div>
+        <div class="body C-body">Online and in-store booking, client records, reminders and an AI receptionist, in one app with your name on it.</div>
+        <div class="meta">Headings: Unbounded (wide, bold, techy) · Text: DM Sans (clean and friendly)</div>
+      </div>
+    </div>
+    <div class="cell c-icon">
+      <h3>Icon style</h3>
+      <div class="icons">
+        <figure><div class="ib" style="background:#2f4bff;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v3h6V2h2v3h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2z"/><path d="M8 14l3 3 5-6" fill="none" stroke="#2f4bff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Booking</figure>
+        <figure><div class="ib" style="background:#ffe14d;color:#0a0f2e"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h4l2 5-2.5 1.8a11 11 0 0 0 5.7 5.7L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></div>AI calls</figure>
+        <figure><div class="ib" style="background:#2f4bff;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21a9 9 0 0 1 18 0z"/></svg></div>Clients</figure>
+        <figure><div class="ib" style="background:#2f4bff;color:#fff"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="12" width="4" height="8" rx="1.5"/><rect x="10" y="6" width="4" height="14" rx="1.5"/><rect x="16" y="9" width="4" height="11" rx="1.5"/></svg></div>Reports</figure>
+      </div>
+      <p class="note">Solid, chunky filled icons on coloured tiles. Bold and instantly readable, like app icons.</p>
+    </div>
+    <div class="cell c-mock">
+      <h3>Website hero sample</h3>
+      <div class="mocks">
+        <div class="mock C-body" style="background:radial-gradient(100% 80% at 100% 0%,#c9d2ff 0%,transparent 55%),#f4f6ff;color:#0a0f2e">
+          <span class="mtag">Light</span>
+          <div><h4 class="C-head" style="font-size:22px;font-weight:800">Say yes to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#2f4bff;color:#fff">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.65);border:1px solid rgba(47,75,255,.15);backdrop-filter:blur(8px)">
+            <div class="slot" style="background:#0a0f2e;color:#fff"><span>Incoming call<br><small>AI agent answering…</small></span><span class="pill" style="background:#ffe14d;color:#0a0f2e">Live</span></div>
+            <div class="slot" style="background:#fff"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#2f4bff;color:#fff">Booked</span></div>
+            <div class="slot" style="background:#fff"><span>13:00 Physio<br><small>Open</small></span><span class="pill" style="background:#e4e8ff;color:#1e2fb8">Free</span></div>
+          </div>
+        </div>
+        <div class="mock C-body" style="background:radial-gradient(100% 80% at 100% 0%,rgba(47,75,255,.55) 0%,transparent 55%),#060918;color:#eef1ff">
+          <span class="mtag">Dark</span>
+          <div><h4 class="C-head" style="font-size:22px;font-weight:800">Say yes to every booking.</h4><p>Your own booking app, on your own domain, for salons and studios across the GTA.</p><span class="btn" style="background:#ffe14d;color:#0a0f2e">Book a free demo</span></div>
+          <div class="phone" style="background:rgba(255,255,255,.06);border:1px solid rgba(124,140,255,.25)">
+            <div class="slot" style="background:#2f4bff;color:#fff"><span>Incoming call<br><small>AI agent answering…</small></span><span class="pill" style="background:#ffe14d;color:#0a0f2e">Live</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>11:45 Beard trim<br><small>with Marco</small></span><span class="pill" style="background:#7c8cff;color:#060918">Booked</span></div>
+            <div class="slot" style="background:rgba(255,255,255,.07)"><span>13:00 Physio<br><small>Open</small></span><span class="pill" style="background:rgba(124,140,255,.18);color:#c7cdff">Free</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who"><span>Best for: standing out, AI agent story, yesbook.ai</span><span>Feels: energetic, modern</span><span>Risk: louder, less "spa"</span></div>
+</section>
+
+<!-- ============ TAGLINES ============ -->
+<section class="dir" aria-labelledby="t-title">
+  <div class="dir-head"><h2 id="t-title">Tagline options</h2></div>
+  <div class="tag-list">
+    <div class="tag orig"><q>Say yes to every booking.</q><span>Your idea. Short, positive, and it repeats the brand name. Strong default.</span></div>
+    <div class="tag"><q>Your brand. Your app. Fully booked.</q><span>Puts the "custom app on your own domain" promise up front.</span></div>
+    <div class="tag"><q>Every call answered. Every chair filled.</q><span>Leans on the AI phone agent. Pairs well with direction C.</span></div>
+    <div class="tag"><q>Booking, beautifully yours.</q><span>Soft and premium. Pairs well with direction B.</span></div>
+  </div>
+</section>
+
+<section class="pick" aria-labelledby="p-title">
+  <h2 id="p-title" style="font-size:22px">How to choose</h2>
+  <ul>
+    <li>Reply with a letter (A, B or C) and a tagline, or mix parts.</li>
+    <li>My pick: <b>A, Fresh Confirm</b>, with "Say yes to every booking." It works for every industry you listed, and the tick logo explains the name instantly.</li>
+    <li>After you choose, I build the full site and send a live preview link.</li>
+  </ul>
+</section>
+
+</div>
