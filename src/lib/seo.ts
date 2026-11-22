@@ -78,7 +78,7 @@ export const productLd = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   description:
-    "A custom, branded booking and business app for salons: online and in-store booking, client records, staff and services, reminders, reports, automatic secure backups and an optional AI phone agent.",
+    "A custom, branded booking and business app for salons: online and in-store booking, client records, staff and services, reminders, reports, automatic secure backups and a premium AI phone agent.",
   provider: { "@id": `${site.url}/#org` },
   areaServed: "Greater Toronto Area, Ontario, Canada",
   offers: { "@type": "Offer", priceCurrency: "CAD", availability: "https://schema.org/InStock", url: absoluteUrl("/pricing/") },

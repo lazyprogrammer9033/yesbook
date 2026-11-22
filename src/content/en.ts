@@ -118,7 +118,7 @@ export const en = {
     {
       id: "ai-agent",
       tone: "red" as Tone,
-      title: "AI phone agent (optional)",
+      title: "AI phone agent (premium)",
       short: "A friendly AI receptionist that answers calls and books appointments.",
       body: "When you're busy with a client or closed for the night, the AI agent picks up, answers questions and books straight into your calendar.",
       points: ["Answers 24/7", "Books, moves and cancels", "Natural, friendly voice", "Sends you a summary of every call"],
@@ -178,7 +178,7 @@ export const en = {
   ],
 
   aiAgent: {
-    eyebrow: "Optional add-on",
+    eyebrow: "Premium feature",
     title: "An AI receptionist that never misses a call.",
     lede:
       "Every missed call is a missed booking. The Yesbook AI agent answers in a friendly, natural voice, checks your real calendar and books the appointment while you keep working.",
@@ -207,7 +207,7 @@ export const en = {
       { q: "Will callers know it's an AI?", a: "Yes. The agent introduces itself as your virtual assistant. Being upfront builds trust, and most callers just want a quick booking." },
       { q: "Can I keep my current phone number?", a: "Yes. Calls you don't answer are forwarded to the agent, so nothing changes for your clients." },
       { q: "What if a caller asks something it doesn't know?", a: "It takes a message, tells the caller someone will call back, and sends you the details right away." },
-      { q: "Is the AI agent required?", a: "No. It's an optional add-on. The Salon App works perfectly without it." },
+      { q: "Which plan includes the AI agent?", a: "The AI agent is a premium feature, included in the Pro + AI plan." },
     ],
   },
 

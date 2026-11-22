@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export const metadata = pageMeta({
   title: "The Salon App: features",
   description:
-    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and an optional AI phone agent. Everything your salon needs in one branded app.",
+    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and a premium AI phone agent. Everything your salon needs in one branded app.",
   path: "/product/",
   keywords: ["salon software features", "salon scheduling app", "salon client records app"],
 });
@@ -41,7 +41,7 @@ export default function ProductPage() {
                   className={cn("inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 font-semibold transition-transform hover:-translate-y-0.5", tone[f.tone].tint)}
                 >
                   <IconTile id={f.id} tone={f.tone} size="sm" className="size-8 rounded-full [&_svg]:size-4" />
-                  {f.title.replace(" (optional)", "")}
+                  {f.title.replace(" (premium)", "")}
                 </Link>
               </li>
             ))}
