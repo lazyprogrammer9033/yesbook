@@ -23,7 +23,8 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   formatDetection: { telephone: false },
-  robots: { index: true, follow: true },
+  // Preview builds (GitHub Pages) are hidden from search engines.
+  robots: process.env.NEXT_PUBLIC_PREVIEW ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

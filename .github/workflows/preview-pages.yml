@@ -1,0 +1,40 @@
+# Preview site: builds every push to a site/** branch and publishes it to the
+# gh-pages branch, served by GitHub Pages at https://lazyprogrammer9033.github.io/yesbook/
+# One-time setup: repo Settings > Pages > Source "Deploy from a branch" > gh-pages / (root).
+# The preview is hidden from search engines. The contact form can't send email
+# here (GitHub Pages has no PHP); it works on IONOS.
+name: Preview on GitHub Pages
+
+on:
+  push:
+    branches: ["site/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          PAGES_BASE_PATH: /yesbook
+          NEXT_PUBLIC_PREVIEW: "1"
+      - run: touch out/.nojekyll
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          force_orphan: true

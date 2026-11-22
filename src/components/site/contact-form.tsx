@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -137,9 +138,9 @@ export function ContactForm() {
             </div>
             <p className="text-sm text-muted">
               We only use your details to reply to you. See our{" "}
-              <a href="/privacy/" className="font-semibold text-fg underline decoration-green decoration-2 underline-offset-2">
+              <Link href="/privacy/" className="font-semibold text-fg underline decoration-green decoration-2 underline-offset-2">
                 privacy policy
-              </a>
+              </Link>
               .
             </p>
             {status === "error" && (

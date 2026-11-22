@@ -2,8 +2,12 @@ import type { NextConfig } from "next";
 
 // Static export: `npm run build` writes plain HTML/CSS/JS to `out/`,
 // which can be uploaded to any IONOS web hosting plan as-is.
+// PAGES_BASE_PATH is only set for the GitHub Pages preview (served from /yesbook).
+const basePath = process.env.PAGES_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
   output: "export",
+  basePath,
   trailingSlash: true, // /pricing -> /pricing/index.html (works on Apache without rewrites)
   images: { unoptimized: true }, // no image server on static hosting; images are pre-optimized
   reactStrictMode: true,
