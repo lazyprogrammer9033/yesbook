@@ -5,15 +5,16 @@ import { FeatureDemo } from "@/components/demos/feature-demos";
 import { IconTile } from "@/components/site/icon-tile";
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/site/json-ld";
+import { VideoShowcase } from "@/components/site/video-showcase";
 import { t } from "@/content/en";
 import { pageMeta, productLd, breadcrumbLd } from "@/lib/seo";
 import { tone } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 
 export const metadata = pageMeta({
-  title: "The Salon App: features",
+  title: "Yesbook features",
   description:
-    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and a premium AI phone agent. Everything your salon needs in one branded app.",
+    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and a premium AI phone agent. Everything your business needs in one branded app.",
   path: "/product/",
   keywords: ["salon software features", "salon scheduling app", "salon client records app"],
 });
@@ -23,13 +24,13 @@ export default function ProductPage() {
     <>
       <JsonLd data={[productLd, breadcrumbLd([{ name: "Home", path: "/" }, { name: "Product", path: "/product/" }])]} />
       <PageHero
-        eyebrow="The Salon App"
+        eyebrow="Yesbook features"
         title={
           <>
             One app. <Mark>Every</Mark> booking tool you need.
           </>
         }
-        lede="Built for the way salons, studios and clinics really work, then branded as your own. Here's everything inside."
+        lede="Built for the way salons, sports courts, studios and clinics really work, then branded as your own. Here's everything inside."
         blobs={["green", "yellow"]}
       >
         <nav aria-label="Features on this page">
@@ -48,6 +49,13 @@ export default function ProductPage() {
           </ul>
         </nav>
       </PageHero>
+
+      <section aria-labelledby="demos-title" className="pb-16 sm:pb-20">
+        <div className="container-x">
+          <h2 id="demos-title" className="mb-8 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">{t.videos.title}</h2>
+          <VideoShowcase />
+        </div>
+      </section>
 
       <div className="grid gap-6 pb-12">
         {t.features.map((f, i) => (

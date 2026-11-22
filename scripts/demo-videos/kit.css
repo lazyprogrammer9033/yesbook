@@ -1,0 +1,14 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1280px; height: 720px; overflow: hidden; background: #000; }
+body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.stage { position: relative; width: 1280px; height: 720px; overflow: hidden; }
+.cursor { position: absolute; left: 0; top: 0; z-index: 50; pointer-events: none; filter: drop-shadow(0 3px 4px rgb(0 0 0 / .35)); }
+.ripple { position: absolute; z-index: 49; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 99px; border: 3px solid #ffc928; animation: rip .6s ease-out forwards; pointer-events: none; }
+@keyframes rip { to { transform: scale(4.2); opacity: 0; } }
+.pressed { transform: scale(.96) !important; }
+.caption { position: absolute; z-index: 40; left: 48px; bottom: 40px; max-width: 520px; padding: 14px 22px; border-radius: 18px; background: #0b2a22; color: #fff; font-weight: 700; font-size: 26px; line-height: 1.2; letter-spacing: -.01em; opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .3s; box-shadow: 0 12px 30px -10px rgb(0 0 0 / .5); }
+.caption.on { opacity: 1; transform: none; }
+.caption small { display: block; font-size: 15px; font-weight: 600; color: #ffc928; margin-bottom: 4px; letter-spacing: .06em; text-transform: uppercase; }
+.badge { position: absolute; z-index: 40; top: 28px; left: 48px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: #0b2a22; background: #fff; padding: 8px 16px 8px 10px; border-radius: 99px; box-shadow: 0 6px 18px -8px rgb(0 0 0 / .35); }
+.badge i { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg,#12a150,#2ea8ff); display: grid; place-items: center; color: #fff; font-style: normal; font-size: 15px; }
+.focus { box-shadow: 0 0 0 3px var(--accent, #2ea8ff) !important; }

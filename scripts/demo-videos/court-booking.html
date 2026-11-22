@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Court booking demo</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  :root { --navy: #0f2742; --lime: #c8f23a; --sky: #e9f4ff; --accent: #2b7de9; }
+  .stage { background: radial-gradient(circle at 90% 10%, #c8f23a 0, transparent 35%), radial-gradient(circle at 5% 100%, #7cc4ff 0, transparent 40%), linear-gradient(135deg, #eef7ff, #f6fbe6); }
+  .top { position: absolute; left: 48px; right: 48px; top: 22px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .top .badge { position: static; }
+  .say { font-size: 25px; font-weight: 800; color: #0b2a22; letter-spacing: -.02em; transition: opacity .25s; }
+  .win { position: absolute; left: 48px; right: 48px; top: 96px; bottom: 26px; border-radius: 20px; background: #fff; overflow: hidden; box-shadow: 0 30px 70px -30px rgb(15 39 66 / .55), 0 0 0 1px rgb(15 39 66 / .08); }
+  .chrome { height: 40px; display: flex; align-items: center; gap: 7px; padding: 0 16px; background: #f1f4f8; border-bottom: 1px solid #e3e8ef; }
+  .chrome i { width: 11px; height: 11px; border-radius: 50%; }
+  .url { margin-left: 14px; flex: 0 0 340px; height: 24px; border-radius: 99px; background: #fff; font-size: 12.5px; color: #4b5b6b; display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+  .site { display: grid; grid-template-columns: 1fr 300px; height: calc(100% - 40px); }
+  .main { padding: 20px 26px; color: var(--navy); }
+  .nav { display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 22px; letter-spacing: -.02em; }
+  .logo b { width: 34px; height: 34px; border-radius: 10px; background: var(--navy); color: var(--lime); display: grid; place-items: center; font-size: 18px; }
+  .links { display: flex; gap: 20px; font-size: 14px; font-weight: 600; color: #4b5b6b; }
+  .tabs { display: inline-flex; margin-top: 16px; padding: 4px; border-radius: 14px; background: #eef2f7; gap: 4px; }
+  .tab { padding: 9px 18px; border-radius: 11px; font-weight: 700; font-size: 15px; color: #4b5b6b; transition: all .25s; }
+  .tab.sel { background: var(--navy); color: var(--lime); }
+  .dates { display: flex; gap: 8px; margin-top: 14px; }
+  .date { width: 62px; text-align: center; padding: 7px 0; border-radius: 12px; border: 2px solid #e3e8ef; font-size: 11.5px; font-weight: 600; color: #6b7a8a; transition: all .25s; }
+  .date b { display: block; font-size: 18px; color: var(--navy); }
+  .date.sel { border-color: var(--navy); background: var(--navy); color: #c9d6e6; }
+  .date.sel b { color: var(--lime); }
+  .grid { margin-top: 16px; display: grid; grid-template-columns: 70px repeat(4, 1fr); gap: 7px; }
+  .h { font-size: 12.5px; font-weight: 800; text-align: center; color: #6b7a8a; padding-bottom: 2px; }
+  .hr { font-size: 13px; font-weight: 700; color: #6b7a8a; align-self: center; }
+  .slot { height: 40px; border-radius: 10px; border: 2px solid #dfe7f0; background: #fff; display: grid; place-items: center; font-size: 12.5px; font-weight: 700; color: #2b7de9; transition: all .3s; }
+  .slot.busy { background: repeating-linear-gradient(-45deg, #f2f5f9 0 6px, #e9eef4 6px 12px); border-color: transparent; color: #9aa8b6; }
+  .slot.sel { background: var(--lime); border-color: var(--navy); color: var(--navy); }
+  .side { border-left: 1px solid #e3e8ef; background: #f8fafc; padding: 20px; display: flex; flex-direction: column; gap: 12px; color: var(--navy); }
+  .side h4 { font-size: 17px; }
+  .card { border-radius: 16px; background: #fff; border: 1px solid #e3e8ef; padding: 14px; font-size: 14px; line-height: 1.6; }
+  .empty { color: #8a98a7; font-size: 14px; }
+  .line { display: flex; justify-content: space-between; }
+  .total { font-size: 20px; font-weight: 900; }
+  .pbtn { margin-top: auto; height: 50px; border-radius: 14px; background: var(--navy); color: var(--lime); font-weight: 800; font-size: 16px; display: grid; place-items: center; opacity: .35; transition: opacity .3s, transform .15s; }
+  .pbtn.ready { opacity: 1; }
+  .players { display: flex; align-items: center; justify-content: space-between; }
+  .step { display: flex; gap: 6px; }
+  .step span { width: 30px; height: 30px; border-radius: 9px; border: 2px solid #dfe7f0; display: grid; place-items: center; font-weight: 800; }
+  .modal { position: absolute; inset: 40px 0 0; background: rgb(15 39 66 / .45); display: grid; place-items: center; opacity: 0; transition: opacity .35s; }
+  .modal.on { opacity: 1; }
+  .mcard { width: 400px; border-radius: 24px; background: #fff; padding: 28px; text-align: center; color: var(--navy); transform: translateY(30px) scale(.95); transition: transform .45s cubic-bezier(.3,1.5,.5,1); }
+  .modal.on .mcard { transform: none; }
+  .ok { width: 76px; height: 76px; margin: 0 auto; border-radius: 50%; background: var(--lime); display: grid; place-items: center; }
+  .qr { width: 96px; height: 96px; margin: 14px auto 0; border-radius: 10px; background:
+      conic-gradient(from 90deg at 30% 30%, #0f2742 25%, transparent 0) 0 0/24px 24px,
+      repeating-linear-gradient(90deg, #0f2742 0 6px, #fff 6px 12px); opacity: .9; }
+  .fade { transition: opacity .25s; }
+</style></head>
+<body><div class="stage">
+  <div class="top"><div class="badge"><i>✓</i>Built by Yesbook</div><div class="say" id="say">A court booking website for your club</div></div>
+  <div class="win">
+    <div class="chrome"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><div class="url">🔒 book.smashclub.ca</div></div>
+    <div class="site">
+      <div class="main">
+        <div class="nav"><div class="logo"><b>S</b>Smash Club</div><div class="links"><span>Courts</span><span>Leagues</span><span>Memberships</span><span>Contact</span></div></div>
+        <div class="tabs"><div class="tab sel" id="pb">Pickleball</div><div class="tab" id="bd">Badminton</div></div>
+        <div class="dates">
+          <div class="date sel">Today<b>20</b></div><div class="date" id="fri">Fri<b>21</b></div><div class="date">Sat<b>22</b></div><div class="date">Sun<b>23</b></div><div class="date">Mon<b>24</b></div><div class="date">Tue<b>25</b></div>
+        </div>
+        <div class="grid fade" id="grid"></div>
+      </div>
+      <div class="side">
+        <h4>Your booking</h4>
+        <div class="card" id="sum"><span class="empty">Pick a free court to start.</span></div>
+        <div class="card players"><b>Players</b><div class="step"><span>–</span><span id="pc" style="border:0">2</span><span id="plus">+</span></div></div>
+        <div class="card"><div class="line"><span>Members save 20%</span><b style="color:#2b7de9">Log in</b></div></div>
+        <div class="pbtn" id="pay">Book &amp; pay</div>
+      </div>
+    </div>
+    <div class="modal" id="modal"><div class="mcard">
+      <div class="ok"><svg viewBox="0 0 24 24" width="40" fill="none" stroke="#0f2742" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3 style="margin-top:14px;font-size:24px">You're on Court 3!</h3>
+      <p style="margin-top:6px;color:#4b5b6b">Badminton · Fri, Nov 21 · 7–9 PM · 4 players</p>
+      <div class="qr"></div>
+      <p style="margin-top:10px;font-size:13px;color:#6b7a8a">Show this code at the front desk. Reminder text 2 hours before.</p>
+    </div></div>
+  </div>
+</div>
+<script src="kit.js"></script>
+<script>
+const hours = ["5 PM", "6 PM", "7 PM", "8 PM", "9 PM"];
+function draw(busy) {
+  const g = document.getElementById("grid");
+  let h = '<span></span>' + [1,2,3,4].map(c => `<span class="h">Court ${c}</span>`).join("");
+  hours.forEach((hr, r) => {
+    h += `<span class="hr">${hr}</span>`;
+    for (let c = 0; c < 4; c++) {
+      const b = busy.includes(`${r}${c}`);
+      h += `<span class="slot ${b ? "busy" : ""}" id="s${r}${c}">${b ? "Booked" : "$20"}</span>`;
+    }
+  });
+  g.innerHTML = h;
+}
+draw(["00","01","10","11","12","20","21","23","30","31","33","42"]);
+Demo.run(async (d) => {
+  const say = async (t) => { const e = d.$("#say"); e.style.opacity = 0; await d.wait(250); e.textContent = t; e.style.opacity = 1; };
+  await d.wait(1000);
+  await say("1. Pick your sport");
+  await d.click("#bd"); d.$("#pb").classList.remove("sel"); d.$("#bd").classList.add("sel");
+  d.$("#grid").style.opacity = 0; await d.wait(260); draw(["00","02","10","11","13","22","30","32","41","43"]); d.$("#grid").style.opacity = 1;
+  await d.wait(500);
+  await say("2. Choose a day");
+  await d.click("#fri"); document.querySelectorAll(".date").forEach(e => e.classList.remove("sel")); d.$("#fri").classList.add("sel");
+  d.$("#grid").style.opacity = 0; await d.wait(260); draw(["00","01","10","12","13","30","31","33","40"]); d.$("#grid").style.opacity = 1;
+  await d.wait(500);
+  await say("3. Grab a free court, live");
+  await d.click("#s22"); d.$("#s22").classList.add("sel"); d.$("#s22").textContent = "✓";
+  d.$("#sum").innerHTML = '<div class="line"><b>Court 3 · Badminton</b></div><div>Fri, Nov 21 · 7–8 PM</div><div class="line"><span>1 hour</span><span class="total">$20</span></div>';
+  d.$("#pay").classList.add("ready");
+  await d.wait(400);
+  await d.click("#s32"); d.$("#s32").classList.add("sel"); d.$("#s32").textContent = "✓";
+  d.$("#sum").innerHTML = '<div class="line"><b>Court 3 · Badminton</b></div><div>Fri, Nov 21 · 7–9 PM</div><div class="line"><span>2 hours</span><span class="total">$40</span></div>';
+  await d.wait(400);
+  await say("4. Add players, then book");
+  await d.click("#plus"); d.$("#pc").textContent = "3"; await d.wait(150);
+  await d.click("#plus", 250); d.$("#pc").textContent = "4";
+  await d.wait(300);
+  await d.click("#pay");
+  d.show("#modal");
+  await say("Booked and paid. No phone calls.");
+  await d.moveXY(1200, 690, 600);
+  await d.wait(2600);
+});
+</script>
+</body></html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Front desk demo</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  :root { --plum: #6b2d5c; --accent: #6b2d5c; }
+  .stage { background: radial-gradient(circle at 95% 0%, #ffc928 0, transparent 30%), radial-gradient(circle at 0% 100%, #9fd8ff 0, transparent 40%), linear-gradient(135deg, #f3fbf6, #fff7ea); }
+  .top { position: absolute; left: 48px; right: 48px; top: 22px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .top .badge { position: static; }
+  .say { font-size: 25px; font-weight: 800; color: #0b2a22; letter-spacing: -.02em; transition: opacity .25s; }
+  .win { position: absolute; left: 48px; right: 48px; top: 96px; bottom: 26px; border-radius: 20px; background: #fff; overflow: hidden; box-shadow: 0 30px 70px -30px rgb(11 42 34 / .5), 0 0 0 1px rgb(11 42 34 / .08); }
+  .chrome { height: 40px; display: flex; align-items: center; gap: 7px; padding: 0 16px; background: #f1f4f3; border-bottom: 1px solid #e3e9e6; }
+  .chrome i { width: 11px; height: 11px; border-radius: 50%; }
+  .url { margin-left: 14px; flex: 0 0 340px; height: 24px; border-radius: 99px; background: #fff; font-size: 12.5px; color: #4b5b55; display: flex; align-items: center; padding: 0 12px; }
+  .app { display: grid; grid-template-columns: 190px 1fr; height: calc(100% - 40px); color: #1f1a24; }
+  .nav { background: #2a1426; color: #e9d3e2; padding: 18px 14px; display: grid; align-content: start; gap: 6px; font-size: 14px; font-weight: 600; }
+  .nav .brand { font-family: Georgia, serif; font-size: 21px; color: #fff; margin-bottom: 14px; padding-left: 8px; }
+  .nav div { padding: 9px 10px; border-radius: 10px; }
+  .nav .cur { background: rgb(255 255 255 / .12); color: #fff; }
+  .main { position: relative; padding: 14px 18px; overflow: hidden; }
+  .bar { display: flex; align-items: center; justify-content: space-between; }
+  .bar h2 { font-size: 20px; }
+  .bar .pill { padding: 7px 14px; border-radius: 99px; background: #f6eef3; font-size: 13px; font-weight: 700; color: var(--plum); }
+  .cal { position: relative; margin-top: 12px; display: grid; grid-template-columns: 56px repeat(4, 1fr); }
+  .head { height: 34px; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; padding-left: 8px; }
+  .head i { width: 24px; height: 24px; border-radius: 50%; }
+  .col { position: relative; border-left: 1px solid #eee6ea; height: 432px; background: repeating-linear-gradient(#fff 0 47px, #f3edf0 47px 48px); }
+  .times { height: 432px; display: grid; grid-auto-rows: 48px; font-size: 11.5px; color: #8b7c87; font-weight: 600; }
+  .appt { position: absolute; left: 4px; right: 4px; border-radius: 10px; padding: 6px 9px; font-size: 12.5px; font-weight: 700; line-height: 1.3; border-left: 4px solid; overflow: hidden; transition: top .6s cubic-bezier(.3,.7,.2,1), transform .3s, opacity .3s, box-shadow .3s; }
+  .appt small { display: block; font-weight: 500; opacity: .75; }
+  .pink { background: #fde4ef; border-color: #e0589a; } .blue { background: #e1f0ff; border-color: #2e8ee0; }
+  .green { background: #ddf6e8; border-color: #12a150; } .yellow { background: #fff2c6; border-color: #e0a800; } .orange { background: #ffe8d1; border-color: #f08a12; }
+  .new { opacity: 0; transform: scale(.85); }
+  .new.on { opacity: 1; transform: none; box-shadow: 0 0 0 3px #ffc928; }
+  .drag { box-shadow: 0 16px 30px -10px rgb(0 0 0 / .35); transform: rotate(-2deg) scale(1.03); z-index: 5; }
+  .empty { position: absolute; left: 4px; right: 4px; height: 44px; border-radius: 10px; border: 2px dashed transparent; }
+  .toast { position: absolute; right: 18px; top: 12px; z-index: 6; display: flex; gap: 10px; align-items: center; padding: 12px 16px; border-radius: 14px; background: #0b2a22; color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 14px 30px -12px rgb(0 0 0 / .5); opacity: 0; transform: translateY(-16px); transition: all .4s cubic-bezier(.3,1.4,.5,1); }
+  .toast.on { opacity: 1; transform: none; }
+  .toast b { color: #ffc928; }
+  .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 300px; background: #fff; border-left: 1px solid #eee6ea; box-shadow: -20px 0 40px -20px rgb(0 0 0 / .25); padding: 18px; transform: translateX(105%); transition: transform .45s cubic-bezier(.3,.7,.2,1); z-index: 7; }
+  .panel.on { transform: none; }
+  .panel h3 { font-size: 18px; }
+  .f { margin-top: 12px; } .f label { font-size: 12px; font-weight: 700; color: #8b7c87; }
+  .f > div:not(.chips) { margin-top: 4px; height: 42px; border-radius: 11px; border: 2px solid #eee6ea; padding: 10px 12px; font-size: 14px; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chips span { padding: 7px 11px; border-radius: 99px; border: 2px solid #eee6ea; font-size: 13px; font-weight: 600; transition: all .25s; }
+  .chips span.sel { border-color: var(--plum); background: #f6eef3; color: var(--plum); }
+  .save { margin-top: 16px; height: 46px; border-radius: 13px; background: var(--plum); color: #fff; display: grid; place-items: center; font-weight: 800; }
+  .client { display: grid; gap: 10px; margin-top: 10px; font-size: 13.5px; }
+  .client .row { display: flex; justify-content: space-between; padding: 9px 12px; border-radius: 11px; background: #faf6f8; }
+  .note { padding: 10px 12px; border-radius: 11px; background: #fff7d6; font-size: 13px; line-height: 1.45; }
+</style></head>
+<body><div class="stage">
+  <div class="top"><div class="badge"><i>✓</i>Built by Yesbook</div><div class="say" id="say">The front desk calendar</div></div>
+  <div class="win">
+    <div class="chrome"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><div class="url">🔒 desk.glowstudio.ca</div></div>
+    <div class="app">
+      <div class="nav"><div class="brand">Glow Studio</div><div class="cur">📅 Calendar</div><div>👥 Clients</div><div>✂️ Services</div><div>🧑‍🎨 Staff</div><div>💬 Reminders</div><div>📊 Reports</div></div>
+      <div class="main">
+        <div class="bar"><h2>Saturday, Nov 22</h2><span class="pill">Day · Staff view</span></div>
+        <div class="cal">
+          <span></span>
+          <div class="head"><i style="background:linear-gradient(135deg,#f6a5c0,#b04f86)"></i>Priya</div>
+          <div class="head"><i style="background:linear-gradient(135deg,#9fd1ff,#3b6fb0)"></i>Marco</div>
+          <div class="head"><i style="background:linear-gradient(135deg,#ffd58a,#d68a1f)"></i>Ana</div>
+          <div class="head"><i style="background:linear-gradient(135deg,#a8efc4,#12a150)"></i>Jess</div>
+          <div class="times"><span>9 AM</span><span>10</span><span>11</span><span>12 PM</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+          <div class="col" id="c0">
+            <div class="appt pink" style="top:2px;height:44px">Cut &amp; style<small>Jess R.</small></div>
+            <div class="appt green new" id="sara" style="top:74px;height:116px">Balayage<small>Sara M. · online</small></div>
+            <div class="appt yellow" style="top:242px;height:68px">Colour refresh<small>Nina P.</small></div>
+          </div>
+          <div class="col" id="c1">
+            <div class="appt blue" style="top:50px;height:44px">Skin fade<small>Omar K.</small></div>
+            <div class="appt blue" style="top:146px;height:44px">Beard trim<small>Leo T.</small></div>
+            <div class="empty" id="m2" style="top:242px"></div>
+            <div class="appt orange new" id="dev" style="top:242px;height:44px">Kids cut<small>Dev S. · walk-in</small></div>
+          </div>
+          <div class="col" id="c2">
+            <div class="appt pink" id="maya" style="top:194px;height:44px">Gel nails<small>Maya L.</small></div>
+            <div class="appt green" style="top:2px;height:68px">Manicure<small>Ana B.</small></div>
+          </div>
+          <div class="col" id="c3">
+            <div class="appt yellow" style="top:98px;height:44px">Blow-dry<small>Kim W.</small></div>
+            <div class="appt pink" style="top:290px;height:92px">Highlights<small>Rosa D.</small></div>
+          </div>
+        </div>
+        <div class="toast" id="t1">🔔 New online booking: <b>Sara M.</b> · Balayage 10:30</div>
+        <div class="toast" id="t2">💬 Reminders sent to <b>14 clients</b> for tomorrow</div>
+        <div class="panel" id="add">
+          <h3>New appointment</h3><p style="font-size:13px;color:#8b7c87;margin-top:2px">Marco · 2:00 PM</p>
+          <div class="f"><label>Client</label><div id="who"></div></div>
+          <div class="f"><label>Service</label><div class="chips"><span>Skin fade</span><span id="kids">Kids cut</span><span>Beard trim</span></div></div>
+          <div class="save" id="save">Save booking</div>
+        </div>
+        <div class="panel" id="card">
+          <h3>Sara Malik</h3><p style="font-size:13px;color:#8b7c87;margin-top:2px">Client since 2023 · 14 visits</p>
+          <div class="client">
+            <div class="row"><span>Favourite</span><b>Priya</b></div>
+            <div class="row"><span>Last visit</span><b>Sep 30 · Toner</b></div>
+            <div class="row"><span>Spent this year</span><b>$1,240</b></div>
+            <div class="note">📝 Colour: 7N + 8G, 20 vol. Sensitive scalp, use the gentle shampoo.</div>
+            <div class="note" style="background:#e9f6ef">🎂 Birthday next week, send a treat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="kit.js"></script>
+<script>
+Demo.run(async (d) => {
+  const say = async (t) => { const e = d.$("#say"); e.style.opacity = 0; await d.wait(250); e.textContent = t; e.style.opacity = 1; };
+  await d.wait(900);
+  await say("Online bookings drop straight in");
+  d.show("#t1"); await d.wait(500); d.show("#sara");
+  await d.wait(1600); d.hide("#t1");
+  await say("Walk-in? Tap a free slot");
+  await d.click("#m2");
+  d.show("#add"); await d.wait(500);
+  await d.click("#who", 500); await d.type("#who", "Dev S.", 80);
+  await d.click("#kids"); d.$("#kids").classList.add("sel");
+  await d.wait(250);
+  await d.click("#save"); d.hide("#add"); await d.wait(350); d.show("#dev");
+  await d.wait(700);
+  await say("Drag to move an appointment");
+  const maya = d.$("#maya");
+  await d.move(maya, 600);
+  maya.classList.add("drag");
+  await d.wait(200);
+  maya.style.top = "290px";
+  await d.moveXY(d.$("#c2").getBoundingClientRect().left - d.stage.getBoundingClientRect().left + d.$("#c2").offsetWidth / 2, maya.getBoundingClientRect().top - d.stage.getBoundingClientRect().top + 96 + 22, 600);
+  maya.classList.remove("drag");
+  await d.wait(500);
+  await say("Every client's history, one tap away");
+  await d.click("#sara"); d.show("#card");
+  await d.wait(2300); d.hide("#card"); await d.wait(300);
+  await say("Reminders go out on their own");
+  d.show("#t2");
+  await d.moveXY(1200, 690, 700);
+  await d.wait(2200);
+});
+</script>
+</body></html>

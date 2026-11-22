@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Globe, Palette, Sparkles } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { HeroMockup } from "@/components/home/hero-mockup";
 import { DemoTabs } from "@/components/home/demo-tabs";
+import { VideoShowcase } from "@/components/site/video-showcase";
 import { Section, SectionHeading, Mark, Blobs, CtaBand } from "@/components/site/section";
 import { IconTile } from "@/components/site/icon-tile";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
@@ -45,7 +46,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="#how-it-works">{t.cta.seeHow}</Link>
+                <Link href="#demos">{t.cta.seeHow}</Link>
               </Button>
             </div>
             <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
@@ -149,9 +150,15 @@ export default function Home() {
         </Reveal>
       </Section>
 
-      {/* PRODUCT TOUR (in place of a demo video) */}
+      {/* DEMO VIDEOS */}
+      <Section id="demos">
+        <SectionHeading eyebrow={t.videos.eyebrow} title={t.videos.title} lede={t.videos.lede} />
+        <VideoShowcase />
+      </Section>
+
+      {/* PRODUCT TOUR */}
       <Section className="bg-soft" id="tour">
-        <SectionHeading eyebrow="The Salon App" title={t.home.videoTitle} lede="Tap a feature to watch it work. These are live previews of the real screens." />
+        <SectionHeading eyebrow="Product tour" title={t.home.videoTitle} lede="Tap a feature to watch it work. These are live previews of the real screens." />
         <DemoTabs />
       </Section>
 

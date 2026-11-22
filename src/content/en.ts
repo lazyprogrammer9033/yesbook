@@ -16,7 +16,7 @@ export const en = {
   ],
   cta: {
     demo: "Book a free demo",
-    seeHow: "See how it works",
+    seeHow: "Watch the demos",
     talk: "Talk to us",
   },
 
@@ -31,7 +31,7 @@ export const en = {
       "No more paper books, missed calls or double bookings. Each Yesbook app is built around how your business already works.",
     industriesTitle: "Made for appointment-based businesses",
     industriesLede: "Salons, sports courts and any business that runs on a calendar.",
-    videoTitle: "See The Salon App in action",
+    videoTitle: "See Yesbook in action",
     videoLede: "A two-minute tour: a client books online, the salon books a walk-in, and the AI agent fills a cancelled slot.",
     stepsTitle: "Live in three simple steps",
     steps: [
@@ -55,6 +55,18 @@ export const en = {
       "Our first businesses get hands-on setup, a locked-in founding price and a direct line to the people building the app.",
     finalTitle: "Ready to fill your calendar?",
     finalBody: "Book a free, no-pressure demo. We'll show you exactly how Yesbook would work for your business.",
+  },
+
+  // Demo videos in public/videos/ (recorded from scripts/demo-videos/*.html).
+  videos: {
+    eyebrow: "Demo videos",
+    title: "See what we build",
+    lede: "Real booking websites we can build for you, recorded start to finish. Pick one to watch.",
+    items: [
+      { id: "salon-booking", tone: "pink" as Tone, title: "Salon booking website", body: "A client books a balayage with her favourite stylist from her phone, in under a minute." },
+      { id: "court-booking", tone: "green" as Tone, title: "Court booking website", body: "Players pick badminton or pickleball, grab a free court for two hours and pay online." },
+      { id: "front-desk", tone: "blue" as Tone, title: "Front desk calendar", body: "Online bookings drop in, walk-ins take one tap, and client notes and reminders take care of themselves." },
+    ],
   },
 
   // Product features. `id` drives the icon, the page anchor and the demo video file name.
@@ -261,7 +273,7 @@ export const en = {
     lede: "Yesbook makes booking simple for local, appointment-based businesses across the GTA, from Hamilton to Ajax.",
     // TODO: replace with your own story (2-4 short paragraphs).
     story: [
-      "[Your story goes here: how Yesbook started, the salon that inspired The Salon App, and why you care about local businesses.]",
+      "[Your story goes here: how Yesbook started, the businesses that inspired Yesbook, and why you care about local businesses.]",
       "[Add a second paragraph about what makes Yesbook different: personal setup, real local support and an app that carries the client's own brand.]",
     ],
     values: [

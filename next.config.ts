@@ -8,6 +8,7 @@ const basePath = process.env.PAGES_BASE_PATH || "";
 const nextConfig: NextConfig = {
   output: "export",
   basePath,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath }, // lets plain <video>/<img> paths work under the preview sub-path
   trailingSlash: true, // /pricing -> /pricing/index.html (works on Apache without rewrites)
   images: { unoptimized: true }, // no image server on static hosting; images are pre-optimized
   reactStrictMode: true,

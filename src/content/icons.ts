@@ -40,6 +40,10 @@ export const icons: Record<string, LucideIcon> = {
   salons: Scissors,
   barbers: Scissors,
   sports: Volleyball,
+  // demo videos
+  "salon-booking": Scissors,
+  "court-booking": Volleyball,
+  "front-desk": CalendarCheck2,
   spas: Flower2,
   clinics: Stethoscope,
   fitness: Dumbbell,

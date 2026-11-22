@@ -42,3 +42,7 @@ See [docs/DEPLOY-IONOS.md](docs/DEPLOY-IONOS.md).
 1. Copy `src/content/en.ts` to `src/content/fr.ts` and translate the strings.
 2. Add `"fr-CA"` to `locales` in `src/lib/site.ts`.
 3. Add a `src/app/fr/` route group that renders the same pages with the French content, and `hreflang` links in `src/lib/seo.ts`.
+
+## Demo videos
+
+The demo videos in `public/videos/` are recorded from the scripted sample sites in `scripts/demo-videos/` (a salon booking site, a badminton/pickleball court booking site and a front desk calendar). Edit an HTML file there, then re-record with `node scripts/demo-videos/record.mjs [name]` (needs Playwright and ffmpeg). Each run writes `name.mp4` and a `name.jpg` poster.

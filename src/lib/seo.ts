@@ -74,11 +74,11 @@ export const websiteLd = {
 export const productLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "The Salon App by Yesbook",
+  name: "Yesbook booking app",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   description:
-    "A custom, branded booking and business app for salons: online and in-store booking, client records, staff and services, reminders, reports, automatic secure backups and a premium AI phone agent.",
+    "A custom, branded booking and business app for salons, sports courts, clinics and studios: online and in-store booking, client records, staff and services, reminders, reports, automatic secure backups and a premium AI phone agent.",
   provider: { "@id": `${site.url}/#org` },
   areaServed: "Greater Toronto Area, Ontario, Canada",
   offers: { "@type": "Offer", priceCurrency: "CAD", availability: "https://schema.org/InStock", url: absoluteUrl("/pricing/") },
