@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Smash Club Courts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --p: #1d3bd1; --p-ink: #ffffff; --p-text: #1d3bd1;
+  --a: #c6f432; --a-ink: #0b1440;
+  --bg: #f4f7ff; --sf: #ffffff; --ink: #0b1440; --mut: #58627f; --line: #dfe5f5; --tint: #e8eeff;
+  --ok: #12a150; --ok-ink: #0d7a3c;
+  --hero: linear-gradient(135deg, #1d3bd1 0%, #2563eb 45%, #00b4d8 100%);
+  --cta: #c6f432; --cta-ink: #0b1440;
+  --pack-bg: linear-gradient(135deg, #fff3d6, #ffe1d1); --pack-line: #ffcf9e; --pack-lbl: #d9480f;
+  --backdrop: radial-gradient(circle at 10% 85%, #c6f432 0, transparent 28%), radial-gradient(circle at 90% 10%, #ff6b1a 0, transparent 28%), radial-gradient(circle at 80% 95%, #00b4d8 0, transparent 30%), linear-gradient(135deg, #0b1440, #1d3bd1);
+  --pitch-ink: #ffffff;
+  --fd: "Unbounded", system-ui, sans-serif; --fb: "Manrope", system-ui, sans-serif;
+  --cell-bg: #ecfccb; --cell-line: #a3e635; --cell-ink: #3f6212;
+}
+.hero h2 { font-size: 25px; }
+.logo { font-size: 17px; }
+.flowhead h2 { font-size: 19px; }
+.done h2 { font-size: 23px; }
+.pitch h1 { font-size: 38px; }
+/* Layout: one phone-width booking app, centred on a bright branded backdrop on wide screens. */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--backdrop); color: var(--ink); font-family: var(--fb); font-size: 15px; -webkit-font-smoothing: antialiased; color-scheme: light; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+input, textarea { font: inherit; color: var(--ink); }
+:focus-visible { outline: 3px solid var(--a); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.wrap { min-height: 100%; display: grid; place-items: center; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); gap: 20px; }
+@media (min-width: 980px) { .wrap { grid-template-columns: minmax(0, 360px) 430px; justify-content: center; column-gap: 56px; } }
+.pitch { display: none; color: var(--pitch-ink); max-width: 360px; }
+@media (min-width: 980px) { .pitch { display: block; } }
+.pitch .tag { display: inline-block; padding: 6px 12px; border-radius: 99px; background: var(--sf); color: var(--ink); font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.pitch h1 { font-family: var(--fd); font-size: 44px; line-height: 1.02; margin: 16px 0 12px; letter-spacing: -.02em; text-wrap: balance; }
+.pitch p { font-size: 17px; line-height: 1.5; opacity: .9; margin: 0; }
+.pitch ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.pitch li { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+.pitch li b { flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--sf); color: var(--p); display: grid; place-items: center; font-size: 14px; }
+
+.app { position: relative; width: 100%; max-width: 430px; height: min(880px, calc(100vh - 48px)); min-height: 640px; background: var(--bg); border-radius: 34px; overflow: hidden; box-shadow: 0 40px 90px -40px rgb(0 0 0 / .55), 0 0 0 1px rgb(0 0 0 / .06); display: flex; flex-direction: column; }
+@media (max-width: 479px) { .wrap { padding: 0; } .app { max-width: none; height: 100vh; height: 100dvh; min-height: 0; border-radius: 0; box-shadow: none; } }
+
+.screen { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+.pad { padding: 18px 18px 28px; }
+
+/* top bar */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 6px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--fd); font-weight: 700; font-size: 20px; letter-spacing: -.01em; color: var(--logo-ink, var(--ink)); }
+.logo i { font-style: normal; width: 36px; height: 36px; border-radius: 12px; background: var(--hero); display: grid; place-items: center; font-size: 18px; color: #fff; box-shadow: 0 6px 14px -6px var(--p); }
+.iconbtn { width: 38px; height: 38px; border-radius: 12px; background: var(--sf); display: grid; place-items: center; border: 1px solid var(--line); font-size: 16px; }
+
+/* home */
+.hero { position: relative; margin: 8px 18px 0; border-radius: 26px; padding: 22px 20px 20px; color: var(--hero-ink, #fff); background: var(--hero); overflow: hidden; }
+.hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; background: rgb(255 255 255 / .18); }
+.hero::before { width: 190px; height: 190px; right: -50px; top: -60px; }
+.hero::after { width: 110px; height: 110px; right: 60px; bottom: -60px; background: rgb(255 255 255 / .12); }
+.hero .art { position: absolute; right: 14px; top: 12px; font-size: 54px; filter: drop-shadow(0 8px 10px rgb(0 0 0 / .2)); z-index: 1; }
+.hero h2 { position: relative; z-index: 1; font-family: var(--fd); font-size: 30px; line-height: 1.04; margin: 0; max-width: 260px; letter-spacing: -.02em; text-wrap: balance; }
+.hero p { position: relative; z-index: 1; margin: 10px 0 16px; max-width: 270px; line-height: 1.45; opacity: .95; }
+.hero .rating { position: relative; z-index: 1; font-size: 13px; font-weight: 700; opacity: .95; margin-bottom: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 22px; border-radius: 16px; background: var(--p); color: var(--p-ink); font-weight: 800; font-size: 16px; transition: transform .12s, opacity .2s; }
+.btn:active { transform: scale(.97); }
+.btn.alt { background: var(--cta, #fff); color: var(--cta-ink, var(--ink)); }
+.btn.ghost { background: var(--sf); color: var(--ink); border: 2px solid var(--line); }
+.btn.block { width: 100%; }
+.btn[disabled] { opacity: .35; pointer-events: none; }
+.hero .btns { position: relative; z-index: 1; display: flex; gap: 8px; flex-wrap: wrap; }
+.hero .btns .btn { height: 46px; padding: 0 16px; font-size: 15px; }
+.hero .btns .btn.glass { background: rgb(255 255 255 / .22); color: var(--hero-ink, #fff); border: 1.5px solid rgb(255 255 255 / .45); }
+
+.sec { padding: 22px 18px 0; }
+.sec h3 { font-family: var(--fd); font-size: 19px; margin: 0 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
+.sec h3 small { font-family: var(--fb); font-size: 13px; color: var(--p-text, var(--p)); font-weight: 700; }
+.pack { position: relative; border-radius: 22px; padding: 16px; background: var(--pack-bg); border: 2px solid var(--pack-line); overflow: hidden; }
+.pack .lbl { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--pack-lbl); }
+.pack h4 { font-family: var(--fd); font-size: 19px; margin: 4px 0 4px; }
+.pack p { margin: 0; color: var(--mut); line-height: 1.45; font-size: 14px; }
+.pack .row2 { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pack .price { font-weight: 900; font-size: 20px; }
+.pack .price s { font-weight: 600; font-size: 14px; color: var(--mut); margin-left: 6px; }
+.pack .btn { height: 40px; font-size: 14px; padding: 0 14px; }
+.hscroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; margin: 0 -18px; padding-left: 18px; padding-right: 18px; scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.tile { flex: none; width: 150px; border-radius: 20px; background: var(--sf); border: 1px solid var(--line); padding: 12px; text-align: left; }
+.tile .sw { height: 74px; border-radius: 14px; display: grid; place-items: center; font-size: 34px; margin-bottom: 10px; }
+.tile b { display: block; font-size: 14px; line-height: 1.25; }
+.tile span { display: block; margin-top: 4px; font-size: 13px; color: var(--mut); }
+.team { display: flex; gap: 14px; }
+.person { text-align: center; font-size: 13px; font-weight: 700; width: 72px; }
+.av { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 6px; display: grid; place-items: center; color: #fff; font-family: var(--fd); font-size: 22px; border: 3px solid var(--sf); box-shadow: 0 6px 14px -8px rgb(0 0 0 / .5); }
+.person small { display: block; font-weight: 500; color: var(--mut); font-size: 11.5px; }
+.info { display: grid; gap: 8px; }
+.info div { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--sf); border: 1px solid var(--line); font-size: 14px; }
+.info div b { min-width: 74px; }
+.review { border-radius: 18px; background: var(--sf); border: 1px solid var(--line); padding: 14px; font-size: 14px; line-height: 1.5; }
+.review .st { color: var(--star, #f5a400); letter-spacing: 2px; }
+.review small { display: block; color: var(--mut); margin-top: 6px; font-weight: 600; }
+
+/* booking flow */
+.flowhead { position: sticky; top: 0; z-index: 3; background: var(--bg); padding: 14px 18px 10px; }
+.flowhead .t { display: flex; align-items: center; gap: 10px; }
+.flowhead h2 { font-family: var(--fd); font-size: 22px; margin: 0; letter-spacing: -.01em; }
+.prog { margin-top: 12px; height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.prog i { display: block; height: 100%; border-radius: inherit; background: var(--hero); transition: width .35s; }
+.stepno { font-size: 12px; font-weight: 700; color: var(--mut); margin-top: 6px; }
+.tabs { display: flex; gap: 6px; padding: 4px; border-radius: 16px; background: var(--tint); margin-bottom: 14px; overflow-x: auto; }
+.tabs button { flex: 1; white-space: nowrap; padding: 10px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; color: var(--mut); transition: all .2s; }
+.tabs button[aria-pressed="true"] { background: var(--p); color: var(--p-ink); box-shadow: 0 6px 14px -8px var(--p); }
+.list { display: grid; gap: 10px; }
+.opt { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 14px; border-radius: 18px; background: var(--sf); border: 2px solid var(--line); transition: border-color .2s, background .2s, transform .12s; }
+.opt:active { transform: scale(.99); }
+.opt[aria-pressed="true"] { border-color: var(--p); background: var(--tint); }
+.opt .em { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; background: var(--tint); }
+.opt .tx { flex: 1; min-width: 0; }
+.opt .tx b { display: block; font-size: 15px; }
+.opt .tx small { display: block; color: var(--mut); font-size: 13px; margin-top: 2px; line-height: 1.35; }
+.opt .pr { text-align: right; font-weight: 800; white-space: nowrap; }
+.opt .pr small { display: block; font-weight: 600; color: var(--mut); font-size: 12px; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 99px; background: var(--a); color: var(--a-ink); font-size: 11px; font-weight: 800; margin-left: 6px; vertical-align: 2px; }
+.chk { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--line); display: grid; place-items: center; color: transparent; font-weight: 900; font-size: 14px; }
+.opt[aria-pressed="true"] .chk { background: var(--p); border-color: var(--p); color: var(--p-ink); }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tags span { padding: 2px 8px; border-radius: 99px; background: var(--tint); font-size: 11.5px; font-weight: 700; color: var(--p-text, var(--p)); }
+.dates { display: flex; gap: 8px; overflow-x: auto; margin: 0 -18px 14px; padding: 2px 18px 6px; scrollbar-width: none; }
+.dates::-webkit-scrollbar { display: none; }
+.date { flex: none; width: 58px; padding: 8px 0; border-radius: 16px; background: var(--sf); border: 2px solid var(--line); text-align: center; font-size: 12px; font-weight: 700; color: var(--mut); }
+.date b { display: block; font-size: 20px; color: var(--ink); font-family: var(--fd); }
+.date[aria-pressed="true"] { background: var(--p); border-color: var(--p); color: var(--p-ink); }
+.date[aria-pressed="true"] b { color: var(--p-ink); }
+.slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.slot { height: 46px; border-radius: 14px; background: var(--sf); border: 2px solid var(--line); font-weight: 800; font-size: 14px; font-variant-numeric: tabular-nums; }
+.slot[disabled] { color: var(--mut); text-decoration: line-through; opacity: .5; background: var(--tint); cursor: default; }
+.slot[aria-pressed="true"] { background: var(--a); border-color: var(--ink); color: var(--a-ink); }
+.slotlbl { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); margin: 14px 0 8px; }
+.slotlbl:first-child { margin-top: 0; }
+.field { display: grid; gap: 6px; margin-bottom: 12px; }
+.field label { font-size: 13px; font-weight: 700; color: var(--mut); }
+.field input, .field textarea { height: 50px; border-radius: 14px; border: 2px solid var(--line); background: var(--sf); padding: 0 14px; font-size: 15px; font-weight: 600; outline: none; }
+.field textarea { height: 86px; padding: 12px 14px; resize: none; line-height: 1.4; }
+.field input:focus, .field textarea:focus { border-color: var(--p); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { padding: 8px 12px; border-radius: 99px; border: 2px solid var(--line); background: var(--sf); font-size: 13px; font-weight: 700; }
+.chip[aria-pressed="true"] { border-color: var(--p); background: var(--tint); color: var(--p-text, var(--p)); }
+.toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border-radius: 18px; background: var(--sf); border: 2px solid var(--line); width: 100%; text-align: left; }
+.toggle .sw2 { flex: none; width: 46px; height: 28px; border-radius: 99px; background: var(--line); position: relative; transition: background .2s; }
+.toggle .sw2::after { content: ""; position: absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 2px 4px rgb(0 0 0 / .2); }
+.toggle[aria-pressed="true"] .sw2 { background: var(--ok); }
+.toggle[aria-pressed="true"] .sw2::after { transform: translateX(18px); }
+.summary { border-radius: 20px; padding: 16px; background: var(--sum-bg, var(--tint)); line-height: 1.6; font-size: 14px; }
+.summary .ln { display: flex; justify-content: space-between; gap: 10px; }
+.summary .tot { border-top: 1.5px dashed var(--line); margin-top: 8px; padding-top: 8px; font-weight: 900; font-size: 17px; }
+.note { font-size: 12.5px; color: var(--mut); line-height: 1.45; margin-top: 10px; }
+.foot { position: sticky; bottom: 0; z-index: 3; padding: 12px 18px 16px; background: linear-gradient(transparent, var(--bg) 26%); display: flex; align-items: center; gap: 12px; }
+.foot .sm { flex: 1; min-width: 0; font-size: 13px; color: var(--mut); line-height: 1.3; }
+.foot .sm b { display: block; color: var(--ink); font-size: 16px; }
+.foot .btn { flex: none; }
+
+/* court grid */
+.cgrid { display: grid; gap: 6px; }
+.cgrid .hd { font-size: 11.5px; font-weight: 800; text-align: center; color: var(--mut); }
+.cgrid .hr { font-size: 12px; font-weight: 800; color: var(--mut); align-self: center; font-variant-numeric: tabular-nums; }
+.cell { height: 42px; border-radius: 11px; border: 2px solid var(--cell-line); background: var(--cell-bg); font-size: 12px; font-weight: 800; color: var(--cell-ink); }
+.cell[disabled] { background: repeating-linear-gradient(-45deg, var(--tint) 0 6px, var(--line) 6px 12px); border-color: transparent; color: var(--mut); cursor: default; }
+.cell[aria-pressed="true"] { background: var(--a); border-color: var(--ink); color: var(--a-ink); }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--mut); font-weight: 700; margin-top: 10px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; vertical-align: -1px; margin-right: 5px; }
+.stepper { display: flex; align-items: center; gap: 14px; }
+.stepper button { width: 40px; height: 40px; border-radius: 12px; border: 2px solid var(--line); background: var(--sf); font-size: 20px; font-weight: 800; }
+.stepper b { font-size: 22px; min-width: 24px; text-align: center; font-variant-numeric: tabular-nums; }
+
+/* done */
+.done { text-align: center; padding: 40px 22px 24px; }
+.tick { width: 104px; height: 104px; margin: 0 auto; border-radius: 50%; background: var(--ok); display: grid; place-items: center; animation: pop .55s cubic-bezier(.3,1.6,.5,1) both; box-shadow: 0 16px 30px -12px var(--ok); }
+@keyframes pop { from { transform: scale(0); } }
+.done h2 { font-family: var(--fd); font-size: 28px; margin: 20px 0 6px; }
+.done p { color: var(--mut); margin: 0 0 18px; line-height: 1.5; }
+.confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 6; }
+.confetti i { position: absolute; top: -12px; width: 9px; height: 14px; border-radius: 3px; animation: fall 1.6s ease-in forwards; }
+@keyframes fall { to { transform: translateY(900px) rotate(540deg); opacity: .2; } }
+.perks { display: grid; gap: 8px; text-align: left; margin-top: 16px; }
+.perks div { display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--sf); border: 1px solid var(--line); font-size: 14px; font-weight: 600; animation: up .4s both; }
+.perks div:nth-child(2) { animation-delay: .15s; } .perks div:nth-child(3) { animation-delay: .3s; }
+@keyframes up { from { opacity: 0; transform: translateY(10px); } }
+.pass { margin: 0 auto; width: 120px; height: 120px; border-radius: 16px; background: conic-gradient(from 90deg at 30% 30%, var(--ink) 25%, transparent 0) 0 0/30px 30px, repeating-linear-gradient(90deg, var(--ink) 0 7px, #fff 7px 14px); border: 8px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+
+/* bookings */
+.bk { border-radius: 20px; background: var(--sf); border: 1px solid var(--line); padding: 14px; display: grid; gap: 4px; }
+.bk .when { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--p-text, var(--p)); }
+.bk b { font-size: 16px; }
+.bk small { color: var(--mut); }
+.bk .acts { display: flex; gap: 8px; margin-top: 8px; }
+.bk .acts button { flex: 1; height: 38px; border-radius: 12px; border: 2px solid var(--line); font-weight: 700; font-size: 13px; }
+.bk.past { opacity: .7; }
+.empty { text-align: center; color: var(--mut); padding: 30px 10px; }
+
+/* chat */
+.chat { display: flex; flex-direction: column; height: 100%; }
+.chead { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--sf); }
+.bot { flex: none; width: 42px; height: 42px; border-radius: 14px; background: var(--hero); display: grid; place-items: center; color: #fff; font-size: 20px; }
+.chead b { display: block; font-size: 16px; }
+.chead small { color: var(--ok); font-weight: 700; font-size: 12px; }
+.premium { margin-left: auto; padding: 4px 10px; border-radius: 99px; background: var(--a); color: var(--a-ink); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.msgs { flex: 1; overflow-y: auto; padding: 16px 14px 8px; display: flex; flex-direction: column; gap: 8px; }
+.m { max-width: 84%; padding: 10px 13px; border-radius: 18px; line-height: 1.45; font-size: 14.5px; animation: up .25s both; }
+.m.me { align-self: flex-end; background: var(--p); color: var(--p-ink); border-bottom-right-radius: 6px; }
+.m.ai { align-self: flex-start; background: var(--sf); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.m .card { margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: var(--tint); border: 2px solid var(--ok); font-size: 13.5px; }
+.dots { display: inline-flex; gap: 4px; padding: 4px 0; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--mut); animation: bl 1s infinite; }
+.dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes bl { 50% { opacity: .25; transform: translateY(-2px); } }
+.quick { display: flex; gap: 6px; flex-wrap: wrap; padding: 4px 14px 8px; }
+.quick button { padding: 8px 12px; border-radius: 99px; border: 2px solid var(--p); color: var(--p-text, var(--p)); background: var(--sf); font-weight: 700; font-size: 13px; }
+.cin { display: flex; gap: 8px; padding: 8px 14px 14px; }
+.cin input { flex: 1; min-width: 0; height: 46px; border-radius: 99px; border: 2px solid var(--line); background: var(--sf); padding: 0 16px; outline: none; }
+.cin input:focus { border-color: var(--p); }
+.cin button { flex: none; width: 46px; height: 46px; border-radius: 50%; background: var(--a); color: var(--a-ink); font-size: 18px; font-weight: 900; }
+
+/* owner */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.stat { border-radius: 18px; padding: 12px; background: var(--sf); border: 1px solid var(--line); }
+.stat b { display: block; font-family: var(--fd); font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat small { color: var(--mut); font-size: 12px; font-weight: 600; }
+.agenda { display: grid; gap: 8px; }
+.ag { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: center; padding: 12px; border-radius: 16px; background: var(--sf); border: 1px solid var(--line); border-left: 5px solid var(--c, var(--p)); font-size: 14px; }
+.ag .tm { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 13px; }
+.ag small { display: block; color: var(--mut); font-size: 12.5px; }
+.ag .src { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 99px; background: var(--tint); color: var(--p-text, var(--p)); white-space: nowrap; }
+.ag.new { animation: glow 1.6s ease-out; }
+@keyframes glow { 0% { box-shadow: 0 0 0 4px var(--a); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.bars { display: grid; gap: 8px; }
+.bar { display: grid; grid-template-columns: 110px 1fr 36px; gap: 8px; align-items: center; font-size: 13px; font-weight: 600; }
+.bar span { height: 12px; border-radius: 99px; background: var(--tint); overflow: hidden; }
+.bar span i { display: block; height: 100%; border-radius: inherit; background: var(--hero); }
+.bar em { font-style: normal; text-align: right; color: var(--mut); font-variant-numeric: tabular-nums; }
+
+/* tab bar */
+.tabbar { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 8px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--sf); border-top: 1px solid var(--line); }
+.tabbar button { display: grid; justify-items: center; gap: 2px; font-size: 11px; font-weight: 700; color: var(--mut); padding: 6px 0; border-radius: 14px; }
+.tabbar button span { font-size: 19px; line-height: 1; filter: grayscale(.6); opacity: .8; }
+.tabbar button[aria-current="page"] { color: var(--p-text, var(--p)); background: var(--tint); }
+.tabbar button[aria-current="page"] span { filter: none; opacity: 1; }
+.tabbar .ai span { display: grid; place-items: center; width: 30px; height: 30px; margin-top: -2px; border-radius: 10px; background: var(--hero); color: #fff; filter: none; opacity: 1; font-size: 15px; }
+.toast { position: absolute; left: 50%; top: 14px; z-index: 9; transform: translate(-50%, -140%); padding: 11px 16px; border-radius: 14px; background: var(--ink); color: #fff; font-size: 13.5px; font-weight: 700; transition: transform .35s cubic-bezier(.3,1.4,.5,1); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis; }
+.toast.on { transform: translate(-50%, 0); }
+.demo-note { position: absolute; right: 12px; bottom: 78px; z-index: 2; }
+
+/* Owner app: sidebar + main panel, same brand tokens as the client app. */
+[hidden] { display: none !important; }
+.modebar { display: flex; justify-content: center; padding-block: 14px 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.modebar .seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 99px; background: rgb(255 255 255 / .92); box-shadow: 0 10px 30px -12px rgb(0 0 0 / .45); }
+.modebar button { padding: 9px 16px; border-radius: 99px; font-weight: 800; font-size: 14px; color: var(--mut); white-space: nowrap; }
+.modebar button[aria-pressed="true"] { background: var(--p); color: var(--p-ink); }
+body.is-owner { background: var(--bg); }
+body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
+.wrap { padding-block: 16px 24px; }
+.app { height: min(860px, calc(100vh - 100px)); }
+@media (max-width: 479px) { .app { height: calc(100dvh - 60px); } .modebar { padding-block: 8px; } .wrap { padding: 0; } }
+
+.owner { max-width: 1320px; margin: 0 auto; padding-block: 14px 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.o-shell { display: grid; grid-template-columns: 224px minmax(0, 1fr); gap: 18px; align-items: start; }
+.o-side { position: sticky; top: 14px; border-radius: 26px; background: var(--hero); color: #fff; padding: 18px 12px; display: grid; gap: 4px; box-shadow: 0 24px 50px -30px var(--p); }
+.o-side .logo { color: #fff; padding: 0 8px 14px; font-size: 18px; }
+.o-side .logo i { background: rgb(255 255 255 / .25); box-shadow: none; }
+.o-nav { display: grid; gap: 2px; }
+.o-nav button { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; font-weight: 700; font-size: 14px; color: rgb(255 255 255 / .92); text-align: left; }
+.o-nav button span { width: 22px; text-align: center; }
+.o-nav button:hover { background: rgb(255 255 255 / .14); }
+.o-nav button[aria-current="page"] { background: #fff; color: var(--ink); }
+.o-nav .cnt { margin-left: auto; width: auto; min-width: 22px; padding: 1px 7px; border-radius: 99px; background: var(--a); color: var(--a-ink); font-size: 11.5px; font-weight: 900; }
+.o-side .own { margin-top: 14px; padding: 12px; border-radius: 16px; background: rgb(0 0 0 / .14); font-size: 12.5px; line-height: 1.45; }
+.o-side .own b { display: block; font-size: 13px; }
+@media (max-width: 899px) {
+  .o-shell { grid-template-columns: minmax(0, 1fr); }
+  .o-side { position: static; padding: 10px; }
+  .o-side .logo { padding: 4px 6px 8px; }
+  .o-nav { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .o-nav button { flex: none; }
+  .o-side .own { display: none; }
+}
+
+.o-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
+.o-top h1 { font-family: var(--fd); font-size: 28px; margin: 0; letter-spacing: -.02em; }
+.o-top .sub { color: var(--mut); font-size: 13.5px; font-weight: 600; }
+.o-top .grow { flex: 1; min-width: 0; }
+.o-top .btn { height: 44px; font-size: 14px; }
+.bell { position: relative; }
+.bell em { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; border-radius: 99px; background: var(--a); color: var(--a-ink); font-size: 11px; font-style: normal; font-weight: 900; display: grid; place-items: center; padding: 0 4px; }
+
+.o-grid { display: grid; gap: 14px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.o-card { grid-column: span 12; border-radius: 22px; background: var(--sf); border: 1px solid var(--line); padding: 18px; min-width: 0; }
+.o-card h2 { font-family: var(--fd); font-size: 17px; margin: 0 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.o-card h2 small { font-family: var(--fb); font-size: 12.5px; color: var(--mut); font-weight: 600; }
+.o-card h2 button { font-family: var(--fb); font-size: 13px; font-weight: 800; color: var(--p-text, var(--p)); }
+@media (min-width: 900px) { .s3 { grid-column: span 3; } .s4 { grid-column: span 4; } .s5 { grid-column: span 5; } .s6 { grid-column: span 6; } .s7 { grid-column: span 7; } .s8 { grid-column: span 8; } }
+@media (min-width: 560px) and (max-width: 899px) { .s3 { grid-column: span 6; } }
+.kpi { position: relative; overflow: hidden; }
+.kpi small { display: block; font-size: 12.5px; font-weight: 700; color: var(--mut); }
+.kpi b { display: block; font-family: var(--fd); font-size: 30px; margin-top: 4px; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.kpi .d { font-size: 12.5px; font-weight: 800; color: var(--ok-ink); }
+.kpi .d.bad { color: #c2410c; }
+.kpi i { position: absolute; right: 14px; top: 14px; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-style: normal; font-size: 18px; background: var(--tint); }
+.kpi.hot { background: var(--hero); color: #fff; border: 0; }
+.kpi.hot small, .kpi.hot .d { color: rgb(255 255 255 / .9); }
+.kpi.hot i { background: rgb(255 255 255 / .22); }
+
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--mut); font-size: 11px; font-family: var(--fb); font-weight: 600; }
+.chart .gl { stroke: var(--line); }
+.chart .bar { fill: var(--p); opacity: .85; }
+.chart .bar.wk { fill: var(--a); opacity: 1; }
+.chart .bar.now { fill: var(--ok); opacity: 1; }
+
+.upnext { display: grid; gap: 8px; }
+.attn { display: grid; gap: 8px; }
+.attn div { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: var(--tint); font-size: 14px; line-height: 1.4; }
+.attn div > span:first-child { font-size: 20px; }
+.attn div p { margin: 0; flex: 1; min-width: 0; }
+.attn button { flex: none; padding: 8px 12px; border-radius: 12px; background: var(--sf); border: 2px solid var(--line); font-weight: 800; font-size: 12.5px; }
+.feed { display: grid; gap: 10px; }
+.feed div { display: grid; grid-template-columns: 34px 1fr; gap: 10px; font-size: 13.5px; line-height: 1.4; }
+.feed i { width: 34px; height: 34px; border-radius: 11px; background: var(--tint); display: grid; place-items: center; font-style: normal; }
+.feed small { display: block; color: var(--mut); }
+
+/* calendar */
+.calbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.calbar .btn { height: 40px; padding: 0 14px; font-size: 14px; }
+.calbar h2 { margin: 0 8px 0 4px; font-family: var(--fd); font-size: 18px; }
+.calbar .legend { margin: 0 0 0 auto; flex-wrap: wrap; }
+.calwrap { overflow-x: auto; border-radius: 18px; border: 1px solid var(--line); background: var(--sf); }
+.cal { display: grid; min-width: 640px; position: relative; }
+.cal .ch { position: sticky; top: 0; z-index: 2; height: 52px; display: flex; align-items: center; gap: 8px; padding: 0 10px; background: var(--sf); border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); font-weight: 800; font-size: 14px; }
+.cal .ch .av { width: 30px; height: 30px; margin: 0; font-size: 13px; border-width: 2px; }
+.cal .ch small { display: block; font-weight: 600; color: var(--mut); font-size: 11.5px; }
+.cal .tcol { position: relative; }
+.cal .tcol span { position: absolute; right: 8px; font-size: 11.5px; color: var(--mut); font-weight: 700; transform: translateY(-50%); font-variant-numeric: tabular-nums; }
+.cal .col { position: relative; border-left: 1px solid var(--line); cursor: copy; }
+.cal .col.off { background: repeating-linear-gradient(-45deg, var(--bg) 0 8px, var(--tint) 8px 16px); cursor: default; }
+.cal .hl { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--line); pointer-events: none; }
+.cal .now { position: absolute; left: 0; right: 0; height: 2px; background: #ef4444; z-index: 1; pointer-events: none; }
+.cal .now::before { content: ""; position: absolute; left: -5px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: #ef4444; }
+.appt { position: absolute; left: 4px; right: 4px; border-radius: 12px; padding: 6px 9px; font-size: 12.5px; line-height: 1.3; text-align: left; overflow: hidden; background: color-mix(in srgb, var(--c) 22%, var(--sf)); border-left: 5px solid var(--c); color: var(--ink); cursor: pointer; transition: transform .12s, box-shadow .2s; }
+.appt:hover { transform: translateY(-1px); box-shadow: 0 10px 20px -12px rgb(0 0 0 / .45); z-index: 3; }
+.appt b { display: block; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.appt small { display: block; color: var(--mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.appt .src { position: absolute; right: 6px; top: 6px; font-size: 11px; }
+.appt.done { opacity: .6; }
+.appt.noshow { background: repeating-linear-gradient(-45deg, var(--sf) 0 6px, var(--tint) 6px 12px); text-decoration: line-through; }
+.appt.isnew { box-shadow: 0 0 0 3px var(--a); }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+.tbl th { text-align: left; font-size: 12px; font-weight: 800; color: var(--mut); letter-spacing: .04em; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.tbl td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl tbody tr { cursor: pointer; }
+.tbl tbody tr:hover td { background: var(--tint); }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl input { height: 38px; border-radius: 10px; border: 2px solid var(--line); background: var(--sf); padding: 0 10px; font-weight: 700; width: 92px; outline: none; }
+.tbl input.wide { width: 100%; min-width: 160px; }
+.tbl input:focus { border-color: var(--p); }
+.who { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.who .av { width: 34px; height: 34px; margin: 0; font-size: 14px; border-width: 2px; }
+.tag { display: inline-block; padding: 3px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 800; background: var(--tint); color: var(--p-text, var(--p)); margin-right: 4px; }
+.tag.vip { background: var(--a); color: var(--a-ink); }
+.tag.risk { background: #ffe4d6; color: #b4410b; }
+.tag.new { background: #dcfce7; color: #166534; }
+.search { height: 44px; min-width: 0; width: 260px; max-width: 100%; border-radius: 14px; border: 2px solid var(--line); background: var(--sf); padding: 0 14px; font-weight: 600; outline: none; }
+.search:focus { border-color: var(--p); }
+.sw2wrap { display: inline-flex; }
+.mini { width: 40px; height: 24px; border-radius: 99px; background: var(--line); position: relative; transition: background .2s; flex: none; }
+.mini::after { content: ""; position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 3px rgb(0 0 0 / .25); }
+[aria-pressed="true"] > .mini { background: var(--ok); }
+[aria-pressed="true"] > .mini::after { transform: translateX(16px); }
+.setrow { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); width: 100%; text-align: left; font-size: 14px; }
+.setrow:last-child { border-bottom: 0; }
+.setrow b { display: block; }
+.setrow small { color: var(--mut); }
+.setrow select, .setrow input[type="text"] { height: 40px; border-radius: 12px; border: 2px solid var(--line); background: var(--sf); padding: 0 10px; font-weight: 700; color: var(--ink); max-width: 220px; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatches button { width: 36px; height: 36px; border-radius: 12px; border: 3px solid var(--sf); box-shadow: 0 0 0 1px var(--line); }
+.swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--ink); }
+.util { height: 10px; border-radius: 99px; background: var(--tint); overflow: hidden; min-width: 80px; }
+.util i { display: block; height: 100%; background: var(--hero); border-radius: inherit; }
+.heat { display: grid; gap: 4px; font-size: 11px; font-weight: 700; color: var(--mut); }
+.heat span { height: 26px; border-radius: 7px; background: var(--p); }
+.heat .lb { background: none; display: flex; align-items: center; height: auto; }
+.conv { border-radius: 16px; border: 1px solid var(--line); padding: 12px; display: grid; gap: 6px; font-size: 13.5px; background: var(--bg); }
+.conv .l { display: flex; gap: 8px; }
+.conv .l b { flex: none; width: 54px; color: var(--mut); font-size: 12px; padding-top: 1px; }
+.conv .res { margin-top: 4px; font-weight: 800; color: var(--ok-ink); font-size: 12.5px; }
+.faqed { display: grid; gap: 6px; margin-bottom: 12px; }
+.faqed label { font-weight: 800; font-size: 13px; }
+.faqed textarea { width: 100%; min-height: 64px; border-radius: 12px; border: 2px solid var(--line); background: var(--sf); padding: 10px 12px; line-height: 1.45; resize: vertical; outline: none; }
+.faqed textarea:focus { border-color: var(--p); }
+.pk { display: grid; gap: 8px; border-radius: 20px; padding: 16px; border: 2px solid var(--line); background: var(--sf); }
+.pk.live { border-color: var(--ok); background: var(--pack-bg); }
+.pk h3 { font-family: var(--fd); font-size: 18px; margin: 0; }
+.pk p { margin: 0; color: var(--mut); line-height: 1.45; font-size: 14px; }
+.pk .row2 { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.pk .btn { height: 40px; font-size: 14px; padding: 0 14px; }
+
+/* drawer + modal */
+.o-scrim { position: fixed; inset: 0; z-index: 40; background: rgb(10 10 30 / .38); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.o-scrim.on { opacity: 1; pointer-events: auto; }
+.o-drawer { position: fixed; z-index: 41; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--bg); box-shadow: -30px 0 60px -30px rgb(0 0 0 / .5); transform: translateX(105%); transition: transform .35s cubic-bezier(.3,.7,.2,1); overflow-y: auto; padding: calc(18px + env(safe-area-inset-top, 0px)) calc(18px + env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) 18px; }
+.o-drawer.on { transform: none; }
+.o-drawer h2 { font-family: var(--fd); font-size: 22px; margin: 0; }
+.o-drawer .x { float: right; }
+.o-drawer .blk { margin-top: 14px; }
+.o-drawer .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.o-drawer .acts .btn { height: 44px; font-size: 14px; }
+.o-modal { position: fixed; z-index: 42; left: 50%; top: 50%; width: min(440px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow-y: auto; transform: translate(-50%, -46%) scale(.96); opacity: 0; pointer-events: none; transition: all .25s; background: var(--bg); border-radius: 24px; padding: 20px; box-shadow: 0 40px 80px -30px rgb(0 0 0 / .6); }
+.o-modal.on { transform: translate(-50%, -50%); opacity: 1; pointer-events: auto; }
+.o-modal h2 { font-family: var(--fd); font-size: 21px; margin: 0 0 14px; }
+.o-modal select { height: 50px; border-radius: 14px; border: 2px solid var(--line); background: var(--sf); padding: 0 12px; font-size: 15px; font-weight: 600; color: var(--ink); }
+.o-toast { position: fixed; z-index: 60; left: 50%; bottom: 24px; transform: translate(-50%, 220%); opacity: 0; padding: 12px 18px; border-radius: 14px; background: var(--ink); color: #fff; font-weight: 700; font-size: 14px; transition: transform .35s cubic-bezier(.3,1.4,.5,1), opacity .2s; max-width: calc(100% - 32px); }
+.o-toast.on { transform: translate(-50%, 0); opacity: 1; }
+</style>
+<div class="modebar" id="modebar"><div class="seg" role="group" aria-label="Switch app"><button data-mode="client" aria-pressed="true">📱 Client app</button><button data-mode="owner" aria-pressed="false">🧑‍💼 Owner app</button></div></div>
+<div class="wrap">
+  <aside class="pitch"><span class="tag">Sample app · Courts &amp; sports</span><h1>Smash Club Courts</h1><p>A court booking app for a pickleball and badminton club: live court grid, online payment, member pricing and an AI assistant that fills empty courts.</p>
+    <ul><li><b>✓</b>Live court grid: tap a free hour, play longer with one more tap</li><li><b>✓</b>Pay online, members save automatically</li><li><b>✓</b>Premium AI assistant finds a court in a sentence</li><li><b>✓</b>Front desk view with today's courts and package ideas</li></ul></aside>
+  <main class="app" id="app" aria-label="Smash Club Courts booking app"></main>
+</div>
+<div class="owner" id="owner" hidden></div>
+<script>window.CFG = {"id":"smash","name":"Smash Club","logoMark":"🏓","city":"Mississauga","rating":"4.8","reviews":"286 reviews","mode":"court","payOnline":true,"memberDiscount":0.2,"maxPlayers":8,"heroArt":"🏸","heroTitle":"Your court is waiting.","heroSub":"8 indoor courts for pickleball and badminton. See what's free and book in 30 seconds.","bookLabel":"Book a court","popularTitle":"Play today","popularHint":"per court, per hour","teamTitle":"","categories":[{"id":"sport","name":"Sport","services":[{"id":"pickle","name":"Pickleball","em":"🏓","sw":"#ecfccb","price":32,"desc":"Indoor cushioned courts, nets and lines set up.","popular":true,"keys":["pickleball","pickle"]},{"id":"badminton","name":"Badminton","em":"🏸","sw":"#dbeafe","price":24,"desc":"BWF-spec mats, 9 m ceilings, no glare lighting.","popular":true,"keys":["badminton","birdie","shuttle"]}]}],"courts":[{"id":"c1","name":"Court 1","sports":["pickle"]},{"id":"c2","name":"Court 2","sports":["pickle"]},{"id":"c3","name":"Court 3","sports":["pickle","badminton"]},{"id":"c4","name":"Court 4","sports":["badminton"]},{"id":"c5","name":"Court 5","sports":["badminton"]}],"addons":[{"id":"paddles","court":true,"per":"player","em":"🏓","name":"Rental paddles or racquets","price":4,"desc":"Fresh grips, returned at the desk."},{"id":"balls","court":true,"em":"🟡","name":"New balls or shuttles","price":8,"desc":"A sealed tube for your game."},{"id":"coach","court":true,"em":"🧢","name":"30 min with a coach","price":35,"desc":"Fix your serve or third shot drop."}],"steps":["court","players","details"],"hours":{"open":420,"close":1380,"step":60},"busy":48,"demoClient":{"name":"Arjun Mehta","phone":"(647) 555-0198","email":"arjun@example.com"},"policy":"Paid online by card. Free cancellation up to 12 hours before. Everyone on the booking gets the court number by text.","cancelWindow":"12 hours","doneTitle":"Game on, {name}!","donePerks":["💳 Paid. Receipt sent by email","💬 Court number texted 2 hours before","👥 Invite link ready to split the cost"],"confetti":["#c6f432","#1d3bd1","#ff6b1a","#00b4d8","#ffc928"],"pack":{"label":"Picked for you","title":"Tuesday night 10-pack","body":"You play pickleball most Tuesdays after 7. Lock in 10 prime-time hours.","price":269,"was":320,"cta":"Get 10-pack","toast":"10-pack added. Your next 10 hours are covered."},"loyalty":{"label":"Smash points","title":"1 more booking to a free hour","body":"Every hour you play earns points. You're nearly there.","pct":90},"review":{"text":"No more texting the club at midnight. I can see every free court and grab one for my group in seconds.","who":"Jason W. · Google review"},"info":[["Hours","Every day · 7 AM – 11 PM"],["Address","3480 Laird Rd, Mississauga"],["Parking","Free, 120 spots"],["Leagues","Mon & Thu nights, all levels"]],"extraHome":"<div class=\"sec\"><h3>Club life</h3><div class=\"hscroll\">\n    <div class=\"tile\"><div class=\"sw\" style=\"background:#ffe1d1\">🏆</div><b>Thursday ladder league</b><span>Starts Dec 4 · 12 spots</span></div>\n    <div class=\"tile\"><div class=\"sw\" style=\"background:#ecfccb\">🎓</div><b>Beginner clinic</b><span>Sat 9 AM · $20</span></div>\n    <div class=\"tile\"><div class=\"sw\" style=\"background:#dbeafe\">🤝</div><b>Open play drop-in</b><span>Weekdays 12–2 PM</span></div></div></div>","seedBookings":[{"service":"pickle","title":"Pickleball","who":"Court 2","inDays":3,"start":1140,"price":64,"key":"c2","hours":2,"players":4,"src":"Online"},{"service":"badminton","title":"Badminton","who":"Court 4","inDays":-9,"start":1080,"price":24,"key":"c4","hours":1,"players":2,"src":"Online"}],"owner":{"notes":["Captain of the Tuesday group","Usually books Court 2, brings 4 players","Interested in the ladder league","Member since 2024, pays annually"],"place":"Smash Club · 5 courts","unit":"court bookings","revenue":1488,"agenda":[{"t":420,"title":"Pickleball · Court 1","who":"Early birds group · 4 players","src":"Online","c":"#a3e635"},{"t":720,"title":"Open play drop-in","who":"Courts 1–3 · 14 checked in","src":"Walk-in","c":"#ffc928"},{"t":1080,"title":"Badminton · Court 4","who":"Wei L. · 2 hours","src":"AI assistant","c":"#2563eb"},{"t":1140,"title":"Ladder league","who":"Courts 1–3 · 24 players","src":"Online","c":"#ff6b1a"},{"t":1200,"title":"Pickleball · Court 3","who":"Maria G. · 4 players","src":"Online","c":"#a3e635"},{"t":1260,"title":"Badminton · Court 5","who":"Tom & Ravi","src":"Phone","c":"#2563eb"}],"sim":[{"t":1320,"title":"Pickleball · Court 2","who":"Leah K. · 4 players","src":"Online","c":"#a3e635","price":32},{"t":900,"title":"Badminton · Court 5","who":"Sam P. · 2 players","src":"AI assistant","c":"#2563eb","price":24}],"top":[["Pickleball 7–9 PM",212],["Badminton 6–8 PM",164],["Weekend mornings",131],["Paddle rental",97],["Coach add-on",38]],"idea":{"title":"Off-peak daytime pass","body":"Courts sit 70% empty 10 AM – 3 PM on weekdays. A $99 daytime pass for retirees and shift workers fills them.","stat":"Est. +$2,400 / month"},"ai":[["Booked","57 court hours this week, 22 after midnight"],["Filled","11 cancelled courts re-booked from the waitlist"],["Answered","63 questions about leagues and rentals"]]},"ai":{"name":"Smash Club assistant","short":"Assistant","placeholder":"Try: pickleball tonight for 4","greeting":"Hey! I'm the Smash Club assistant 🏓 Tell me when you want to play and I'll find a free court.","hello":"Hey! Want a court, or have a question about leagues?","quick":["Pickleball tonight","Badminton Saturday morning","When are leagues?","Do you rent paddles?"],"askService":"Sure! Which sport?","yes":"Nice!","done":"Booked and held for you. Pay in the app before you play:","remind":"Court number texted 2 hours before","bye":"Have a great game! 🏸"},"faq":[{"keys":["league","ladder"],"a":"Leagues run Monday and Thursday nights, 7–10 PM. The Thursday ladder league starts Dec 4 and has 12 spots left.","q":["Pickleball tonight","Thanks!"]},{"keys":["rent","paddle","racquet","racket"],"a":"Yes, rental paddles and racquets are $4 each. Add them when you book and they'll be ready at the desk."},{"keys":["member"],"a":"Members pay $39/month and save 20% on every court, plus book 14 days ahead instead of 7."},{"keys":["park"],"a":"Free parking for 120 cars right outside."},{"keys":["hour","open","close"],"a":"Open every day, 7 AM to 11 PM."}]};</script>
+<script>/* Shared booking-app engine. Each sample business supplies window.CFG; this file renders the whole app. */
+(function () {
+  const C = window.CFG;
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const money = (n) => "$" + (Math.round(n * 100) / 100).toFixed(n % 1 ? 2 : 0);
+  const DAY = 864e5;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const addDays = (d, n) => new Date(d.getTime() + n * DAY);
+  const iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const fromIso = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const fmtDay = (d, o = { weekday: "short", month: "short", day: "numeric" }) => d.toLocaleDateString("en-CA", o);
+  const fmtTime = (m) => { const h = Math.floor(m / 60), mm = m % 60, ap = h >= 12 ? "PM" : "AM"; return ((h + 11) % 12 + 1) + ":" + String(mm).padStart(2, "0") + " " + ap; };
+  const hash = (s) => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+  const allServices = () => C.categories.flatMap((c) => c.services.map((s) => ({ ...s, cat: c.id })));
+  const svcById = (id) => allServices().find((s) => s.id === id);
+  const staffById = (id) => C.staff && C.staff.find((s) => s.id === id);
+  const store = { get(k, d) { try { const v = localStorage.getItem(C.id + ":" + k); return v ? JSON.parse(v) : d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(C.id + ":" + k, JSON.stringify(v)); } catch {} } };
+
+  // ---------- state ----------
+  const seed = () => C.seedBookings.map((b, i) => ({ id: "seed" + i, ...b, date: iso(addDays(today, b.inDays)) }));
+  const S = { tab: "home", flow: null, done: null, bookings: store.get("bookings", null) || seed(), chat: null, ownerExtra: [] };
+  const save = () => store.set("bookings", S.bookings);
+
+  // ---------- slots ----------
+  function slotsFor(dateIso, key) {
+    const out = [];
+    const d = fromIso(dateIso);
+    const closed = C.closedDays && C.closedDays.includes(d.getDay());
+    const now = new Date(); const nowMin = now.getHours() * 60 + now.getMinutes();
+    for (let m = C.hours.open; m <= C.hours.close - C.hours.step; m += C.hours.step) {
+      const taken = closed || hash(dateIso + key + m) % 100 < (C.busy || 42) || (dateIso === iso(today) && m < nowMin + 60);
+      const mine = S.bookings.some((b) => b.date === dateIso && b.start === m && (b.key || "") === key);
+      out.push({ m, taken: taken || mine });
+    }
+    return out;
+  }
+  function firstFree(key, filter, n = 3, fromDay = 0) {
+    const res = [];
+    for (let i = fromDay; i < fromDay + 14 && res.length < n; i++) {
+      const di = iso(addDays(today, i));
+      for (const s of slotsFor(di, key)) if (!s.taken && (!filter || filter(s.m)) && res.length < n) res.push({ date: di, m: s.m });
+      if (filter && filter.oneDay && res.length) break;
+    }
+    return res;
+  }
+
+  // ---------- price ----------
+  function flowPrice(f) {
+    let p = 0;
+    if (C.mode === "court") { const sp = svcById(f.service); p = sp ? sp.price * (f.hours || 0) : 0; }
+    else { const s = svcById(f.service); if (s) p = s.price + (f.pet && s.bySize ? s.bySize[petById(f.pet).size] || 0 : 0); }
+    for (const a of f.addons || []) { const ad = C.addons.find((x) => x.id === a); if (ad) p += ad.per === "player" ? ad.price * (f.players || 1) : ad.price; }
+    if (f.member) p = p * (1 - C.memberDiscount);
+    return p;
+  }
+  const petById = (id) => C.pets.find((p) => p.id === id);
+
+  // ---------- render root ----------
+  const app = $("#app");
+  function render() {
+    const scr = $(".screen", app);
+    const keep = scr && S._keepScroll ? scr.scrollTop : 0;
+    let body = "";
+    if (S.done) body = viewDone();
+    else if (S.tab === "home") body = viewHome();
+    else if (S.tab === "book") body = S.flow ? viewFlow() : (startFlow(), viewFlow());
+    else if (S.tab === "ai") body = viewChat();
+    else if (S.tab === "mine") body = viewMine();
+    else if (S.tab === "owner") body = viewOwner();
+    app.innerHTML = body + tabbar() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const s2 = $(".screen", app);
+    if (s2) s2.scrollTop = keep;
+    S._keepScroll = false;
+    if (S.tab === "ai" && !S.done) { const m = $(".msgs", app); if (m) m.scrollTop = m.scrollHeight; }
+  }
+  function tabbar() {
+    const t = [["home", "🏠", "Home"], ["book", "📅", "Book"], ["ai", "✦", C.ai.short], ["mine", "🧾", "My visits"]];
+    return '<nav class="tabbar" aria-label="App sections">' + t.map(([id, ic, l]) => `<button data-tab="${id}" class="${id === "ai" ? "ai" : ""}" ${S.tab === id && !S.done ? 'aria-current="page"' : ""}><span aria-hidden="true">${ic}</span>${esc(l)}</button>`).join("") + "</nav>";
+  }
+  let toastT;
+  function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600); }
+
+  // ---------- home ----------
+  function viewHome() {
+    const pop = allServices().filter((s) => s.popular && !s.hidden);
+    const up = upcoming()[0];
+    return `<div class="screen">
+      <div class="topbar"><div class="logo"><i aria-hidden="true">${C.logoMark}</i>${esc(C.name)}</div><button class="iconbtn" data-tab="ai" aria-label="Open the ${esc(C.ai.name)}">💬</button></div>
+      <section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div>
+        <div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div>
+        <h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
+        <div class="btns"><button class="btn alt" data-act="book">${esc(C.bookLabel)}</button><button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button></div>
+      </section>
+      ${up ? `<div class="sec"><h3>Your next visit</h3>${bookingCard(up)}</div>` : ""}
+      <div class="sec"><div class="pack"><div class="lbl">${esc(C.pack.label)}</div><h4>${esc(C.pack.title)}</h4><p>${esc(C.pack.body)}</p>
+        <div class="row2"><div class="price">${money(C.pack.price)}<s>${money(C.pack.was)}</s></div><button class="btn" data-act="pack">${esc(C.pack.cta)}</button></div></div></div>
+      <div class="sec"><h3>${esc(C.popularTitle)} <small>${esc(C.popularHint || "")}</small></h3><div class="hscroll">
+        ${pop.map((s) => `<button class="tile" data-act="book" data-svc="${s.id}"><div class="sw" style="background:${s.sw}" aria-hidden="true">${s.em}</div><b>${esc(s.name)}</b><span>${s.from ? "from " : ""}${money(s.price)}${s.dur ? " · " + esc(s.dur) : ""}</span></button>`).join("")}
+      </div></div>
+      ${C.staff ? `<div class="sec"><h3>${esc(C.teamTitle)}</h3><div class="team">${C.staff.map((p) => `<div class="person"><div class="av" style="background:${p.grad}">${esc(p.name[0])}</div>${esc(p.name)}<small>${esc(p.role)}</small></div>`).join("")}</div></div>` : ""}
+      ${C.extraHome || ""}
+      <div class="sec"><h3>What clients say</h3><div class="review"><span class="st" aria-label="5 stars">★★★★★</span><br>${esc(C.review.text)}<small>${esc(C.review.who)}</small></div></div>
+      <div class="sec" style="padding-bottom:24px"><h3>Visit us</h3><div class="info">${C.info.map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join("")}</div></div>
+    </div>`;
+  }
+
+  // ---------- booking flow ----------
+  function startFlow(pre = {}) {
+    S.flow = { i: 0, service: null, addons: [], staff: null, date: null, start: null, hours: 0, court: null, players: C.mode === "court" ? 2 : 1, pet: C.pets ? C.pets[0].id : null, name: C.demoClient.name, phone: C.demoClient.phone, email: C.demoClient.email, reason: "", areas: [], billing: true, member: false, ...pre };
+    if (pre.service && C.steps[0] === "service") S.flow.i = 1;
+    if (pre.service && C.steps[0] === "pet" && C.steps[1] === "service") S.flow.i = 0;
+  }
+  const STEPS = {
+    pet: { title: "Who's coming in?", ok: (f) => f.pet },
+    service: { title: C.serviceTitle || "Choose a service", ok: (f) => f.service },
+    addons: { title: C.addonTitle || "Add something extra?", ok: () => true },
+    staff: { title: C.staffTitle || "Who would you like?", ok: (f) => f.staff },
+    time: { title: "Pick a time", ok: (f) => f.date && f.start != null },
+    court: { title: "Grab a court", ok: (f) => f.court && f.hours > 0 },
+    players: { title: "Players & extras", ok: () => true },
+    intake: { title: "Tell us a little", ok: () => true },
+    details: { title: "Your details", ok: (f) => f.name.trim() && f.phone.trim() },
+  };
+  function viewFlow() {
+    const f = S.flow, id = C.steps[f.i], st = STEPS[id];
+    const last = f.i === C.steps.length - 1;
+    const pct = Math.round(((f.i + 1) / C.steps.length) * 100);
+    const price = flowPrice(f);
+    const label = last ? (C.payOnline ? `Book & pay ${money(price)}` : "Confirm booking") : "Continue";
+    return `<div class="screen"><div class="flowhead"><div class="t">${f.i > 0 ? `<button class="iconbtn" data-act="back" aria-label="Back">‹</button>` : `<button class="iconbtn" data-tab="home" aria-label="Close">✕</button>`}<h2>${esc(st.title)}</h2></div>
+      <div class="prog" aria-hidden="true"><i style="width:${pct}%"></i></div><div class="stepno">Step ${f.i + 1} of ${C.steps.length}</div></div>
+      <div class="pad" style="padding-top:6px">${STEP_VIEWS[id](f)}</div>
+      <div class="foot"><div class="sm">${flowSummaryLine(f)}</div><button class="btn" data-act="next" ${st.ok(f) ? "" : "disabled"}>${label}</button></div></div>`;
+  }
+  function flowSummaryLine(f) {
+    const s = svcById(f.service);
+    if (!s) return "Nothing picked yet";
+    let when = "";
+    if (f.date && f.start != null) when = fmtDay(fromIso(f.date)) + " · " + fmtTime(f.start);
+    return `<b>${money(flowPrice(f))}</b>${esc(s.name)}${when ? " · " + when : ""}`;
+  }
+  const STEP_VIEWS = {
+    pet(f) {
+      return `<div class="list">${C.pets.map((p) => `<button class="opt" data-set="pet" data-v="${p.id}" aria-pressed="${f.pet === p.id}"><span class="em" style="background:${p.sw}">${p.em}</span><span class="tx"><b>${esc(p.name)}</b><small>${esc(p.breed)} · ${esc(p.sizeLabel)}</small>${p.note ? `<div class="tags"><span>${esc(p.note)}</span></div>` : ""}</span><span class="chk">✓</span></button>`).join("")}
+        <button class="opt" data-act="toast" data-msg="New pets get a quick profile: name, breed, size and any notes."><span class="em">➕</span><span class="tx"><b>Add another pet</b><small>Takes 20 seconds</small></span></button></div>
+        <p class="note">Saved pet profiles keep breed, size, coat notes and vaccine dates, so you never repeat yourself.</p>`;
+    },
+    service(f) {
+      const cat = f.cat || (svcById(f.service) ? svcById(f.service).cat : C.categories[0].id);
+      const c = C.categories.find((x) => x.id === cat);
+      const pet = f.pet && petById(f.pet);
+      return `${C.categories.length > 1 ? `<div class="tabs" role="group" aria-label="Categories">${C.categories.map((x) => `<button data-set="cat" data-v="${x.id}" aria-pressed="${x.id === cat}">${esc(x.name)}</button>`).join("")}</div>` : ""}
+        <div class="list">${c.services.filter((s) => !s.hidden).map((s) => { const p = s.price + (pet && s.bySize ? s.bySize[pet.size] || 0 : 0); return `<button class="opt" data-set="service" data-v="${s.id}" aria-pressed="${f.service === s.id}"><span class="em" style="background:${s.sw}">${s.em}</span><span class="tx"><b>${esc(s.name)}${s.popular ? '<span class="pill">Popular</span>' : ""}</b><small>${esc(s.desc)}</small></span><span class="pr">${money(p)}<small>${esc(s.dur || (C.mode === "court" ? "per hour" : ""))}</small></span></button>`; }).join("")}</div>
+        ${pet && C.sizeNote ? `<p class="note">${esc(C.sizeNote.replace("{pet}", pet.name).replace("{size}", pet.sizeLabel.toLowerCase()))}</p>` : ""}`;
+    },
+    addons(f) {
+      const s = svcById(f.service);
+      const tip = s && s.upsell ? C.addons.find((a) => a.id === s.upsell) : null;
+      return `${tip ? `<div class="pack" style="margin-bottom:12px"><div class="lbl">Clients who book ${esc(s.name.toLowerCase())} love this</div><h4>${esc(tip.name)}</h4><p>${esc(tip.why)}</p></div>` : ""}
+        <div class="list">${C.addons.filter((a) => !a.court).map((a) => `<button class="opt" data-tog="addons" data-v="${a.id}" aria-pressed="${f.addons.includes(a.id)}"><span class="em">${a.em}</span><span class="tx"><b>${esc(a.name)}</b><small>${esc(a.desc)}</small></span><span class="pr">+${money(a.price)}</span><span class="chk">✓</span></button>`).join("")}</div>`;
+    },
+    staff(f) {
+      const s = svcById(f.service);
+      const who = C.staff.filter((p) => !p.off && (!p.does || p.does.includes(s.cat)));
+      return `<div class="list">${who.map((p) => `<button class="opt" data-set="staff" data-v="${p.id}" aria-pressed="${f.staff === p.id}"><span class="av" style="width:50px;height:50px;margin:0;font-size:19px;background:${p.grad}">${esc(p.name[0])}</span><span class="tx"><b>${esc(p.name)}</b><small>${esc(p.role)} · next free ${nextFreeLabel(p.id)}</small>${p.tags ? `<div class="tags">${p.tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}</span><span class="chk">✓</span></button>`).join("")}
+        <button class="opt" data-set="staff" data-v="any" aria-pressed="${f.staff === "any"}"><span class="em">⚡</span><span class="tx"><b>Anyone available</b><small>Fastest way in · next free ${nextFreeLabel("any")}</small></span><span class="chk">✓</span></button></div>`;
+    },
+    time(f) {
+      const key = f.staff || "any";
+      if (!f.date) { const ff = firstFree(key, null, 1); f.date = ff.length ? ff[0].date : iso(today); }
+      const days = Array.from({ length: 14 }, (_, i) => addDays(today, i));
+      const sl = slotsFor(f.date, key);
+      const groups = [["Morning", (m) => m < 720], ["Afternoon", (m) => m >= 720 && m < 1020], ["Evening", (m) => m >= 1020]];
+      const who = f.staff && f.staff !== "any" ? staffById(f.staff).name : "anyone";
+      const body = sl.every((s) => s.taken) ? `<div class="empty">Fully booked this day. Try another day, or ask ${esc(C.ai.short)} to watch for a cancellation.</div>`
+        : groups.map(([g, fn]) => { const x = sl.filter((s) => fn(s.m)); return x.length ? `<div class="slotlbl">${g}</div><div class="slots">${x.map((s) => `<button class="slot" data-set="start" data-v="${s.m}" ${s.taken ? "disabled" : ""} aria-pressed="${f.start === s.m}">${fmtTime(s.m).replace(" AM", "").replace(" PM", "")}<span style="font-size:10px;margin-left:2px">${s.m >= 720 ? "PM" : "AM"}</span></button>`).join("")}</div>` : ""; }).join("");
+      return `<div class="dates" role="group" aria-label="Day">${days.map((d) => `<button class="date" data-set="date" data-v="${iso(d)}" aria-pressed="${iso(d) === f.date}">${d.toLocaleDateString("en-CA", { weekday: "short" })}<b>${d.getDate()}</b></button>`).join("")}</div>
+        <p class="note" style="margin:0 0 12px">Live times for ${esc(who)} on ${fmtDay(fromIso(f.date), { weekday: "long", month: "long", day: "numeric" })}.</p>${body}`;
+    },
+    court(f) {
+      const sport = f.service || C.categories[0].services[0].id;
+      f.service = sport;
+      if (!f.date) f.date = iso(today);
+      const days = Array.from({ length: 10 }, (_, i) => addDays(today, i));
+      const cs = C.courts.filter((c) => !c.closed && c.sports.includes(sport));
+      const hrs = []; for (let m = C.hours.open; m < C.hours.close; m += 60) hrs.push(m);
+      const sv = svcById(sport);
+      const sel = (c, m) => f.court === c && m >= f.start && m < f.start + f.hours * 60;
+      let g = `<span></span>` + cs.map((c) => `<span class="hd">${esc(c.name)}</span>`).join("");
+      const now = new Date(); const nowMin = now.getHours() * 60 + now.getMinutes();
+      for (const m of hrs) {
+        g += `<span class="hr">${fmtTime(m).replace(":00", "")}</span>`;
+        for (const c of cs) {
+          const taken = (hash(f.date + c.id + sport + m) % 100 < (C.busy || 45) || (f.date === iso(today) && m < nowMin)) && !sel(c.id, m) || S.bookings.some((b) => b.date === f.date && b.key === c.id && m >= b.start && m < b.start + (b.hours || 1) * 60);
+          g += `<button class="cell" data-court="${c.id}" data-m="${m}" ${taken ? "disabled" : ""} aria-pressed="${sel(c.id, m)}" aria-label="${esc(c.name)} ${fmtTime(m)}">${taken ? "Booked" : sel(c.id, m) ? "✓" : money(sv.price)}</button>`;
+        }
+      }
+      return `<div class="tabs" role="group" aria-label="Sport">${C.categories[0].services.map((s) => `<button data-set="sport" data-v="${s.id}" aria-pressed="${s.id === sport}">${s.em} ${esc(s.name)}</button>`).join("")}</div>
+        <div class="dates" role="group" aria-label="Day">${days.map((d) => `<button class="date" data-set="cdate" data-v="${iso(d)}" aria-pressed="${iso(d) === f.date}">${i0(d)}<b>${d.getDate()}</b></button>`).join("")}</div>
+        <div class="cgrid" style="grid-template-columns:52px repeat(${cs.length},1fr)">${g}</div>
+        <div class="legend"><span><i style="background:var(--cell-bg);border:2px solid var(--cell-line)"></i>Free</span><span><i style="background:var(--a)"></i>Yours</span><span><i style="background:var(--line)"></i>Booked</span></div>
+        <p class="note">Tap a free hour, then tap the hour below it to play longer. ${esc(sv.desc)}</p>`;
+      function i0(d) { return iso(d) === iso(today) ? "Today" : d.toLocaleDateString("en-CA", { weekday: "short" }); }
+    },
+    players(f) {
+      return `<div class="toggle" style="margin-bottom:12px"><span><b>Players</b><br><small style="color:var(--mut)">Everyone gets the booking text</small></span><span class="stepper"><button data-act="pl-" aria-label="Fewer players">–</button><b>${f.players}</b><button data-act="pl+" aria-label="More players">+</button></span></div>
+        <div class="list">${C.addons.filter((a) => a.court).map((a) => `<button class="opt" data-tog="addons" data-v="${a.id}" aria-pressed="${f.addons.includes(a.id)}"><span class="em">${a.em}</span><span class="tx"><b>${esc(a.name)}</b><small>${esc(a.desc)}</small></span><span class="pr">+${money(a.price)}${a.per === "player" ? "<small>each</small>" : ""}</span><span class="chk">✓</span></button>`).join("")}
+        <button class="toggle" data-act="member" aria-pressed="${f.member}"><span><b>I'm a member</b><br><small style="color:var(--mut)">Members save ${Math.round(C.memberDiscount * 100)}% on every court</small></span><span class="sw2"></span></button></div>`;
+    },
+    intake(f) {
+      return `<div class="field"><label for="reason">What brings you in?</label><textarea id="reason" data-in="reason" placeholder="${esc(C.intake.placeholder)}">${esc(f.reason)}</textarea></div>
+        <div class="field"><label>Where does it bother you?</label><div class="chips">${C.intake.areas.map((a) => `<button class="chip" data-tog="areas" data-v="${esc(a)}" aria-pressed="${f.areas.includes(a)}">${esc(a)}</button>`).join("")}</div></div>
+        <button class="toggle" data-act="billing" aria-pressed="${f.billing}"><span><b>${esc(C.intake.billingTitle)}</b><br><small style="color:var(--mut)">${esc(C.intake.billingBody)}</small></span><span class="sw2"></span></button>
+        <p class="note">${esc(C.intake.privacy)}</p>`;
+    },
+    details(f) {
+      const s = svcById(f.service);
+      const lines = [];
+      if (C.mode === "court") {
+        const c = C.courts.find((x) => x.id === f.court);
+        lines.push([`${s.name} · ${c.name}`, money(s.price * f.hours)], [`${fmtDay(fromIso(f.date))} · ${fmtTime(f.start)}–${fmtTime(f.start + f.hours * 60)}`, `${f.hours} h`], [`${f.players} players`, ""]);
+      } else {
+        const pet = f.pet && petById(f.pet);
+        lines.push([s.name + (pet ? " for " + pet.name : ""), money(s.price + (pet && s.bySize ? s.bySize[pet.size] || 0 : 0))]);
+        const who = f.staff && f.staff !== "any" ? staffById(f.staff).name : "first available";
+        lines.push([`${fmtDay(fromIso(f.date))} · ${fmtTime(f.start)}`, "with " + who]);
+      }
+      for (const a of f.addons) { const ad = C.addons.find((x) => x.id === a); lines.push([ad.name + (ad.per === "player" ? " × " + f.players : ""), "+" + money(ad.per === "player" ? ad.price * f.players : ad.price)]); }
+      if (f.member) lines.push(["Member discount", "−" + Math.round(C.memberDiscount * 100) + "%"]);
+      if (f.billing && C.intake) lines.push(["Direct billing to your insurer", "✓"]);
+      return `<div class="field"><label for="nm">Name</label><input id="nm" data-in="name" value="${esc(f.name)}" autocomplete="name"></div>
+        <div class="field"><label for="ph">Mobile</label><input id="ph" data-in="phone" value="${esc(f.phone)}" inputmode="tel" autocomplete="tel"></div>
+        <div class="field"><label for="em">Email</label><input id="em" data-in="email" value="${esc(f.email)}" inputmode="email" autocomplete="email"></div>
+        <div class="summary">${lines.map(([a, b]) => `<div class="ln"><span>${esc(a)}</span><span>${esc(b)}</span></div>`).join("")}<div class="ln tot"><span>Total</span><span>${money(flowPrice(f))}</span></div></div>
+        <p class="note">${esc(C.policy)}</p>`;
+    },
+  };
+  function nextFreeLabel(key) {
+    const n = firstFree(key, null, 1);
+    if (!n.length) return "next week";
+    const d = fromIso(n[0].date);
+    const dd = n[0].date === iso(today) ? "today" : n[0].date === iso(addDays(today, 1)) ? "tomorrow" : d.toLocaleDateString("en-CA", { weekday: "short" });
+    return dd + " " + fmtTime(n[0].m);
+  }
+  function confirmFlow() {
+    const f = S.flow, s = svcById(f.service);
+    const b = { id: "b" + Date.now(), service: s.id, title: s.name, date: f.date, start: f.start, price: flowPrice(f), addons: f.addons.slice(), src: "Online" };
+    if (C.mode === "court") { const c = C.courts.find((x) => x.id === f.court); Object.assign(b, { key: c.id, hours: f.hours, who: c.name, players: f.players }); }
+    else { b.key = f.staff || "any"; b.who = f.staff && f.staff !== "any" ? staffById(f.staff).name : "first available"; if (f.pet) b.pet = petById(f.pet).name; }
+    S.bookings.push(b); save();
+    S.flow = null; S.done = b;
+    render(); confetti();
+  }
+  function confetti() {
+    const box = document.createElement("div"); box.className = "confetti"; box.setAttribute("aria-hidden", "true");
+    const cols = C.confetti;
+    for (let i = 0; i < 36; i++) { const e = document.createElement("i"); e.style.left = Math.random() * 100 + "%"; e.style.background = cols[i % cols.length]; e.style.animationDelay = Math.random() * 0.5 + "s"; e.style.animationDuration = 1.2 + Math.random() + "s"; box.appendChild(e); }
+    app.appendChild(box); setTimeout(() => box.remove(), 2600);
+  }
+  function viewDone() {
+    const b = S.done;
+    const when = `${fmtDay(fromIso(b.date), { weekday: "long", month: "long", day: "numeric" })} at ${fmtTime(b.start)}`;
+    return `<div class="screen"><div class="done"><div class="tick"><svg viewBox="0 0 24 24" width="56" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>${esc(C.doneTitle.replace("{name}", (S.flow && S.flow.name) || C.demoClient.name.split(" ")[0]).replace("{pet}", b.pet || ""))}</h2>
+      <p><b>${esc(b.title)}</b>${b.pet ? " for " + esc(b.pet) : ""} · ${esc(b.who)}<br>${when}${b.hours ? ` · ${b.hours} h` : ""}</p>
+      ${C.mode === "court" ? '<div class="pass" aria-label="Check-in code"></div><p class="note">Show this code at the front desk to check in.</p>' : ""}
+      <div class="perks">${C.donePerks.map((p) => `<div>${p}</div>`).join("")}</div>
+      <div style="display:grid;gap:8px;margin-top:18px"><button class="btn block" data-act="see-mine">See my visits</button><button class="btn ghost block" data-act="home">Back to home</button></div></div></div>`;
+  }
+
+  // ---------- my bookings ----------
+  const upcoming = () => S.bookings.filter((b) => fromIso(b.date) >= today && !b.cancelled).sort((a, b) => a.date.localeCompare(b.date) || a.start - b.start);
+  function bookingCard(b, acts = true) {
+    const d = fromIso(b.date);
+    const rel = b.date === iso(today) ? "Today" : b.date === iso(addDays(today, 1)) ? "Tomorrow" : fmtDay(d, { weekday: "long" });
+    return `<div class="bk${fromIso(b.date) < today ? " past" : ""}"><span class="when">${rel} · ${fmtDay(d, { month: "short", day: "numeric" })} · ${fmtTime(b.start)}</span><b>${esc(b.title)}${b.pet ? " for " + esc(b.pet) : ""}</b><small>${esc(b.who)}${b.hours ? " · " + b.hours + " h" : ""} · ${money(b.price)}</small>
+      ${acts && fromIso(b.date) >= today ? `<div class="acts"><button data-act="resched" data-id="${b.id}">Move it</button><button data-act="cancel" data-id="${b.id}">Cancel</button>${C.mode === "court" ? `<button data-act="toast" data-msg="Invite link copied. Friends can split the cost.">Invite</button>` : ""}</div>` : ""}</div>`;
+  }
+  function viewMine() {
+    const up = upcoming();
+    const past = S.bookings.filter((b) => fromIso(b.date) < today).sort((a, b) => b.date.localeCompare(a.date));
+    return `<div class="screen"><div class="flowhead"><h2>My visits</h2></div><div class="pad" style="padding-top:4px">
+      <div class="list">${up.length ? up.map((b) => bookingCard(b)).join("") : `<div class="empty">No upcoming visits.<br><br><button class="btn" data-act="book">${esc(C.bookLabel)}</button></div>`}</div>
+      <div class="sec" style="padding:22px 0 0"><div class="pack"><div class="lbl">${esc(C.loyalty.label)}</div><h4>${esc(C.loyalty.title)}</h4><p>${esc(C.loyalty.body)}</p>
+        <div class="prog" style="margin-top:12px;height:10px"><i style="width:${C.loyalty.pct}%"></i></div></div></div>
+      ${past.length ? `<div class="sec" style="padding:22px 0 0"><h3>Past visits</h3><div class="list">${past.map((b) => bookingCard(b, false) .replace("</small>", `</small><div class="acts"><button data-act="rebook" data-id="${b.id}">Book again</button></div>`)).join("")}</div></div>` : ""}
+    </div></div>`;
+  }
+
+  // ---------- owner / front desk ----------
+  function viewOwner() {
+    const O = C.owner;
+    const mineToday = S.bookings.filter((b) => b.date === iso(today) && !b.cancelled && !String(b.id).startsWith("seed"));
+    const extra = S.ownerExtra;
+    const rows = [...O.agenda.map((a) => ({ ...a })), ...extra, ...mineToday.map((b) => ({ t: b.start, title: b.title + (b.pet ? " · " + b.pet : ""), who: C.demoClient.name + " · " + b.who, src: b.src, c: "var(--a)", isNew: true }))].sort((a, b) => a.t - b.t);
+    const count = rows.length, rev = O.revenue + extra.reduce((s, x) => s + (x.price || 0), 0) + mineToday.reduce((s, b) => s + b.price, 0);
+    const online = Math.round((rows.filter((r) => r.src !== "Walk-in" && r.src !== "Phone").length / count) * 100);
+    const max = Math.max(...O.top.map((t) => t[1]));
+    return `<div class="screen"><div class="flowhead"><div class="t" style="justify-content:space-between"><h2>Front desk</h2><span class="premium" style="margin:0;background:var(--tint);color:var(--p-text,var(--p))">Owner view</span></div><div class="stepno">${fmtDay(today, { weekday: "long", month: "long", day: "numeric" })} · ${esc(O.place)}</div></div>
+      <div class="pad" style="padding-top:4px">
+      <div class="stats"><div class="stat"><b>${count}</b><small>${esc(O.unit)} today</small></div><div class="stat"><b>${money(rev)}</b><small>booked revenue</small></div><div class="stat"><b>${online}%</b><small>booked online</small></div></div>
+      <div class="sec" style="padding:20px 0 0"><h3>Today <small><button data-act="sim" style="color:inherit;font-weight:800">+ Simulate online booking</button></small></h3><div class="agenda">
+        ${rows.map((r) => `<div class="ag${r.isNew ? " new" : ""}" style="--c:${r.c}"><span class="tm">${fmtTime(r.t)}</span><span><b>${esc(r.title)}</b><small>${esc(r.who)}</small></span><span class="src">${esc(r.src)}</span></div>`).join("")}
+      </div></div>
+      <div class="sec" style="padding:20px 0 0"><h3>What clients buy most <small>last 90 days</small></h3><div class="bars">${O.top.map(([n, v]) => `<div class="bar"><b style="font-weight:600">${esc(n)}</b><span><i style="width:${Math.round((v / max) * 100)}%"></i></span><em>${v}</em></div>`).join("")}</div></div>
+      <div class="sec" style="padding:20px 0 0"><div class="pack"><div class="lbl">Package idea from your data</div><h4>${esc(O.idea.title)}</h4><p>${esc(O.idea.body)}</p><div class="row2"><span class="price" style="font-size:15px">${esc(O.idea.stat)}</span><button class="btn" data-act="toast" data-msg="Package published to your booking app.">Publish package</button></div></div></div>
+      <div class="sec" style="padding:20px 0 0"><h3>${esc(C.ai.short)} handled for you</h3><div class="info">${O.ai.map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join("")}</div></div>
+      <div class="sec" style="padding:20px 0 0"><div class="info"><div><b>Your data</b><span>Every client, booking and payment belongs to you. Export it any time.</span></div></div></div>
+    </div></div>`;
+  }
+
+  // ---------- AI assistant ----------
+  function chatInit() {
+    S.chat = { msgs: [], ctx: {}, quick: C.ai.quick, typing: false };
+    S.chat.msgs.push({ ai: true, h: esc(C.ai.greeting) });
+  }
+  function viewChat() {
+    if (!S.chat) chatInit();
+    const ch = S.chat;
+    return `<div class="screen" style="overflow:hidden"><div class="chat"><div class="chead"><div class="bot" aria-hidden="true">✦</div><div><b>${esc(C.ai.name)}</b><small>● Online 24/7 · replies in seconds</small></div><span class="premium">Premium AI</span></div>
+      <div class="msgs" aria-live="polite">${ch.msgs.map((m) => `<div class="m ${m.ai ? "ai" : "me"}">${m.h}</div>`).join("")}${ch.typing ? '<div class="m ai"><span class="dots" aria-label="Typing"><i></i><i></i><i></i></span></div>' : ""}</div>
+      ${!ch.typing && ch.quick && ch.quick.length ? `<div class="quick">${ch.quick.map((q) => `<button data-q="${esc(q)}">${esc(q)}</button>`).join("")}</div>` : ""}
+      <form class="cin" id="cform"><input id="cmsg" placeholder="${esc(C.ai.placeholder)}" autocomplete="off" aria-label="Message the ${esc(C.ai.name)}"><button type="submit" aria-label="Send">↑</button></form></div></div>`;
+  }
+  function say(text) {
+    const ch = S.chat;
+    ch.msgs.push({ ai: false, h: esc(text) });
+    ch.typing = true; ch.quick = [];
+    render(); focusChat();
+    setTimeout(() => { const r = brain(text); ch.typing = false; ch.msgs.push({ ai: true, h: r.h }); ch.quick = r.q || []; render(); focusChat(); if (r.after) r.after(); }, 750 + Math.random() * 400);
+  }
+  function focusChat() { const i = $("#cmsg"); if (i && window.matchMedia("(pointer:fine)").matches) i.focus(); }
+  const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  function parseDay(t) {
+    if (/\btoday|tonight\b/.test(t)) return 0;
+    if (/\btomorrow\b/.test(t)) return 1;
+    for (let i = 0; i < 7; i++) if (t.includes(DAYS[i]) || new RegExp("\\b" + DAYS[i].slice(0, 3) + "\\b").test(t)) { const diff = (i - today.getDay() + 7) % 7; return diff === 0 ? 7 : diff; }
+    if (/weekend/.test(t)) { const diff = (6 - today.getDay() + 7) % 7; return diff; }
+    return null;
+  }
+  function parsePart(t) {
+    if (/morning|\bam\b/.test(t)) return (m) => m < 720;
+    if (/afternoon|lunch/.test(t)) return (m) => m >= 720 && m < 1020;
+    if (/evening|night|after work|\bpm\b/.test(t)) return (m) => m >= 1020;
+    return null;
+  }
+  function findService(t) {
+    let best = null, score = 0;
+    for (const s of allServices()) {
+      const keys = [s.name.toLowerCase(), ...(s.keys || [])];
+      for (const k of keys) if (t.includes(k) && k.length > score) { best = s; score = k.length; }
+    }
+    return best;
+  }
+  function slotOffer(s, t) {
+    const ctx = S.chat.ctx;
+    const day = parseDay(t), part = parsePart(t);
+    let key = "any", whoName = "";
+    if (C.staff) { const p = C.staff.find((x) => t.includes(x.name.toLowerCase())); if (p) { key = p.id; whoName = p.name; } }
+    let offers = [];
+    if (C.mode === "court") {
+      const cs = C.courts.filter((c) => c.sports.includes(s.id));
+      const from = day ?? 0;
+      for (let i = from; i < from + 7 && offers.length < 3; i++) {
+        const di = iso(addDays(today, i));
+        for (let m = C.hours.open; m < C.hours.close && offers.length < 3; m += 60) {
+          if (part && !part(m)) continue;
+          if (di === iso(today) && m < new Date().getHours() * 60 + 60) continue;
+          const c = cs.find((c) => !(hash(di + c.id + s.id + m) % 100 < (C.busy || 45)) && !S.bookings.some((b) => b.date === di && b.key === c.id && b.start === m));
+          if (c) offers.push({ date: di, m, court: c.id, label: `${c.name} · ${fmtTime(m)}` });
+        }
+        if (offers.length && day != null) break;
+      }
+    } else {
+      const f = part || null;
+      offers = firstFree(key, f, 3, day ?? 0).map((o) => ({ ...o, label: fmtTime(o.m) }));
+      if (day != null) offers = offers.filter((o) => o.date === offers[0].date);
+    }
+    ctx.service = s.id; ctx.offers = offers; ctx.key = key; ctx.stage = "slot";
+    if (!offers.length) return { h: `I couldn't find a free ${esc(s.name.toLowerCase())} then. Want me to put you on the cancellation list? I'll text you the second one opens.`, q: ["Yes, add me", "Try next week"] };
+    const d0 = fromIso(offers[0].date);
+    const dayLabel = offers[0].date === iso(today) ? "today" : offers[0].date === iso(addDays(today, 1)) ? "tomorrow" : fmtDay(d0, { weekday: "long", month: "short", day: "numeric" });
+    const petP = C.pets ? C.pets.find((p) => t.includes(p.name.toLowerCase())) || C.pets[0] : null;
+    ctx.pet = petP && petP.id;
+    const pet = petP ? ` for ${petP.name}` : "";
+    const who = C.mode === "court" ? "" : whoName ? ` with ${whoName}` : C.staff ? " with our team" : "";
+    return { h: `${C.ai.yes} <b>${esc(s.name)}</b>${pet}${who} has these times ${dayLabel}:`, q: offers.map((o) => o.label).concat(["Other times"]) };
+  }
+  function makeBooking(ctx) {
+    const s = svcById(ctx.service), o = ctx.slot;
+    const b = { id: "b" + Date.now(), service: s.id, title: s.name, date: o.date, start: o.m, src: "AI assistant", addons: ctx.addon ? [ctx.addon] : [] };
+    let price = s.price;
+    if (C.mode === "court") { const c = C.courts.find((x) => x.id === o.court); Object.assign(b, { key: c.id, hours: 1, who: c.name, players: 2 }); }
+    else {
+      b.key = ctx.key; b.who = ctx.key !== "any" ? staffById(ctx.key).name : C.staff ? pickStaff(s) : "our team";
+      if (C.pets) { const p = petById(ctx.pet) || C.pets[0]; b.pet = p.name; price += s.bySize ? s.bySize[p.size] || 0 : 0; }
+    }
+    if (ctx.addon) price += C.addons.find((a) => a.id === ctx.addon).price;
+    b.price = price;
+    S.bookings.push(b); save();
+    return b;
+  }
+  function pickStaff(s) { const who = C.staff.filter((p) => !p.does || p.does.includes(s.cat)); return who[hash(s.id) % who.length].name; }
+  function brain(raw) {
+    const t = raw.toLowerCase().trim();
+    const ctx = S.chat.ctx;
+    // pending answers
+    if (ctx.stage === "slot") {
+      const o = (ctx.offers || []).find((x) => x.label.toLowerCase() === t);
+      if (o) {
+        ctx.slot = o;
+        const s = svcById(ctx.service);
+        const ad = s.upsell && C.addons.find((a) => a.id === s.upsell);
+        if (ad) { ctx.stage = "upsell"; ctx.addonOffer = ad.id; return { h: `${esc(fmtTime(o.m))} is yours to grab. ${esc(ad.why)} Add <b>${esc(ad.name)}</b> for ${money(ad.price)}?`, q: ["Yes, add it", "No thanks"] }; }
+        return finish(ctx);
+      }
+      if (/other|later|next week|different/.test(t)) { return slotOffer(svcById(ctx.service), /next week/.test(t) ? "in 7 days " + DAYS[(today.getDay()) % 7] : DAYS[(today.getDay() + 3) % 7]); }
+    }
+    if (ctx.stage === "upsell") {
+      if (/^(yes|yeah|sure|ok|add)/.test(t)) { ctx.addon = ctx.addonOffer; return finish(ctx); }
+      if (/^(no|nah|skip)/.test(t)) { ctx.addon = null; return finish(ctx); }
+    }
+    if (ctx.stage === "cancel") {
+      ctx.stage = null;
+      if (/^yes/.test(t)) { const b = S.bookings.find((x) => x.id === ctx.cancelId); b.cancelled = true; save(); return { h: `Done. Your ${esc(b.title.toLowerCase())} is cancelled and the slot is open for someone on the waitlist. No fee, since it's more than ${esc(C.cancelWindow)} away.`, q: ["Book something new", "Thanks!"] }; }
+      return { h: "No problem, it's still booked. See you then!", q: C.ai.quick };
+    }
+    if (/yes, add me|waitlist|cancellation list/.test(t)) return { h: `You're on the list. The moment a spot opens I'll text ${esc(C.demoClient.phone)} and hold it for 15 minutes.`, q: ["Thanks!"] };
+    if (/^(thanks|thank you|thx|great|perfect|awesome)/.test(t)) return { h: C.ai.bye, q: C.ai.quick };
+    if (/cancel/.test(t)) {
+      const up = upcoming()[0];
+      if (!up) return { h: "You don't have anything booked right now. Want to book something?", q: C.ai.quick };
+      ctx.stage = "cancel"; ctx.cancelId = up.id;
+      return { h: `Your next visit is <b>${esc(up.title)}</b> on ${fmtDay(fromIso(up.date), { weekday: "long", month: "short", day: "numeric" })} at ${fmtTime(up.start)}. Cancel it?`, q: ["Yes, cancel it", "Keep it"] };
+    }
+    if (/move|reschedul|change my/.test(t)) {
+      const up = upcoming()[0];
+      if (!up) return { h: "You don't have anything booked to move. Want to book something?", q: C.ai.quick };
+      up.cancelled = true; save();
+      const r = slotOffer(svcById(up.service), t.includes("week") ? "next week" : DAYS[(today.getDay() + 2) % 7]);
+      r.h = `Sure, I'll move your <b>${esc(up.title)}</b>. ` + r.h.replace(C.ai.yes + " ", "");
+      return r;
+    }
+    for (const f of C.faq) if (f.keys.some((k) => t.includes(k))) return { h: f.a, q: f.q || C.ai.quick };
+    const s = findService(t);
+    if (s) return slotOffer(s, t);
+    if (/book|appointment|available|opening|free|slot|spot|court|session/.test(t) || parseDay(t) != null) {
+      ctx.stage = "svc"; ctx.pendingText = t;
+      return { h: C.ai.askService, q: allServices().filter((x) => x.popular).map((x) => x.name) };
+    }
+    if (/price|cost|how much|\$/.test(t)) return { h: "Here are our most booked options:<br>" + allServices().filter((x) => x.popular).map((x) => `• ${esc(x.name)}: ${x.from ? "from " : ""}${money(x.price)}${C.mode === "court" ? "/hour" : ""}`).join("<br>"), q: ["Book one", "Packages"] };
+    if (/^(hi|hello|hey|yo)\b/.test(t)) return { h: C.ai.hello, q: C.ai.quick };
+    if (/book one|book something|book a/.test(t)) return { h: C.ai.askService, q: allServices().filter((x) => x.popular).map((x) => x.name) };
+    return { h: `Good question. I'll pass that to the team and they'll text you back within the hour. Meanwhile I can book, move or cancel visits, or answer questions about prices, hours and parking.`, q: C.ai.quick };
+  }
+  function finish(ctx) {
+    const b = makeBooking(ctx);
+    ctx.stage = null;
+    const s = svcById(b.service);
+    const card = `<div class="card"><b style="color:var(--ok-ink)">✓ Booked</b><br><b>${esc(b.title)}${b.addons.length ? " + " + esc(C.addons.find((a) => a.id === b.addons[0]).name.toLowerCase()) : ""}</b>${b.pet ? " for " + esc(b.pet) : ""}<br>${fmtDay(fromIso(b.date), { weekday: "short", month: "short", day: "numeric" })} · ${fmtTime(b.start)} · ${esc(b.who)}<br>${money(b.price)} · ${esc(C.ai.remind)}</div>`;
+    return { h: `${esc(C.ai.done)}${card}`, q: ["Add to my calendar", "Thanks!"], after: () => toast("New booking added to My visits") };
+  }
+
+  // ---------- events ----------
+  app.addEventListener("click", (e) => {
+    const el = e.target.closest("button"); if (!el) return;
+    const d = el.dataset;
+    if (d.tab) { S.done = null; S.tab = d.tab; if (d.tab === "book" && !S.flow) startFlow(); render(); return; }
+    if (d.q) {
+      if (d.q === "Add to my calendar") { S.chat.msgs.push({ ai: false, h: "Add to my calendar" }); S.chat.msgs.push({ ai: true, h: "Added 📅 You'll also get a reminder text the day before." }); S.chat.quick = ["Thanks!"]; render(); return; }
+      if (S.chat.ctx.stage === "svc") { const s = allServices().find((x) => x.name === d.q); if (s) { S.chat.msgs.push({ ai: false, h: esc(d.q) }); S.chat.typing = true; S.chat.quick = []; render(); setTimeout(() => { const r = slotOffer(s, S.chat.ctx.pendingText || ""); S.chat.typing = false; S.chat.msgs.push({ ai: true, h: r.h }); S.chat.quick = r.q; render(); }, 700); return; } }
+      say(d.q); return;
+    }
+    const f = S.flow;
+    if (d.set && f) {
+      const v = d.v;
+      if (d.set === "cat") f.cat = v;
+      else if (d.set === "service") { f.service = v; f.cat = svcById(v).cat; }
+      else if (d.set === "staff") { f.staff = v; f.date = null; f.start = null; }
+      else if (d.set === "date") { f.date = v; f.start = null; }
+      else if (d.set === "start") f.start = +v;
+      else if (d.set === "pet") f.pet = v;
+      else if (d.set === "sport") { f.service = v; f.court = null; f.hours = 0; f.start = null; }
+      else if (d.set === "cdate") { f.date = v; f.court = null; f.hours = 0; f.start = null; }
+      S._keepScroll = true; render(); return;
+    }
+    if (d.court && f) {
+      const m = +d.m;
+      if (f.court === d.court && m === f.start + f.hours * 60 && f.hours < 3) f.hours++;
+      else if (f.court === d.court && m >= f.start && m < f.start + f.hours * 60) { f.hours = m === f.start ? 0 : (m - f.start) / 60; if (!f.hours) f.court = null; }
+      else { f.court = d.court; f.start = m; f.hours = 1; }
+      S._keepScroll = true; render(); return;
+    }
+    if (d.tog && f) { const arr = f[d.tog]; const i = arr.indexOf(d.v); i < 0 ? arr.push(d.v) : arr.splice(i, 1); S._keepScroll = true; render(); return; }
+    switch (d.act) {
+      case "book": S.done = null; startFlow(d.svc ? { service: d.svc } : {}); S.tab = "book"; render(); break;
+      case "pack": toast(C.pack.toast); break;
+      case "back": f.i--; render(); break;
+      case "next": if (f.i === C.steps.length - 1) confirmFlow(); else { f.i++; render(); $(".screen", app).scrollTop = 0; } break;
+      case "pl-": f.players = Math.max(1, f.players - 1); S._keepScroll = true; render(); break;
+      case "pl+": f.players = Math.min(C.maxPlayers || 8, f.players + 1); S._keepScroll = true; render(); break;
+      case "member": f.member = !f.member; S._keepScroll = true; render(); break;
+      case "billing": f.billing = !f.billing; S._keepScroll = true; render(); break;
+      case "toast": toast(d.msg); break;
+      case "see-mine": S.done = null; S.tab = "mine"; render(); break;
+      case "home": S.done = null; S.tab = "home"; render(); break;
+      case "cancel": { const b = S.bookings.find((x) => x.id === d.id); b.cancelled = true; save(); render(); toast("Cancelled. Your slot is open for the waitlist."); break; }
+      case "resched": { const b = S.bookings.find((x) => x.id === d.id); b.cancelled = true; save(); startFlow({ service: b.service }); if (C.mode !== "court") { S.flow.staff = b.key; S.flow.i = C.steps.indexOf("time"); } else S.flow.i = C.steps.indexOf("court"); S.tab = "book"; render(); toast("Pick a new time. Your old one is released."); break; }
+      case "rebook": { const b = S.bookings.find((x) => x.id === d.id); startFlow({ service: b.service, addons: (b.addons || []).slice() }); if (C.mode !== "court") { S.flow.staff = b.key; S.flow.i = C.steps.indexOf("time"); } else S.flow.i = C.steps.indexOf("court"); S.tab = "book"; render(); break; }
+      case "sim": { const x = C.owner.sim[S.ownerExtra.length % C.owner.sim.length]; S.ownerExtra.push({ ...x, isNew: true }); S._keepScroll = true; render(); toast("🔔 New online booking: " + x.who.split(" · ")[0]); break; }
+    }
+  });
+  app.addEventListener("input", (e) => { const d = e.target.dataset; if (d.in && S.flow) { S.flow[d.in] = e.target.value; const b = $('[data-act="next"]', app); if (b) b.disabled = !STEPS[C.steps[S.flow.i]].ok(S.flow); } });
+  app.addEventListener("submit", (e) => { e.preventDefault(); const i = $("#cmsg"); const v = i.value.trim(); if (v) say(v); });
+
+  if (location.hash === "#assistant") S.tab = "ai";
+  if (location.hash === "#book") { S.tab = "book"; startFlow(); }
+  window.YB = { C, S, render, toast, esc, money, iso, fromIso, addDays, today, fmtDay, fmtTime, hash, allServices, svcById, staffById, save, upcoming, slotsFor, petById };
+  render();
+})();
+</script>
+<script>/* Owner app: the business side of each sample. Reads and writes the same bookings, services and packages as the client app. */
+(function () {
+  const Y = window.YB, C = Y.C, S = Y.S;
+  const { esc, money, iso, fromIso, addDays, today, fmtDay, fmtTime, hash, allServices, svcById } = Y;
+  const root = document.getElementById("owner");
+  const O = { sec: "dash", date: iso(today), days: {}, q: "", seen: 0, ai: { book: true, upsell: true, faq: true, after: false, handoff: true }, rules: { lead: "1 hour", cancel: C.cancelWindow, remind: true, remind2: false, review: true }, brand: null, extraPacks: [] };
+  const court = C.mode === "court";
+  const COLORS = C.confetti;
+
+  // ---------- data ----------
+  const cols = () => (court ? C.courts.map((c) => ({ id: c.id, name: c.name, sub: c.sports.map((s) => svcById(s).name).join(" · "), off: c.closed, em: "🏟️" })) : C.staff.map((p) => ({ id: p.id, name: p.name, sub: p.role, off: p.off, grad: p.grad, does: p.does })));
+  const durOf = (s) => { if (court) return 60; const d = s.dur || ""; let m = d.match(/(\d+)\s*min/); if (m) return +m[1]; m = d.match(/(\d+)(?:–\d+)?\s*h(?:\s*(\d+))?/); if (m) return Math.min(+m[1] * 60 + (+m[2] || 0), 180); return C.hours.step; };
+  const FIRST = ["Hannah", "Omar", "Grace", "Daniel", "Leila", "Nina", "Kevin", "Rosa", "Aisha", "Tom", "Maria", "Wei", "Jason", "Priya", "Liam", "Fatima", "Chris", "Olivia", "Ben", "Sana", "Mark", "Lisa", "Ken", "Zoe"];
+  const LAST = ["L.", "R.", "T.", "K.", "S.", "P.", "M.", "D.", "N.", "B.", "G.", "C."];
+  const PETS = ["Bailey · Doodle", "Coco · Pug", "Oreo · Cat", "Rocky · Terrier", "Maple · Cockapoo", "Thor · Husky", "Teddy · Cavapoo", "Max · Lab"];
+  const nameAt = (n) => FIRST[n % FIRST.length] + " " + LAST[(n * 7) % LAST.length];
+  const svcsFor = (col) => allServices().filter((s) => !s.hidden && (court ? C.courts.find((c) => c.id === col).sports.includes(s.id) : !staffDoes(col) || staffDoes(col).includes(s.cat)));
+  const staffDoes = (id) => { const p = C.staff && C.staff.find((x) => x.id === id); return p && p.does; };
+  const srcs = ["Online", "Online", "AI assistant", "Online", "Phone", "Walk-in", "AI assistant"];
+
+  function genDay(d) {
+    if (O.days[d]) return O.days[d];
+    const out = [];
+    const isToday = d === iso(today);
+    const cs = cols();
+    if (isToday) {
+      C.owner.agenda.forEach((a, i) => {
+        let col = cs.find((c) => a.title.includes(c.name) || a.who.includes(c.name.split(" ")[0]) || a.who.includes(c.name));
+        if (!col) col = cs[hash(a.title + i) % cs.length];
+        const s = allServices().find((x) => a.title.toLowerCase().includes(x.name.toLowerCase().split(" ")[0])) || allServices()[0];
+        out.push({ id: "a" + i, col: col.id, t: a.t, dur: durOf(s), title: a.title, client: a.who.split(" · ")[0], src: a.src, c: a.c, price: s.price, status: a.t < nowMin() - 30 ? "done" : "booked" });
+      });
+    }
+    {
+      const closed = C.closedDays && C.closedDays.includes(fromIso(d).getDay());
+      if (!closed) for (const c of cs) {
+        const list = svcsFor(c.id);
+        for (let m = C.hours.open; m < C.hours.close; ) {
+          const h = hash(d + c.id + m);
+          if (h % 100 < (C.busy || 45) - 6 && list.length) {
+            const s = list[h % list.length], du = durOf(s);
+            if (m + du > C.hours.close) break;
+            const n = h % 97;
+            if (out.some((o) => o.col === c.id && o.t < m + du && m < o.t + o.dur)) { m += court ? 60 : C.hours.step; continue; }
+            if (isToday && h % 3) { m += du; continue; }
+            out.push({ id: "g" + d + c.id + m, col: c.id, t: m, dur: du, title: court ? s.name + (h % 5 ? "" : " · league") : s.name, client: nameAt(n), pet: C.pets ? PETS[n % PETS.length] : null, src: srcs[h % srcs.length], c: COLORS[h % COLORS.length], price: s.price, status: d < iso(today) || (isToday && m < nowMin() - 30) ? (h % 23 === 0 ? "noshow" : "done") : "booked" });
+            m += du + (court ? 0 : 15);
+          } else m += court ? 60 : C.hours.step;
+        }
+      }
+    }
+    return (O.days[d] = out);
+  }
+  function nowMin() { const n = new Date(); return n.getHours() * 60 + n.getMinutes(); }
+  function liveFor(d) {
+    const cs = cols();
+    return S.bookings.filter((b) => b.date === d && !b.cancelled && !String(b.id).startsWith("seed")).map((b) => ({
+      id: b.id, live: b, col: cs.find((c) => c.id === b.key) ? b.key : cs[hash(b.id) % cs.length].id, t: b.start, dur: court ? 60 * (b.hours || 1) : durOf(svcById(b.service)),
+      title: b.title + (b.pet ? " · " + b.pet : ""), client: C.demoClient.name, src: b.src || "Online", c: "var(--a)", price: b.price, status: b.status || "booked", isNew: true,
+    }));
+  }
+  const dayAll = (d) => [...genDay(d), ...liveFor(d)].filter((x) => x.status !== "cancelled").sort((a, b) => a.t - b.t);
+
+  let CLIENTS = null;
+  function clients() {
+    if (CLIENTS) return CLIENTS;
+    const names = new Set(); const list = [];
+    C.owner.agenda.forEach((a) => names.add(a.who.split(" · ")[0]));
+    for (let i = 0; names.size < 16; i++) names.add(nameAt(i * 5 + 3));
+    [...names].filter((n) => !/group|walk-in|courts|&/i.test(n) || n.includes("&")).slice(0, 16).forEach((n, i) => {
+      const h = hash(n), s = allServices()[h % allServices().length];
+      const visits = 1 + (h % 23), last = h % 70;
+      const tags = []; if (visits > 15) tags.push("vip"); if (visits < 3) tags.push("new"); if (last > 50 && visits > 3) tags.push("risk");
+      list.push({ id: "c" + i, name: n, phone: `(${["416", "647", "905", "289"][h % 4]}) 555-0${String(100 + (h % 899)).slice(0, 3)}`, visits, spent: Math.round(visits * s.price * (1.05 + (h % 30) / 100)), last, fav: s.name, staff: C.staff ? C.staff[h % C.staff.length].name : C.courts[h % C.courts.length].name, tags, pet: C.pets ? PETS[h % PETS.length] : null, note: C.owner.notes[h % C.owner.notes.length] });
+    });
+    const me = S.bookings.filter((b) => !b.cancelled);
+    list.unshift({ id: "me", name: C.demoClient.name, phone: C.demoClient.phone, visits: me.length + 6, spent: me.reduce((s, b) => s + b.price, 0) + 640, last: 0, fav: me[0] ? me[0].title : allServices()[0].name, staff: me[0] ? me[0].who : "", tags: ["vip"], pet: C.pets ? C.pets.map((p) => p.name + " · " + p.breed).join(", ") : null, note: C.owner.notes[0], live: true });
+    return (CLIENTS = list);
+  }
+
+  // ---------- shell ----------
+  const NAV = [["dash", "🏠", "Dashboard"], ["cal", "📅", court ? "Court sheet" : "Calendar"], ["clients", "👥", C.pets ? "Clients & pets" : court ? "Players" : C.intake ? "Patients" : "Clients"], ["services", "🏷️", court ? "Courts & prices" : "Services & prices"], ["team", court ? "🏟️" : "🧑‍💼", court ? "Courts" : "Team"], ["packs", "🎁", "Packages & offers"], ["ai", "✦", "AI assistant"], ["reports", "📈", "Reports"], ["settings", "⚙️", "Settings"]];
+  function newCount() { return S.bookings.filter((b) => !String(b.id).startsWith("seed") && !b.cancelled).length; }
+  function render() {
+    const nav = NAV.map(([id, ic, l]) => `<button data-o-sec="${id}" ${O.sec === id ? 'aria-current="page"' : ""}><span aria-hidden="true">${ic}</span>${esc(l)}${id === "cal" && newCount() > O.seen ? `<span class="cnt">${newCount() - O.seen}</span>` : ""}</button>`).join("");
+    const title = NAV.find((n) => n[0] === O.sec)[2];
+    const main = VIEWS[O.sec]();
+    root.innerHTML = `<div class="o-shell"><aside class="o-side"><div class="logo"><i aria-hidden="true">${C.logoMark}</i>${esc(C.name)}</div><nav class="o-nav" aria-label="Owner sections">${nav}</nav>
+      <div class="own"><b>🔒 Your data</b>Every client, booking and payment belongs to you. Export it any time.</div></aside>
+      <section class="o-main"><header class="o-top"><div class="grow"><h1>${esc(title)}</h1><div class="sub">${fmtDay(today, { weekday: "long", month: "long", day: "numeric" })} · ${esc(C.owner.place)}</div></div>
+        <button class="iconbtn bell" data-o-act="bell" aria-label="Notifications">🔔${newCount() > O.seen ? `<em>${newCount() - O.seen}</em>` : ""}</button>
+        <button class="btn" data-o-act="new">+ New booking</button></header>${main}</section></div>
+      <div class="o-scrim" data-o-act="close"></div><aside class="o-drawer" id="o-drawer" aria-label="Details"></aside><div class="o-modal" id="o-modal" role="dialog" aria-modal="true" aria-label="New booking"></div><div class="o-toast" id="o-toast" role="status" aria-live="polite"></div>`;
+  }
+  let tt;
+  function toast(m) { const t = document.getElementById("o-toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600); }
+  function openDrawer(html) { const d = document.getElementById("o-drawer"); d.innerHTML = `<button class="iconbtn x" data-o-act="close" aria-label="Close">✕</button>` + html; d.classList.add("on"); root.querySelector(".o-scrim").classList.add("on"); }
+  function openModal(html) { const d = document.getElementById("o-modal"); d.innerHTML = html; d.classList.add("on"); root.querySelector(".o-scrim").classList.add("on"); const f = d.querySelector("input,select"); if (f) f.focus(); }
+  function closeAll() { root.querySelectorAll(".o-drawer,.o-modal,.o-scrim").forEach((e) => e.classList.remove("on")); }
+
+  const series = () => Array.from({ length: 14 }, (_, i) => { const d = addDays(today, i - 13); const wk = d.getDay() === 0 || d.getDay() === 6; const closed = C.closedDays && C.closedDays.includes(d.getDay()); return { d, wk, v: closed ? 0 : Math.round(C.owner.revenue * (0.62 + (hash(iso(d) + C.id) % 45) / 100) * (wk ? 1.25 : 1)) }; });
+  function chart(data) {
+    const W = 640, H = 200, pad = 28, max = Math.max(...data.map((x) => x.v)) * 1.1 || 1, bw = (W - pad) / data.length;
+    const ticks = [0, 0.5, 1].map((f) => Math.round((max * f) / 100) * 100);
+    let g = ticks.map((t) => { const y = H - 22 - (t / max) * (H - 40); return `<line class="gl" x1="${pad}" x2="${W}" y1="${y}" y2="${y}"/><text x="${pad - 6}" y="${y + 4}" text-anchor="end">${t >= 1000 ? (t / 1000).toFixed(1) + "k" : t}</text>`; }).join("");
+    data.forEach((x, i) => { const h = (x.v / max) * (H - 40), X = pad + i * bw + 4, Y = H - 22 - h; g += `<rect class="bar${i === data.length - 1 ? " now" : x.wk ? " wk" : ""}" x="${X}" y="${Y}" width="${bw - 8}" height="${Math.max(h, 1)}" rx="5"><title>${fmtDay(x.d)}: ${money(x.v)}</title></rect><text x="${X + (bw - 8) / 2}" y="${H - 6}" text-anchor="middle">${x.d.getDate()}</text>`; });
+    return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Revenue for the last 14 days">${g}</svg></div><div class="legend"><span><i style="background:var(--p)"></i>Weekday</span><span><i style="background:var(--a)"></i>Weekend</span><span><i style="background:var(--ok)"></i>Today so far</span></div>`;
+  }
+  const apptRow = (r) => `<button class="ag${r.isNew ? " new" : ""}" style="--c:${r.c};width:100%;text-align:left" data-o-appt="${r.id}" data-o-date="${iso(today)}"><span class="tm">${fmtTime(r.t)}</span><span><b>${esc(r.title)}</b><small>${esc(r.client)} · ${esc(colName(r.col))}</small></span><span class="src">${esc(r.src)}</span></button>`;
+  const colName = (id) => (cols().find((c) => c.id === id) || { name: "" }).name;
+
+  // ---------- views ----------
+  const VIEWS = {
+    dash() {
+      const t = dayAll(iso(today)), rev = t.reduce((s, x) => s + x.price, 0);
+      const wk = series().slice(-7).reduce((s, x) => s + x.v, 0);
+      const ai = t.filter((x) => x.src === "AI assistant").length;
+      const next = t.filter((x) => x.t >= nowMin() - 15).slice(0, 5);
+      const risk = clients().filter((c) => c.tags.includes("risk")).length || 3;
+      const feed = [...S.bookings.filter((b) => !String(b.id).startsWith("seed")).slice(-3).reverse().map((b) => ["🆕", `<b>${esc(C.demoClient.name)}</b> booked ${esc(b.title)}${b.pet ? " for " + esc(b.pet) : ""}`, `${b.src || "Online"} · just now`]),
+        ["✦", `AI assistant booked <b>${esc(C.owner.agenda[1].title)}</b> for ${esc(C.owner.agenda[1].who.split(" · ")[0])}`, "11:42 PM last night"], ["♻️", "A cancelled 3 PM slot was filled from the waitlist in 4 minutes", "Yesterday"], ["⭐", "New 5-star Google review from a client who booked online", "Yesterday"], ["💬", `${C.owner.agenda.length * 2 + 4} reminder texts sent for tomorrow`, "This morning"]];
+      return `<div class="o-grid">
+        <div class="o-card kpi hot s3"><i>📅</i><small>${esc(C.owner.unit)} today</small><b>${t.length}</b><span class="d">${newCount() ? "+" + newCount() + " new since you opened" : "▲ 3 vs last " + fmtDay(today, { weekday: "long" })}</span></div>
+        <div class="o-card kpi s3"><i>💰</i><small>Booked revenue today</small><b>${money(rev)}</b><span class="d">▲ 12% vs last week</span></div>
+        <div class="o-card kpi s3"><i>📈</i><small>Revenue, last 7 days</small><b>${money(wk)}</b><span class="d">▲ 8% vs previous 7</span></div>
+        <div class="o-card kpi s3"><i>✦</i><small>Booked by AI today</small><b>${ai}</b><span class="d">${esc(C.owner.ai[0][1].split(",")[0])} this week</span></div>
+        <div class="o-card s8"><h2>Revenue <small>last 14 days</small></h2>${chart(series())}</div>
+        <div class="o-card s4"><h2>Needs attention</h2><div class="attn">
+          <div><span>⏰</span><p><b>${risk} regulars</b> are overdue for their usual visit.</p><button data-o-act="rebook">Send rebook text</button></div>
+          <div><span>🕳️</span><p>Tomorrow has <b>3 open slots</b> after 4 PM.</p><button data-o-act="fill">Offer to waitlist</button></div>
+          <div><span>⭐</span><p><b>5 clients</b> from yesterday haven't left a review.</p><button data-o-act="review">Ask for reviews</button></div></div></div>
+        <div class="o-card s7"><h2>Up next today <button data-o-sec="cal">Open ${court ? "court sheet" : "calendar"} ›</button></h2><div class="upnext agenda">${next.length ? next.map(apptRow).join("") : '<p class="note">No more bookings today. Nice work.</p>'}</div></div>
+        <div class="o-card s5"><h2>Activity</h2><div class="feed">${feed.slice(0, 5).map(([i, a, b]) => `<div><i>${i}</i><span>${a}<small>${esc(b)}</small></span></div>`).join("")}</div></div>
+        <div class="o-card s12"><div class="pk"><span class="lbl" style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pack-lbl)">Package idea from your data</span><h3>${esc(C.owner.idea.title)}</h3><p>${esc(C.owner.idea.body)}</p><div class="row2"><b>${esc(C.owner.idea.stat)}</b><button class="btn" data-o-act="publish-idea">Publish to client app</button></div></div></div>
+      </div>`;
+    },
+    cal() {
+      O.seen = newCount();
+      const d = O.date, cs = cols(), PX = 1.05, top = 52;
+      const items = dayAll(d);
+      const H = (C.hours.close - C.hours.open) * PX;
+      let hours = "", lines = "";
+      for (let m = C.hours.open; m <= C.hours.close; m += 60) { const y = (m - C.hours.open) * PX; hours += `<span style="top:${y + top}px">${fmtTime(m).replace(":00", "")}</span>`; lines += `<div class="hl" style="top:${y}px"></div>`; }
+      const nowLine = d === iso(today) && nowMin() > C.hours.open && nowMin() < C.hours.close ? `<div class="now" style="top:${(nowMin() - C.hours.open) * PX}px"></div>` : "";
+      const colsHtml = cs.map((c) => `<div><div class="ch">${court ? `<span class="em" style="width:30px;height:30px;border-radius:10px;font-size:15px;display:grid;place-items:center;background:var(--tint)">🏟️</span>` : `<span class="av" style="background:${c.grad}">${esc(c.name[0])}</span>`}<span>${esc(c.name)}<small>${esc(c.off ? (court ? "Closed today" : "Off today") : c.sub)}</small></span></div>
+        <div class="col${c.off ? " off" : ""}" data-o-col="${c.id}" style="height:${H}px">${lines}${nowLine}${items.filter((x) => x.col === c.id).map((x) => `<button class="appt ${x.status}${x.isNew ? " isnew" : ""}" style="--c:${x.c};top:${(x.t - C.hours.open) * PX}px;height:${Math.max(x.dur * PX - 3, 26)}px" data-o-appt="${x.id}" data-o-date="${d}"><span class="src" aria-hidden="true">${x.src === "AI assistant" ? "✦" : x.src === "Online" ? "🌐" : x.src === "Phone" ? "📞" : "🚶"}</span><b>${esc(x.title)}</b><small>${fmtTime(x.t)} · ${esc(x.client)}</small></button>`).join("")}</div></div>`).join("");
+      const rev = items.reduce((s, x) => s + x.price, 0);
+      return `<div class="calbar"><button class="btn ghost" data-o-day="-1" aria-label="Previous day">‹</button><button class="btn ghost" data-o-day="0">Today</button><button class="btn ghost" data-o-day="1" aria-label="Next day">›</button>
+        <h2>${fmtDay(fromIso(d), { weekday: "long", month: "long", day: "numeric" })}</h2><span class="tag">${items.length} ${esc(C.owner.unit)} · ${money(rev)}</span>
+        <div class="legend"><span>🌐 Online</span><span>✦ AI assistant</span><span>📞 Phone</span><span>🚶 Walk-in</span></div></div>
+        <div class="calwrap"><div class="cal" style="grid-template-columns:64px repeat(${cs.length}, minmax(140px, 1fr))"><div class="tcol"><div class="ch" style="border-left:0"></div>${hours}</div>${colsHtml}</div></div>
+        <p class="note">Tap an empty spot to add a ${court ? "booking" : "walk-in or phone booking"}. Tap a booking to check in, mark a no-show or cancel. Bookings made in the client app show up here with a yellow ring.</p>`;
+    },
+    clients() {
+      const q = O.q.toLowerCase();
+      const list = clients().filter((c) => !q || c.name.toLowerCase().includes(q) || c.phone.includes(q) || (c.pet || "").toLowerCase().includes(q));
+      const label = { vip: "VIP", new: "New", risk: "Due back" };
+      return `<div class="o-card"><h2><input class="search" id="o-q" placeholder="Search name, phone${C.pets ? " or pet" : ""}" value="${esc(O.q)}" aria-label="Search clients"><small>${clients().length} of 1,284 shown</small></h2>
+        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Name</th>${C.pets ? "<th>Pets</th>" : ""}<th>Favourite</th><th class="num">Visits</th><th class="num">Spent</th><th>Last visit</th><th>Tags</th></tr></thead><tbody>
+        ${list.map((c) => `<tr data-o-client="${c.id}" tabindex="0"><td><span class="who"><span class="av" style="background:${COLORS[hash(c.name) % COLORS.length]}">${esc(c.name[0])}</span>${esc(c.name)}</span></td>${C.pets ? `<td>${esc(c.pet)}</td>` : ""}<td>${esc(c.fav)}</td><td class="num">${c.visits}</td><td class="num">${money(c.spent)}</td><td>${c.last === 0 ? "Today" : c.last + " days ago"}</td><td>${c.tags.map((t) => `<span class="tag ${t}">${label[t]}</span>`).join("")}</td></tr>`).join("")}
+        </tbody></table></div></div>`;
+    },
+    services() {
+      const rows = (court ? C.categories[0].services : allServices()).map((s) => `<tr><td><span class="who"><span class="em" style="width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:${s.sw}">${s.em}</span><input class="wide" value="${esc(s.name)}" data-o-svc="${s.id}" data-o-f="name" aria-label="Name"></span></td><td>${esc(C.categories.find((c) => c.services.some((y) => y.id === s.id)).name)}</td><td>${esc(s.dur || "per hour")}</td><td class="num">$ <input type="number" min="0" value="${s.price}" data-o-svc="${s.id}" data-o-f="price" aria-label="Price for ${esc(s.name)}"></td><td class="num">${100 + (hash(s.id) % 160)}</td><td><button class="sw2wrap" data-o-hide="${s.id}" aria-pressed="${!s.hidden}" aria-label="Show ${esc(s.name)} in the app"><span class="mini"></span></button></td></tr>`).join("");
+      const ad = C.addons.length ? `<div class="o-card" style="margin-top:14px"><h2>Add-ons <small>offered during booking and by the AI assistant</small></h2><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Add-on</th><th>Description</th><th class="num">Price</th><th class="num">Taken</th></tr></thead><tbody>${C.addons.map((a) => `<tr><td><span class="who"><span>${a.em}</span>${esc(a.name)}</span></td><td>${esc(a.desc)}</td><td class="num">$ <input type="number" min="0" value="${a.price}" data-o-add="${a.id}" aria-label="Price"></td><td class="num">${20 + (hash(a.id) % 50)}%</td></tr>`).join("")}</tbody></table></div></div>` : "";
+      return `<div class="o-card"><h2>${court ? "Court prices" : "Services"} <small>changes show in the client app straight away</small> ${court ? "" : `<button data-o-act="add-svc">+ Add service</button>`}</h2>
+        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Name</th><th>Category</th><th>Length</th><th class="num">Price</th><th class="num">Booked (90 d)</th><th>In app</th></tr></thead><tbody>${rows}</tbody></table></div></div>${ad}
+        ${court ? `<div class="o-card" style="margin-top:14px"><h2>Pricing rules</h2>${setRow("Member discount", "Members save on every court", `<select data-o-rule="member"><option>${Math.round(C.memberDiscount * 100)}%</option><option>10%</option><option>25%</option></select>`)}${setRow("Peak hours", "Weekdays 5–10 PM and weekends", `<select><option>+ $6 / hour</option><option>No surcharge</option><option>+ $10 / hour</option></select>`)}${setRow("Book ahead", "How far ahead players can book", `<select><option>7 days (members 14)</option><option>14 days</option><option>30 days</option></select>`)}</div>` : ""}`;
+    },
+    team() {
+      const items = dayAll(iso(today));
+      const open = C.hours.close - C.hours.open;
+      return `<div class="o-card"><h2>${court ? "Courts today" : "Your team today"} <small>toggle to block ${court ? "a court" : "someone"} in the client app</small></h2><div class="tbl-wrap"><table class="tbl"><thead><tr><th>${court ? "Court" : "Name"}</th><th>${court ? "Sports" : "Role"}</th><th>Hours</th><th>Booked today</th><th>Busy</th><th>${court ? "Open" : "Working"}</th></tr></thead><tbody>
+        ${cols().map((c) => { const mine = items.filter((x) => x.col === c.id); const used = Math.min(100, Math.round((mine.reduce((s, x) => s + x.dur, 0) / open) * 100)); return `<tr><td><span class="who">${court ? "🏟️" : `<span class="av" style="background:${c.grad}">${esc(c.name[0])}</span>`}${esc(c.name)}</span></td><td>${esc(c.sub)}</td><td>${fmtTime(C.hours.open)} – ${fmtTime(C.hours.close)}</td><td>${mine.length}</td><td><div class="util"><i style="width:${c.off ? 0 : used}%"></i></div><small>${c.off ? "—" : used + "%"}</small></td><td><button class="sw2wrap" data-o-off="${c.id}" aria-pressed="${!c.off}" aria-label="${esc(c.name)} available"><span class="mini"></span></button></td></tr>`; }).join("")}
+        </tbody></table></div></div>
+        ${court ? "" : `<div class="o-grid" style="margin-top:14px">${C.staff.map((p) => `<div class="o-card s4"><h2><span class="who"><span class="av" style="background:${p.grad}">${esc(p.name[0])}</span>${esc(p.name)}</span><small>${esc(p.role)}</small></h2><div class="tags">${(p.tags || []).map((t) => `<span>${esc(t)}</span>`).join("")}</div><p class="note">Rebook rate ${60 + (hash(p.id) % 30)}% · Avg rating ${(4.7 + (hash(p.id) % 4) / 10).toFixed(1)} ★ · ${12 + (hash(p.id) % 20)} clients this month</p></div>`).join("")}</div>`}`;
+    },
+    packs() {
+      const top = C.owner.top;
+      const ideas = [
+        { title: C.owner.idea.title, body: C.owner.idea.body, stat: C.owner.idea.stat, price: C.pack.price, was: C.pack.was },
+        { title: `${top[0][0]} 5-pack`, body: `${top[0][0]} is your best seller (${top[0][1]} in 90 days). A 5-pack at 10% off brings those clients back sooner.`, stat: "Most likely to sell", price: Math.round(svcPrice(top[0][0]) * 5 * 0.9), was: svcPrice(top[0][0]) * 5 },
+        { title: "Bring a friend", body: "Second person books the same time and both save 15%. Good for quiet weekday slots.", stat: "Fills quiet hours", price: Math.round(svcPrice(top[1][0]) * 2 * 0.85), was: svcPrice(top[1][0]) * 2 },
+      ];
+      O._ideas = ideas;
+      return `<div class="o-grid"><div class="o-card s5"><h2>Live in your client app</h2><div class="pk live"><span class="tag new" style="justify-self:start">● Live</span><h3>${esc(C.pack.title)}</h3><p>${esc(C.pack.body)}</p><div class="row2"><b>${money(C.pack.price)} <s style="color:var(--mut);font-weight:600">${money(C.pack.was)}</s></b><button class="btn ghost" data-o-act="see-client">See it in the app</button></div></div>
+        <p class="note">Sold this month: ${8 + (hash(C.id) % 14)} · Revenue locked in: ${money(C.pack.price * (8 + (hash(C.id) % 14)))}</p></div>
+        <div class="o-card s7"><h2>Suggested from what clients buy most <small>last 90 days</small></h2><div style="display:grid;gap:10px">${ideas.map((x, i) => `<div class="pk"><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p><div class="row2"><span class="tag">${esc(x.stat)}</span><b>${money(x.price)} <s style="color:var(--mut);font-weight:600">${money(x.was)}</s></b><button class="btn" data-o-pub="${i}">Publish</button></div></div>`).join("")}</div></div>
+        <div class="o-card s12"><h2>Offers you can send</h2><div class="attn">
+          <div><span>🎂</span><p><b>Birthday treat</b>: 15% off in their birthday month. 23 clients have a birthday in the next 30 days.</p><button data-o-act="sent">Turn on</button></div>
+          <div><span>💌</span><p><b>We miss you</b>: text clients who haven't been back in 60 days with a one-tap rebook link.</p><button data-o-act="sent">Send to 41</button></div>
+          <div><span>🎁</span><p><b>Gift cards</b>: sell digital gift cards from your app. Popular for the holidays.</p><button data-o-act="sent">Turn on</button></div></div></div></div>`;
+    },
+    ai() {
+      const togg = [["book", "Book, move and cancel visits", "Uses your live calendar, so it never double-books"], ["upsell", "Suggest add-ons and packages", "Based on what clients buy most"], ["faq", "Answer common questions", "Prices, hours, parking and policies below"], ["handoff", "Hand off to staff when unsure", "Texts you the question and the client's number"], ["after", "After-hours only", "Let the team handle chats during opening hours"]];
+      const convs = [
+        [["Client", C.ai.quick[0]], ["AI", "Offered 3 free times, client picked one, suggested an add-on"]], "✓ Booked · 11:42 PM",
+        [["Client", C.ai.quick[2]], ["AI", C.faq[0].a]], "✓ Answered · 8:15 AM",
+        [["Client", "Can I move my booking to next week?"], ["AI", "Released the old slot and booked the new one"]], "✓ Moved · Yesterday",
+      ];
+      const live = S.chat && S.chat.msgs.length > 1 ? `<div class="conv"><span class="tag new" style="justify-self:start">● Just now</span>${S.chat.msgs.slice(-6).map((m) => `<div class="l"><b>${m.ai ? "AI" : "Client"}</b><span>${m.h}</span></div>`).join("")}</div>` : "";
+      return `<div class="o-grid">${C.owner.ai.map(([k, v], i) => `<div class="o-card kpi s4${i === 0 ? " hot" : ""}"><i>${["✦", "💬", "⏱️"][i]}</i><small>${esc(k)} this week</small><b>${esc(v.split(" ")[0])}</b><span class="d">${esc(v.split(" ").slice(1).join(" "))}</span></div>`).join("")}
+        <div class="o-card s5"><h2>What it's allowed to do <span class="premium" style="margin:0">Premium</span></h2>${togg.map(([k, a, b]) => `<button class="setrow" data-o-ai="${k}" aria-pressed="${O.ai[k]}"><span><b>${esc(a)}</b><small>${esc(b)}</small></span><span class="mini"></span></button>`).join("")}</div>
+        <div class="o-card s7"><h2>Recent conversations</h2><div style="display:grid;gap:10px">${live}${[0, 2, 4].map((i) => `<div class="conv">${convs[i].map(([w, t]) => `<div class="l"><b>${w}</b><span>${esc(t)}</span></div>`).join("")}<div class="res">${convs[i + 1]}</div></div>`).join("")}</div></div>
+        <div class="o-card s12"><h2>Answers it gives <small>edit and the assistant uses the new answer straight away</small></h2>${C.faq.map((f, i) => `<div class="faqed"><label for="faq${i}">When clients ask about ${esc(f.keys[0])}</label><textarea id="faq${i}" data-o-faq="${i}">${esc(f.a)}</textarea></div>`).join("")}</div></div>`;
+    },
+    reports() {
+      const top = C.owner.top, max = Math.max(...top.map((t) => t[1]));
+      const srcMix = [["Online", 46], ["AI assistant", 24], ["Phone", 18], ["Walk-in", 12]];
+      const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      const hrs = []; for (let m = C.hours.open; m < C.hours.close; m += 120) hrs.push(m);
+      let heat = `<span class="lb"></span>` + hrs.map((m) => `<span class="lb" style="justify-content:center">${fmtTime(m).replace(":00", "")}</span>`).join("");
+      days.forEach((d, i) => { heat += `<span class="lb">${d}</span>` + hrs.map((m) => { const v = (hash(d + m + C.id) % 70) + (i >= 4 ? 25 : 0) + (m >= 1020 ? 15 : 0); return `<span style="opacity:${Math.min(1, 0.12 + v / 110).toFixed(2)}" title="${d} ${fmtTime(m)}: ${Math.round(v)}% full"></span>`; }).join(""); });
+      const s = series(), tot = s.reduce((a, x) => a + x.v, 0);
+      return `<div class="o-grid">
+        <div class="o-card kpi s3"><i>💰</i><small>Revenue, 14 days</small><b>${money(tot)}</b><span class="d">▲ 9%</span></div>
+        <div class="o-card kpi s3"><i>🔁</i><small>Clients who rebook</small><b>68%</b><span class="d">▲ 11 pts since reminders</span></div>
+        <div class="o-card kpi s3"><i>🚫</i><small>No-shows</small><b>2.1%</b><span class="d">▼ from 9% before text reminders</span></div>
+        <div class="o-card kpi s3"><i>🧾</i><small>Average ticket</small><b>${money(Math.round(tot / Math.max(1, s.length * C.owner.agenda.length)))}</b><span class="d">▲ add-ons up 18%</span></div>
+        <div class="o-card s6"><h2>What clients buy most <small>last 90 days</small></h2><div class="bars">${top.map(([n, v]) => `<div class="bar"><b style="font-weight:600">${esc(n)}</b><span><i style="width:${Math.round((v / max) * 100)}%"></i></span><em>${v}</em></div>`).join("")}</div></div>
+        <div class="o-card s6"><h2>Where bookings come from</h2><div class="bars">${srcMix.map(([n, v]) => `<div class="bar"><b style="font-weight:600">${n}</b><span><i style="width:${v * 2}%"></i></span><em>${v}%</em></div>`).join("")}</div><p class="note">70% of bookings now happen without a phone call. 31% arrive after closing time.</p></div>
+        <div class="o-card s12"><h2>Busiest times <small>how full you are, by day and time</small></h2><div style="overflow-x:auto"><div class="heat" style="grid-template-columns:40px repeat(${hrs.length}, minmax(44px,1fr));min-width:420px">${heat}</div></div></div>
+        <div class="o-card s12"><h2>Revenue <small>last 14 days</small></h2>${chart(s)}</div></div>`;
+    },
+    settings() {
+      const sw = [C.confetti[0], C.confetti[1], C.confetti[2], C.confetti[3], "#12a150", "#0b1440"];
+      return `<div class="o-grid"><div class="o-card s6"><h2>Business profile</h2>
+        ${setRow("Business name", "Shown on your app and texts", `<input type="text" value="${esc(C.name)}" data-o-name aria-label="Business name">`)}
+        ${C.info.map(([k, v]) => setRow(k, "", `<input type="text" value="${esc(v)}" aria-label="${esc(k)}">`)).join("")}
+        ${setRow("Your web address", "Your own domain, not ours", `<input type="text" value="book.${C.name.toLowerCase().replace(/[^a-z]/g, "")}.ca" aria-label="Web address">`)}</div>
+        <div class="o-card s6"><h2>Brand colour <small>try one, the whole app updates</small></h2><div class="swatches">${sw.map((c) => `<button data-o-brand="${c}" aria-pressed="${(O.brand || "") === c}" style="background:${c}" aria-label="Use colour ${c}"></button>`).join("")}<button data-o-brand="" aria-pressed="${!O.brand}" style="background:var(--hero)" aria-label="Original colours"></button></div>
+        <h2 style="margin-top:20px">Booking rules</h2>
+        ${setRow("Book ahead at least", "", `<select aria-label="Lead time"><option>1 hour</option><option>3 hours</option><option>Same day not allowed</option></select>`)}
+        ${setRow("Free changes up to", "Later changes need a call", `<select aria-label="Cancellation window"><option>${esc(C.cancelWindow)}</option><option>48 hours</option><option>2 hours</option></select>`)}
+        ${setRow("Deposit for new clients", "Cuts no-shows", `<select aria-label="Deposit"><option>None</option><option>$20</option><option>25%</option></select>`)}</div>
+        <div class="o-card s6"><h2>Texts & reminders</h2>${[["remind", "Reminder the day before", "With a one-tap confirm or move link"], ["remind2", "Second reminder 2 hours before", ""], ["review", "Ask for a Google review after the visit", "Only sent to happy clients"]].map(([k, a, b]) => `<button class="setrow" data-o-rule="${k}" aria-pressed="${O.rules[k]}"><span><b>${a}</b><small>${b}</small></span><span class="mini"></span></button>`).join("")}</div>
+        <div class="o-card s6"><h2>Your data</h2><p class="note" style="margin-top:0">Every client record, booking and payment belongs to ${esc(C.name)}. Export it any time, or take it with you.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn ghost" data-o-act="export">Export clients (CSV)</button><button class="btn ghost" data-o-act="export">Export bookings (CSV)</button></div>
+        <p class="note">Backed up every night · Last backup 2:00 AM</p></div></div>`;
+    },
+  };
+  const setRow = (a, b, ctl) => `<div class="setrow"><span><b>${esc(a)}</b>${b ? `<small>${esc(b)}</small>` : ""}</span>${ctl}</div>`;
+  const svcPrice = (name) => { const s = allServices().find((x) => name.toLowerCase().includes(x.name.toLowerCase().split(" ")[0])) || allServices()[0]; return s.price; };
+
+  // ---------- details ----------
+  function findAppt(id, d) { return dayAll(d).find((x) => x.id === id) || [...genDay(d), ...liveFor(d)].find((x) => x.id === id); }
+  function apptDrawer(id, d) {
+    const x = findAppt(id, d); if (!x) return;
+    const c = clients().find((k) => k.name === x.client) || null;
+    openDrawer(`<span class="tag" style="margin-bottom:8px">${esc(x.src)}</span><h2>${esc(x.title)}</h2><p class="note" style="font-size:14px">${fmtDay(fromIso(d), { weekday: "long", month: "long", day: "numeric" })} · ${fmtTime(x.t)}–${fmtTime(x.t + x.dur)} · ${esc(colName(x.col))}</p>
+      <div class="summary blk"><div class="ln"><span>Client</span><b>${esc(x.client)}</b></div>${x.pet ? `<div class="ln"><span>Pet</span><b>${esc(x.pet)}</b></div>` : ""}<div class="ln"><span>Price</span><b>${money(x.price)}</b></div><div class="ln"><span>Status</span><b>${{ booked: "Booked", done: "Checked in", noshow: "No-show" }[x.status] || x.status}</b></div></div>
+      ${c ? `<div class="blk note" style="font-size:13.5px">📝 ${esc(c.note)}<br>${c.visits} visit${c.visits === 1 ? "" : "s"} · ${money(c.spent)} spent · usually ${esc(c.fav)}</div>` : ""}
+      <div class="acts"><button class="btn" data-o-st="done" data-o-id="${x.id}" data-o-d="${d}">Check in</button><button class="btn ghost" data-o-st="noshow" data-o-id="${x.id}" data-o-d="${d}">No-show</button><button class="btn ghost" data-o-act="toast" data-o-msg="Reminder text sent to ${esc(x.client)}">Text client</button><button class="btn ghost" data-o-st="cancelled" data-o-id="${x.id}" data-o-d="${d}">Cancel</button></div>`);
+  }
+  function clientDrawer(id) {
+    const c = clients().find((k) => k.id === id); if (!c) return;
+    const hist = c.live ? S.bookings.slice().sort((a, b) => b.date.localeCompare(a.date)).map((b) => [fmtDay(fromIso(b.date)), b.title + (b.pet ? " · " + b.pet : ""), money(b.price), b.cancelled ? "Cancelled" : fromIso(b.date) >= today ? "Upcoming" : "Done"]) : [0, 1, 2, 3].map((i) => [fmtDay(addDays(today, -c.last - i * 35)), i % 2 ? c.fav : allServices()[(hash(c.name) + i) % allServices().length].name, money(allServices()[0].price), "Done"]);
+    openDrawer(`<div class="who" style="margin-bottom:10px"><span class="av" style="width:54px;height:54px;font-size:22px;background:${COLORS[hash(c.name) % COLORS.length]}">${esc(c.name[0])}</span><span><h2>${esc(c.name)}</h2><small style="color:var(--mut)">${esc(c.phone)}</small></span></div>
+      <div class="stats blk"><div class="stat"><b>${c.visits}</b><small>visits</small></div><div class="stat"><b>${money(c.spent)}</b><small>spent</small></div><div class="stat"><b>${c.last === 0 ? "Today" : c.last + "d"}</b><small>last visit</small></div></div>
+      ${c.pet ? `<div class="summary blk"><div class="ln"><span>${C.pets ? "Pets" : ""}</span><b>${esc(c.pet)}</b></div></div>` : ""}
+      <div class="summary blk"><div class="ln"><span>Usually books</span><b>${esc(c.fav)}</b></div><div class="ln"><span>Prefers</span><b>${esc(c.staff)}</b></div></div>
+      <div class="field blk"><label for="cnote">Private notes</label><textarea id="cnote">${esc(c.note)}</textarea></div>
+      <h3 style="font-family:var(--fd);margin:16px 0 8px">History</h3><div class="info">${hist.map(([a, b, p, s]) => `<div><b style="min-width:92px">${a}</b><span style="flex:1">${esc(b)}</span><span>${p}</span><span class="tag">${s}</span></div>`).join("")}</div>
+      <div class="acts"><button class="btn" data-o-act="toast" data-o-msg="Rebook link texted to ${esc(c.name)}">Text rebook link</button><button class="btn ghost" data-o-act="toast" data-o-msg="Offer sent: 15% off ${esc(c.fav)}">Send an offer</button></div>`);
+  }
+  function newModal(col, t) {
+    const cs = cols().filter((c) => !c.off);
+    col = col || cs[0].id;
+    if (t == null) { t = Math.max(C.hours.open, Math.ceil((nowMin() + 15) / 15) * 15); if (t >= C.hours.close - 60) t = C.hours.open; }
+    const times = []; for (let m = C.hours.open; m < C.hours.close; m += 15) times.push(m);
+    openModal(`<h2>New booking</h2><div class="field"><label for="nb-c">Client</label><input id="nb-c" list="nb-list" placeholder="Name or phone" value=""><datalist id="nb-list">${clients().map((c) => `<option value="${esc(c.name)}">`).join("")}</datalist></div>
+      <div class="field"><label for="nb-s">${court ? "Sport" : "Service"}</label><select id="nb-s">${allServices().filter((s) => !s.hidden).map((s) => `<option value="${s.id}">${esc(s.name)} · ${money(s.price)}</option>`).join("")}</select></div>
+      <div class="field"><label for="nb-w">${court ? "Court" : "With"}</label><select id="nb-w">${cs.map((c) => `<option value="${c.id}" ${c.id === col ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></div>
+      <div class="field"><label for="nb-t">Time on ${fmtDay(fromIso(O.date))}</label><select id="nb-t">${times.map((m) => `<option value="${m}" ${m === t ? "selected" : ""}>${fmtTime(m)}</option>`).join("")}</select></div>
+      <div class="field"><label>Booked by</label><div class="chips" id="nb-src"><button class="chip" aria-pressed="true" data-o-src="Walk-in">🚶 Walk-in</button><button class="chip" aria-pressed="false" data-o-src="Phone">📞 Phone</button></div></div>
+      <div class="acts" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn ghost" data-o-act="close">Cancel</button><button class="btn" data-o-act="save-new">Save booking</button></div>`);
+  }
+
+  // ---------- events ----------
+  root.addEventListener("click", (e) => {
+    if (e.target.classList.contains("o-scrim")) { closeAll(); return; }
+    const el = e.target.closest("button, tr[data-o-client]");
+    if (!el) { const col = e.target.closest("[data-o-col]"); if (col && !col.classList.contains("off")) { const r = col.getBoundingClientRect(); const m = C.hours.open + Math.floor((e.clientY - r.top) / 1.05 / 15) * 15; newModal(col.dataset.oCol, m); } return; }
+    const d = el.dataset;
+    if (d.oSec) { O.sec = d.oSec; closeAll(); render(); window.scrollTo(0, 0); return; }
+    if (d.oClient) return clientDrawer(d.oClient);
+    if (d.oAppt) return apptDrawer(d.oAppt, d.oDate);
+    if (d.oDay != null) { O.date = d.oDay === "0" ? iso(today) : iso(addDays(fromIso(O.date), +d.oDay)); render(); return; }
+    if (d.oSt) {
+      const x = [...genDay(d.oD), ...liveFor(d.oD)].find((k) => k.id === d.oId);
+      if (x && x.live) { if (d.oSt === "cancelled") x.live.cancelled = true; else x.live.status = d.oSt; Y.save(); Y.render(); }
+      else { const g = genDay(d.oD).find((k) => k.id === d.oId); if (g) g.status = d.oSt; }
+      closeAll(); render(); toast({ done: "Checked in ✓", noshow: "Marked as no-show. A follow-up text is queued.", cancelled: "Cancelled. The slot is open in the client app again." }[d.oSt]); return;
+    }
+    if (d.oSrc) { el.parentElement.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === el)); return; }
+    if (d.oHide) { const s = svcById(d.oHide); const real = Y.C.categories.flatMap((c) => c.services).find((x) => x.id === s.id); real.hidden = !real.hidden; Y.render(); render(); toast(real.hidden ? `${real.name} hidden from the client app` : `${real.name} is bookable again`); return; }
+    if (d.oOff) { const list = court ? C.courts : C.staff; const p = list.find((x) => x.id === d.oOff); p.off = !p.off; if (court) p.closed = p.off; Y.render(); render(); toast(p.off ? `${p.name} blocked in the client app today` : `${p.name} is bookable again`); return; }
+    if (d.oPub) { const x = O._ideas[+d.oPub]; Object.assign(C.pack, { label: "New package", title: x.title, body: x.body, price: x.price, was: x.was, toast: `${x.title} added to your account.` }); Y.render(); render(); toast("Published. It's now on the client app's home screen."); return; }
+    if (d.oAi) { O.ai[d.oAi] = !O.ai[d.oAi]; el.setAttribute("aria-pressed", O.ai[d.oAi]); return; }
+    if (d.oRule) { O.rules[d.oRule] = !O.rules[d.oRule]; el.setAttribute("aria-pressed", O.rules[d.oRule]); return; }
+    if (d.oBrand != null) { O.brand = d.oBrand || null; const r = document.documentElement.style; if (O.brand) { r.setProperty("--p", O.brand); r.setProperty("--hero", `linear-gradient(135deg, ${O.brand}, color-mix(in srgb, ${O.brand} 60%, #ffffff))`); r.setProperty("--p-text", `color-mix(in srgb, ${O.brand} 80%, #000)`); } else { r.removeProperty("--p"); r.removeProperty("--hero"); r.removeProperty("--p-text"); } render(); return; }
+    switch (d.oAct) {
+      case "close": closeAll(); break;
+      case "new": newModal(); break;
+      case "bell": O.sec = "cal"; O.date = iso(today); render(); break;
+      case "save-new": {
+        const name = document.getElementById("nb-c").value.trim() || "Walk-in client";
+        const s = svcById(document.getElementById("nb-s").value), col = document.getElementById("nb-w").value, t = +document.getElementById("nb-t").value;
+        const src = (root.querySelector('#nb-src [aria-pressed="true"]') || {}).dataset?.oSrc || "Walk-in";
+        genDay(O.date).push({ id: "n" + Date.now(), col, t, dur: durOf(s), title: s.name, client: name, src, c: COLORS[hash(name) % COLORS.length], price: s.price, status: "booked" });
+        closeAll(); render(); toast(`Saved. ${name} gets a confirmation text.`); break;
+      }
+      case "toast": toast(d.oMsg); break;
+      case "rebook": toast("Rebook texts sent. Clients get a one-tap link to their usual time."); break;
+      case "fill": toast("Waitlist notified. First to tap gets the slot."); break;
+      case "review": toast("Review requests sent to 5 happy clients."); break;
+      case "sent": toast("Done. You'll see results in Reports."); el.textContent = "✓ On"; break;
+      case "export": toast("Your CSV is ready. In the real app it downloads straight away."); break;
+      case "publish-idea": O.sec = "packs"; render(); break;
+      case "add-svc": { const cat = C.categories[0]; const n = cat.services.length + 1; cat.services.push({ id: "new" + Date.now(), name: "New service " + n, em: "⭐", sw: "var(--tint)", price: 50, dur: "45 min", desc: "Describe it for clients." }); Y.render(); render(); toast("Added. Rename it and set a price."); break; }
+      case "see-client": setMode("client"); break;
+    }
+  });
+  root.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); if (e.key === "Enter" && e.target.matches("tr[data-o-client]")) clientDrawer(e.target.dataset.oClient); });
+  root.addEventListener("input", (e) => {
+    const t = e.target, d = t.dataset;
+    if (t.id === "o-q") { O.q = t.value; const pos = t.selectionStart; render(); const n = document.getElementById("o-q"); n.focus(); n.setSelectionRange(pos, pos); return; }
+    if (d.oSvc) { const s = C.categories.flatMap((c) => c.services).find((x) => x.id === d.oSvc); if (d.oF === "price") s.price = Math.max(0, +t.value || 0); else s.name = t.value; Y.render(); return; }
+    if (d.oAdd) { const a = C.addons.find((x) => x.id === d.oAdd); a.price = Math.max(0, +t.value || 0); Y.render(); return; }
+    if (d.oFaq != null) { C.faq[+d.oFaq].a = t.value; return; }
+    if (d.oName != null) { C.name = t.value || " "; Y.render(); root.querySelector(".o-side .logo").lastChild.textContent = C.name; }
+  });
+
+  // ---------- mode switch ----------
+  const bar = document.getElementById("modebar"), wrap = document.querySelector(".wrap");
+  function setMode(m) {
+    const own = m === "owner";
+    document.body.classList.toggle("is-owner", own);
+    wrap.hidden = own; root.hidden = !own;
+    bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mode === m));
+    if (own) { CLIENTS = null; render(); } else Y.render();
+    window.scrollTo(0, 0);
+  }
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-mode]"); if (b) setMode(b.dataset.mode); });
+  if (location.hash === "#owner") setMode("owner");
+  window.YBO = { setMode };
+})();
+</script>
+</body>
+</html>
