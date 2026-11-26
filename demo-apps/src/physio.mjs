@@ -1,6 +1,6 @@
 export const file = "peak-physio";
 export const title = "Peak Physio & Rehab";
-export const fonts = "family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800";
+export const fonts = "family=Sora:wght@500;600;700&family=Figtree:wght@400;500;600;700;800";
 export const theme = `
 :root {
   --p: #00a99d; --p-ink: #ffffff; --p-text: #00796f;
@@ -22,6 +22,7 @@ export const pitch = {
   points: ["New and returning patients book the right visit type", "Intake questions answered before arrival", "Direct billing to insurance switched on at booking", "Premium AI assistant answers coverage and booking questions"],
 };
 export const cfg = {
+  skin: "physio",
   id: "peak", name: "Peak Physio", logoMark: "✚", city: "Burlington", rating: "4.9", reviews: "538 reviews",
   heroArt: "🦵", heroTitle: "Move better, starting this week.", heroSub: "Physio, massage therapy and chiro under one roof. Same-week appointments and direct billing.",
   bookLabel: "Book an appointment", popularTitle: "Most booked", popularHint: "direct billing", teamTitle: "Our clinicians",

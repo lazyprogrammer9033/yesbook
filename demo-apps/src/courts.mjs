@@ -1,6 +1,6 @@
 export const file = "smash-club-courts";
 export const title = "Smash Club Courts";
-export const fonts = "family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800";
+export const fonts = "family=Anton&family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800";
 export const theme = `
 :root {
   --p: #1d3bd1; --p-ink: #ffffff; --p-text: #1d3bd1;
@@ -27,6 +27,7 @@ export const pitch = {
   points: ["Live court grid: tap a free hour, play longer with one more tap", "Pay online, members save automatically", "Premium AI assistant finds a court in a sentence", "Front desk view with today's courts and package ideas"],
 };
 export const cfg = {
+  skin: "courts",
   id: "smash", name: "Smash Club", logoMark: "🏓", city: "Mississauga", rating: "4.8", reviews: "286 reviews",
   mode: "court", payOnline: true, memberDiscount: 0.2, maxPlayers: 8,
   heroArt: "🏸", heroTitle: "Your court is waiting.", heroSub: "8 indoor courts for pickleball and badminton. See what's free and book in 30 seconds.",

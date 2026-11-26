@@ -1,6 +1,6 @@
 export const file = "lotus-stone-spa";
 export const title = "Lotus & Stone Spa";
-export const fonts = "family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700;800";
+export const fonts = "family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600;700";
 export const theme = `
 :root {
   --p: #7c3aed; --p-ink: #ffffff; --p-text: #6d28d9;
@@ -22,6 +22,7 @@ export const pitch = {
   points: ["Clients book a therapist and time in under a minute", "Smart add-ons from what clients buy most", "Premium AI assistant books, moves and answers questions", "Front desk view with today's schedule and package ideas"],
 };
 export const cfg = {
+  skin: "spa",
   id: "lotus", name: "Lotus & Stone", logoMark: "✿", city: "Oakville", rating: "4.9", reviews: "412 reviews",
   heroArt: "🪷", heroTitle: "Breathe out. We'll handle the rest.", heroSub: "Massage, facials and wellness rituals. Book your therapist in under a minute.",
   bookLabel: "Book a treatment", popularTitle: "Most loved", popularHint: "this month", teamTitle: "Your therapists",

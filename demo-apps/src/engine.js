@@ -82,16 +82,34 @@
   function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600); }
 
   // ---------- home ----------
+  function heroHtml() {
+    const book = `<button class="btn alt" data-act="book">${esc(C.bookLabel)}</button>`;
+    const ask = `<button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button>`;
+    const sk = C.skin;
+    if (sk === "spa") return `<section class="hero hero-arch"><div class="arch" aria-hidden="true"><span class="sun"></span><span class="leaf l1"></span><span class="leaf l2"></span><span class="stone s1"></span><span class="stone s2"></span><span class="stone s3"></span></div>
+        <div class="htxt"><div class="rating">${esc(C.city)} · ★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></div></section>`;
+    if (sk === "courts") {
+      const now = new Date(); const m0 = Math.max(C.hours.open, Math.ceil((now.getHours() * 60 + now.getMinutes()) / 60) * 60);
+      const sb = C.categories[0].services.map((sp) => { const cs = C.courts.filter((c) => !c.closed && c.sports.includes(sp.id)); const free = cs.filter((c) => !(hash(iso(today) + c.id + sp.id + m0) % 100 < (C.busy || 45))).length; return `<div class="sbx"><small>${esc(sp.name)}</small><b>${free}<i>/${cs.length}</i></b><small>courts free ${m0 < C.hours.close ? "at " + fmtTime(m0) : "tomorrow"}</small></div>`; }).join("");
+      return `<section class="hero hero-score"><div class="stripes" aria-hidden="true"></div><div class="rating">● LIVE · ${esc(C.city)} · ★ ${C.rating}</div><h2>${esc(C.heroTitle)}</h2><div class="board">${sb}</div><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "physio") {
+      const nx = firstFree("any", null, 1)[0];
+      return `<section class="hero hero-split"><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
+        <div class="trust"><span>✓ Direct billing</span><span>✓ No referral needed</span><span>✓ Same-week visits</span></div>
+        ${nx ? `<button class="nextfree" data-act="book"><span><small>Next available</small><b>${nx.date === iso(today) ? "Today" : fmtDay(fromIso(nx.date), { weekday: "long" })} · ${fmtTime(nx.m)}</b></span><span class="go">Book ›</span></button>` : ""}
+        <div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "pets") return `<section class="hero hero-sticker"><div class="stk" aria-hidden="true">${C.heroArt}</div><div class="burst" aria-hidden="true">Photo<br>when<br>ready!</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    return `<section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+  }
+
   function viewHome() {
     const pop = allServices().filter((s) => s.popular && !s.hidden);
     const up = upcoming()[0];
     return `<div class="screen">
       <div class="topbar"><div class="logo"><i aria-hidden="true">${C.logoMark}</i>${esc(C.name)}</div><button class="iconbtn" data-tab="ai" aria-label="Open the ${esc(C.ai.name)}">💬</button></div>
-      <section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div>
-        <div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div>
-        <h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
-        <div class="btns"><button class="btn alt" data-act="book">${esc(C.bookLabel)}</button><button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button></div>
-      </section>
+      ${heroHtml()}
       ${up ? `<div class="sec"><h3>Your next visit</h3>${bookingCard(up)}</div>` : ""}
       <div class="sec"><div class="pack"><div class="lbl">${esc(C.pack.label)}</div><h4>${esc(C.pack.title)}</h4><p>${esc(C.pack.body)}</p>
         <div class="row2"><div class="price">${money(C.pack.price)}<s>${money(C.pack.was)}</s></div><button class="btn" data-act="pack">${esc(C.pack.cta)}</button></div></div></div>
@@ -516,6 +534,7 @@
 
   if (location.hash === "#assistant") S.tab = "ai";
   if (location.hash === "#book") { S.tab = "book"; startFlow(); }
+  if (C.skin) document.body.classList.add("skin-" + C.skin);
   window.YB = { C, S, render, toast, esc, money, iso, fromIso, addDays, today, fmtDay, fmtTime, hash, allServices, svcById, staffById, save, upcoming, slotsFor, petById };
   render();
 })();

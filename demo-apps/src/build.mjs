@@ -20,7 +20,8 @@ for (const name of ["spa", "courts", "physio", "pets"]) {
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?${m.fonts}&display=swap">
 <style>${m.theme}
 ${css}
-${ocss}</style>
+${ocss}
+${fs.existsSync(path.join(here, "skin-" + name + ".css")) ? fs.readFileSync(path.join(here, "skin-" + name + ".css"), "utf8") : ""}</style>
 <div class="modebar" id="modebar"><div class="seg" role="group" aria-label="Switch app"><button data-mode="client" aria-pressed="true">📱 Client app</button><button data-mode="owner" aria-pressed="false">🧑‍💼 Owner app</button></div></div>
 <div class="wrap">
   <aside class="pitch"><span class="tag">${esc(m.pitch.tag)}</span><h1>${esc(m.pitch.h)}</h1><p>${esc(m.pitch.p)}</p>

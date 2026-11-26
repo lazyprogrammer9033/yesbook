@@ -8,7 +8,7 @@
 <title>Lotus &amp; Stone Spa</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap">
 <style>
 :root {
   --p: #7c3aed; --p-ink: #ffffff; --p-text: #6d28d9;
@@ -423,6 +423,98 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
 .o-modal select { height: 50px; border-radius: 14px; border: 2px solid var(--line); background: var(--sf); padding: 0 12px; font-size: 15px; font-weight: 600; color: var(--ink); }
 .o-toast { position: fixed; z-index: 60; left: 50%; bottom: 24px; transform: translate(-50%, 220%); opacity: 0; padding: 12px 18px; border-radius: 14px; background: var(--ink); color: #fff; font-weight: 700; font-size: 14px; transition: transform .35s cubic-bezier(.3,1.4,.5,1), opacity .2s; max-width: calc(100% - 32px); }
 .o-toast.on { transform: translate(-50%, 0); opacity: 1; }
+
+/* Skin: calm luxe spa. Ivory paper, plum ink, champagne gold, serif italics, hairlines, arched imagery. */
+:root {
+  --p: #4a1d3f; --p-ink: #fbf1e4; --p-text: #6b2a5c;
+  --a: #d9b26f; --a-ink: #2b1426;
+  --bg: #faf5ee; --sf: #fffdf9; --ink: #2b1426; --mut: #80707a; --line: #e9ddd0; --tint: #f3e9de;
+  --hero: linear-gradient(165deg, #f8dccf 0%, #eeb9c9 48%, #b98bb0 100%);
+  --cta: #4a1d3f; --cta-ink: #fbf1e4;
+  --pack-bg: #eef0e4; --pack-line: #d3d9c0; --pack-lbl: #5f6f45;
+  --backdrop: radial-gradient(ellipse at 20% 10%, rgb(217 178 111 / .45) 0, transparent 40%), radial-gradient(ellipse at 85% 90%, rgb(238 185 201 / .5) 0, transparent 45%), linear-gradient(160deg, #3a1532, #5b2550 55%, #2b1426);
+  --fd: "Cormorant Garamond", Georgia, serif; --fb: "Jost", system-ui, sans-serif;
+  --cell-bg: #f3e9de; --cell-line: #e0cdb8; --cell-ink: #6b2a5c;
+}
+body { font-weight: 400; letter-spacing: .005em; }
+.pitch h1 { font-size: 58px; font-weight: 600; font-style: italic; letter-spacing: -.01em; }
+.pitch .tag { background: transparent; color: #e9c98f; border: 1px solid rgb(233 201 143 / .6); }
+.pitch li b { background: transparent; color: #e9c98f; border: 1px solid rgb(233 201 143 / .6); border-radius: 50%; }
+.app { border-radius: 40px; }
+.logo { font-size: 24px; font-weight: 600; font-style: italic; letter-spacing: .01em; }
+.logo i { background: transparent; color: var(--a); border: 1px solid var(--a); border-radius: 50%; box-shadow: none; font-style: normal; font-size: 16px; }
+.iconbtn { border-radius: 50%; background: transparent; }
+/* arch hero: picture-like arch, text on paper */
+.hero-arch { background: transparent; color: var(--ink); padding: 4px 0 0; margin: 6px 18px 0; overflow: visible; border-radius: 0; }
+.hero-arch::before, .hero-arch::after { display: none; }
+.arch { position: relative; height: 230px; border-radius: 999px 999px 18px 18px; background: var(--hero); overflow: hidden; border: 1px solid var(--line); }
+.arch .sun { position: absolute; width: 120px; height: 120px; border-radius: 50%; left: 50%; top: 34px; margin-left: -60px; background: radial-gradient(circle, #fff5e3, #f6d7a8 60%, transparent 70%); }
+.arch .leaf { position: absolute; width: 90px; height: 170px; border-radius: 100% 0; background: linear-gradient(160deg, #a9bf8f, #6f8a5a); opacity: .85; }
+.arch .l1 { left: -16px; bottom: -40px; transform: rotate(-18deg); }
+.arch .l2 { right: -20px; bottom: -30px; transform: scaleX(-1) rotate(-12deg); opacity: .7; }
+.arch .stone { position: absolute; left: 50%; border-radius: 50%; background: linear-gradient(180deg, #6e5a63, #3b2a33); }
+.arch .s1 { width: 110px; height: 34px; bottom: 12px; margin-left: -55px; }
+.arch .s2 { width: 84px; height: 28px; bottom: 42px; margin-left: -42px; background: linear-gradient(180deg, #8c7680, #54404b); }
+.arch .s3 { width: 58px; height: 22px; bottom: 66px; margin-left: -29px; background: linear-gradient(180deg, #a8939c, #6e5a63); }
+.hero-arch .htxt { text-align: center; padding: 18px 6px 4px; }
+.hero-arch .rating { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--mut); font-weight: 500; }
+.hero-arch h2 { margin: 8px auto 0; max-width: none; font-size: 36px; font-weight: 600; font-style: italic; line-height: 1; }
+.hero-arch p { margin: 10px auto 16px; max-width: 300px; color: var(--mut); }
+.hero-arch .btns { justify-content: center; }
+.btn { border-radius: 999px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; font-size: 12.5px; }
+.hero .btns .btn { font-size: 12px; height: 46px; padding: 0 20px; }
+.hero-arch .btns .btn.glass { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.sec h3 { font-size: 26px; font-weight: 600; font-style: italic; }
+.sec h3 small { font-family: var(--fb); font-style: normal; letter-spacing: .14em; text-transform: uppercase; font-size: 10.5px; color: var(--a-ink); }
+.pack { border-radius: 4px; border-width: 1px; }
+.pack h4 { font-size: 24px; font-style: italic; font-weight: 600; }
+.pack .lbl { letter-spacing: .22em; font-weight: 600; }
+.tile { border-radius: 999px 999px 14px 14px; text-align: center; width: 140px; padding: 10px 10px 14px; }
+.tile .sw { border-radius: 999px 999px 10px 10px; height: 96px; }
+.tile b { font-family: var(--fd); font-size: 18px; font-style: italic; font-weight: 600; }
+.av { border: 1px solid var(--a); }
+.bk, .opt, .info div, .review, .stat, .toggle, .summary, .field input, .field textarea, .date, .slot, .cell, .chip { border-radius: 6px; }
+.opt, .toggle { border-width: 1px; }
+.opt[aria-pressed="true"] { border-color: var(--a); background: #fbf3e6; box-shadow: inset 3px 0 0 var(--a); }
+.opt .em { border-radius: 50%; }
+.date, .slot { border-width: 1px; }
+.slot[aria-pressed="true"], .date[aria-pressed="true"] { background: var(--p); border-color: var(--p); color: var(--p-ink); }
+.date[aria-pressed="true"] b { color: var(--a); }
+.flowhead h2, .done h2 { font-size: 30px; font-weight: 600; font-style: italic; }
+.prog { height: 2px; } .prog i { background: var(--a); }
+.tabs { border-radius: 999px; background: transparent; border: 1px solid var(--line); }
+.tabs button { border-radius: 999px; letter-spacing: .1em; text-transform: uppercase; font-size: 11.5px; font-weight: 500; }
+.tick { background: transparent; border: 1px solid var(--a); box-shadow: none; }
+.tick svg path { stroke: var(--a); }
+.review { font-family: var(--fd); font-size: 19px; font-style: italic; line-height: 1.35; text-align: center; border: 0; background: transparent; }
+.review small { font-family: var(--fb); font-style: normal; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+.review .st { color: var(--a); }
+/* floating plum tab bar */
+.tabbar { margin: 0 14px 12px; border-radius: 999px; background: var(--p); border: 0; padding: 6px; box-shadow: 0 16px 30px -14px rgb(43 20 38 / .7); }
+.tabbar button { color: rgb(251 241 228 / .65); border-radius: 999px; font-weight: 500; letter-spacing: .06em; }
+.tabbar button[aria-current="page"] { background: rgb(255 255 255 / .1); color: var(--a); }
+.tabbar .ai span { background: var(--a); color: var(--p); }
+.m.me { background: var(--p); }
+.m.ai { border-radius: 4px 18px 18px 18px; }
+.premium { background: transparent; border: 1px solid var(--a); color: var(--a-ink); }
+/* owner */
+body.is-owner { background: #f6efe6; }
+.modebar button[aria-pressed="true"] { background: var(--p); color: var(--a); }
+.o-side { background: linear-gradient(180deg, #4a1d3f, #2b1426); border-radius: 6px; box-shadow: none; }
+.o-side .logo i { color: var(--a); border-color: var(--a); background: transparent; }
+.o-nav button { border-radius: 4px; font-weight: 400; letter-spacing: .04em; color: rgb(251 241 228 / .8); }
+.o-nav button[aria-current="page"] { background: transparent; color: var(--a); box-shadow: inset 2px 0 0 var(--a); }
+.o-top h1 { font-size: 40px; font-style: italic; font-weight: 600; }
+.o-card { border-radius: 6px; box-shadow: none; }
+.o-card h2 { font-size: 22px; font-style: italic; font-weight: 600; }
+.kpi b { font-size: 36px; font-weight: 600; }
+.kpi.hot { background: var(--p); color: var(--p-ink); }
+.kpi.hot b { color: var(--a); }
+.appt { border-radius: 4px; border-left-width: 2px; }
+.chart .bar { fill: #b98bb0; } .chart .bar.wk { fill: var(--a); } .chart .bar.now { fill: var(--p); opacity: 1; }
+.pk { border-radius: 4px; border-width: 1px; }
+.pk h3 { font-size: 24px; font-style: italic; font-weight: 600; }
+.o-drawer h2, .o-modal h2 { font-size: 30px; font-style: italic; font-weight: 600; }
 </style>
 <div class="modebar" id="modebar"><div class="seg" role="group" aria-label="Switch app"><button data-mode="client" aria-pressed="true">📱 Client app</button><button data-mode="owner" aria-pressed="false">🧑‍💼 Owner app</button></div></div>
 <div class="wrap">
@@ -431,7 +523,7 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
   <main class="app" id="app" aria-label="Lotus &amp; Stone Spa booking app"></main>
 </div>
 <div class="owner" id="owner" hidden></div>
-<script>window.CFG = {"id":"lotus","name":"Lotus & Stone","logoMark":"✿","city":"Oakville","rating":"4.9","reviews":"412 reviews","heroArt":"🪷","heroTitle":"Breathe out. We'll handle the rest.","heroSub":"Massage, facials and wellness rituals. Book your therapist in under a minute.","bookLabel":"Book a treatment","popularTitle":"Most loved","popularHint":"this month","teamTitle":"Your therapists","categories":[{"id":"massage","name":"Massage","services":[{"id":"deep","name":"Deep tissue massage","em":"💆","sw":"#efe4ff","price":110,"dur":"60 min","desc":"Slow, firm pressure for tight shoulders and back.","popular":true,"upsell":"stones","keys":["deep tissue","deep","massage"]},{"id":"swedish","name":"Swedish relaxation","em":"🌿","sw":"#dcfbef","price":95,"dur":"60 min","desc":"Light, flowing strokes to switch off.","keys":["swedish","relax"],"upsell":"aroma"},{"id":"prenatal","name":"Prenatal massage","em":"🤰","sw":"#ffe8f2","price":105,"dur":"60 min","desc":"Side-lying comfort for mums-to-be.","keys":["prenatal","pregnan"]},{"id":"couples","name":"Couples retreat","em":"💞","sw":"#fff0d6","price":240,"dur":"90 min","desc":"Side-by-side massage, tea and robes for two.","popular":true,"keys":["couple","partner","two of us"],"upsell":"aroma"}]},{"id":"facial","name":"Facials","services":[{"id":"hydra","name":"Hydrating facial","em":"✨","sw":"#e2f4ff","price":95,"dur":"50 min","desc":"Deep clean, mask and glow for dry skin.","popular":true,"keys":["facial","hydrat","glow"],"upsell":"led"},{"id":"peel","name":"Brightening peel","em":"🍋","sw":"#fff6c9","price":120,"dur":"45 min","desc":"Gentle enzyme peel for dull skin.","keys":["peel","bright"]}]},{"id":"body","name":"Body","services":[{"id":"scrub","name":"Salt glow scrub","em":"🧂","sw":"#ffe6dc","price":85,"dur":"45 min","desc":"Sea salt polish and warm oil wrap.","keys":["scrub","salt"]},{"id":"reflex","name":"Reflexology","em":"🦶","sw":"#e6fff4","price":70,"dur":"40 min","desc":"Pressure-point foot therapy.","keys":["reflex","foot","feet"]}]}],"addons":[{"id":"stones","em":"🪨","name":"Hot stones","price":25,"desc":"Warm basalt stones melt deep knots.","why":"Most deep tissue clients add hot stones."},{"id":"aroma","em":"🌸","name":"Aromatherapy oils","price":15,"desc":"Lavender, eucalyptus or citrus blend.","why":"Aromatherapy is our most added extra."},{"id":"led","em":"💡","name":"LED light therapy","price":30,"desc":"15 min of red light for calm, bright skin.","why":"LED doubles the glow from a hydrating facial."},{"id":"scalp","em":"💆‍♀️","name":"Scalp massage","price":20,"desc":"10 minutes, warm oil.","why":""}],"addonTitle":"Make it extra special?","staffTitle":"Choose your therapist","staff":[{"id":"mei","name":"Mei","role":"RMT","grad":"linear-gradient(135deg,#c084fc,#7c3aed)","tags":["Deep tissue","Sports"],"does":["massage","body"]},{"id":"ana","name":"Ana","role":"Esthetician","grad":"linear-gradient(135deg,#fda4af,#ff4fa3)","tags":["Facials","Peels"],"does":["facial","body"]},{"id":"jordan","name":"Jordan","role":"RMT","grad":"linear-gradient(135deg,#5eead4,#0d9488)","tags":["Prenatal","Relaxation"],"does":["massage","body"]}],"steps":["service","addons","staff","time","details"],"hours":{"open":600,"close":1200,"step":75},"busy":45,"closedDays":[1],"demoClient":{"name":"Sara Malik","phone":"(416) 555-0142","email":"sara@example.com"},"policy":"Pay at the spa. Free changes up to 24 hours before. RMT receipts are emailed for insurance.","cancelWindow":"24 hours","doneTitle":"You're booked, {name}!","donePerks":["📅 Added to your calendar","💬 Reminder text the day before","🧾 RMT receipt emailed after your visit"],"confetti":["#7c3aed","#ff4fa3","#ffc928","#2dd4bf","#ff6b5a"],"pack":{"label":"Picked for you","title":"Monthly reset: 4 deep tissue massages","body":"Built from what you book most. Use them any time in 6 months.","price":399,"was":440,"cta":"Get package","toast":"Package added. Your next 4 massages are covered."},"loyalty":{"label":"Lotus rewards","title":"2 visits to a free scalp massage","body":"Every visit earns points. You're 80% of the way there.","pct":80},"review":{"text":"I booked at 11 PM through the chat and had a 2:30 slot with Mei the next day. Easiest spa booking ever.","who":"Priya K. · Google review"},"info":[["Hours","Tue–Sun · 10 AM – 8 PM"],["Address","214 Lakeshore Rd E, Oakville"],["Parking","Free lot behind the building"],["Call","(905) 555-0186"]],"seedBookings":[{"service":"hydra","title":"Hydrating facial","who":"Ana","inDays":6,"start":840,"price":95,"key":"ana","src":"Online"},{"service":"deep","title":"Deep tissue massage","who":"Mei","inDays":-21,"start":960,"price":135,"key":"mei","addons":["stones"],"src":"Online"}],"owner":{"notes":["Prefers firm pressure, avoid lower back","Likes the lavender room, quiet session","Allergic to nut oils, use grapeseed","Books every 4 weeks, birthday in Dec"],"place":"Lotus & Stone Spa","unit":"treatments","revenue":1185,"agenda":[{"t":600,"title":"Swedish relaxation","who":"Hannah L. · Jordan","src":"Online","c":"#2dd4bf"},{"t":675,"title":"Deep tissue + hot stones","who":"Omar R. · Mei","src":"AI assistant","c":"#7c3aed"},{"t":750,"title":"Hydrating facial + LED","who":"Grace T. · Ana","src":"Online","c":"#ff4fa3"},{"t":900,"title":"Couples retreat","who":"Daniel & Mia · Mei, Jordan","src":"Phone","c":"#ffc928"},{"t":1050,"title":"Prenatal massage","who":"Leila S. · Jordan","src":"AI assistant","c":"#2dd4bf"},{"t":1125,"title":"Brightening peel","who":"Nina P. · Ana","src":"Walk-in","c":"#ff6b5a"}],"sim":[{"t":1125,"title":"Deep tissue massage","who":"Kevin M. · Mei","src":"Online","c":"#7c3aed","price":110},{"t":825,"title":"Reflexology","who":"Rosa D. · Jordan","src":"AI assistant","c":"#2dd4bf","price":70}],"top":[["Deep tissue",148],["Hydrating facial",96],["Couples retreat",61],["Swedish",57],["Hot stones add-on",88]],"idea":{"title":"Deep tissue 4-pack","body":"61% of deep tissue clients come back within 5 weeks. A 4-pack locks in those visits.","stat":"Est. +$3,900 / quarter"},"ai":[["Booked","23 treatments this week, 9 after hours"],["Answered","41 questions about parking, prices and gift cards"],["Saved","About 6 hours of phone time"]]},"ai":{"name":"Lotus assistant","short":"Assistant","placeholder":"Ask about treatments or times…","greeting":"Hi! I'm the Lotus assistant 🌸 I can book a treatment, move or cancel a visit, or answer any question. What would you like?","hello":"Hello! Looking to book, or have a question?","quick":["Deep tissue Saturday afternoon","Couples massage this weekend","Do you take insurance?","Gift cards?"],"askService":"Happy to! Which treatment would you like?","yes":"Yes!","done":"All set! Here's your booking:","remind":"Reminder text the day before","bye":"My pleasure. See you soon 🌿"},"faq":[{"keys":["insurance","receipt","rmt","benefit"],"a":"Yes. All massages with Mei and Jordan are by RMTs, and we email an insurance receipt after your visit. Most plans cover it."},{"keys":["gift","voucher"],"a":"We sell digital gift cards from $50. They arrive by email instantly and never expire 🎁","q":["Book a treatment","Thanks!"]},{"keys":["park"],"a":"Free parking in the lot behind the building. Enter from Navy Street."},{"keys":["hour","open","close"],"a":"We're open Tuesday to Sunday, 10 AM to 8 PM. Closed Mondays."},{"keys":["where","address","located","location"],"a":"214 Lakeshore Rd E, Oakville. Two minutes from the lake."}]};</script>
+<script>window.CFG = {"skin":"spa","id":"lotus","name":"Lotus & Stone","logoMark":"✿","city":"Oakville","rating":"4.9","reviews":"412 reviews","heroArt":"🪷","heroTitle":"Breathe out. We'll handle the rest.","heroSub":"Massage, facials and wellness rituals. Book your therapist in under a minute.","bookLabel":"Book a treatment","popularTitle":"Most loved","popularHint":"this month","teamTitle":"Your therapists","categories":[{"id":"massage","name":"Massage","services":[{"id":"deep","name":"Deep tissue massage","em":"💆","sw":"#efe4ff","price":110,"dur":"60 min","desc":"Slow, firm pressure for tight shoulders and back.","popular":true,"upsell":"stones","keys":["deep tissue","deep","massage"]},{"id":"swedish","name":"Swedish relaxation","em":"🌿","sw":"#dcfbef","price":95,"dur":"60 min","desc":"Light, flowing strokes to switch off.","keys":["swedish","relax"],"upsell":"aroma"},{"id":"prenatal","name":"Prenatal massage","em":"🤰","sw":"#ffe8f2","price":105,"dur":"60 min","desc":"Side-lying comfort for mums-to-be.","keys":["prenatal","pregnan"]},{"id":"couples","name":"Couples retreat","em":"💞","sw":"#fff0d6","price":240,"dur":"90 min","desc":"Side-by-side massage, tea and robes for two.","popular":true,"keys":["couple","partner","two of us"],"upsell":"aroma"}]},{"id":"facial","name":"Facials","services":[{"id":"hydra","name":"Hydrating facial","em":"✨","sw":"#e2f4ff","price":95,"dur":"50 min","desc":"Deep clean, mask and glow for dry skin.","popular":true,"keys":["facial","hydrat","glow"],"upsell":"led"},{"id":"peel","name":"Brightening peel","em":"🍋","sw":"#fff6c9","price":120,"dur":"45 min","desc":"Gentle enzyme peel for dull skin.","keys":["peel","bright"]}]},{"id":"body","name":"Body","services":[{"id":"scrub","name":"Salt glow scrub","em":"🧂","sw":"#ffe6dc","price":85,"dur":"45 min","desc":"Sea salt polish and warm oil wrap.","keys":["scrub","salt"]},{"id":"reflex","name":"Reflexology","em":"🦶","sw":"#e6fff4","price":70,"dur":"40 min","desc":"Pressure-point foot therapy.","keys":["reflex","foot","feet"]}]}],"addons":[{"id":"stones","em":"🪨","name":"Hot stones","price":25,"desc":"Warm basalt stones melt deep knots.","why":"Most deep tissue clients add hot stones."},{"id":"aroma","em":"🌸","name":"Aromatherapy oils","price":15,"desc":"Lavender, eucalyptus or citrus blend.","why":"Aromatherapy is our most added extra."},{"id":"led","em":"💡","name":"LED light therapy","price":30,"desc":"15 min of red light for calm, bright skin.","why":"LED doubles the glow from a hydrating facial."},{"id":"scalp","em":"💆‍♀️","name":"Scalp massage","price":20,"desc":"10 minutes, warm oil.","why":""}],"addonTitle":"Make it extra special?","staffTitle":"Choose your therapist","staff":[{"id":"mei","name":"Mei","role":"RMT","grad":"linear-gradient(135deg,#c084fc,#7c3aed)","tags":["Deep tissue","Sports"],"does":["massage","body"]},{"id":"ana","name":"Ana","role":"Esthetician","grad":"linear-gradient(135deg,#fda4af,#ff4fa3)","tags":["Facials","Peels"],"does":["facial","body"]},{"id":"jordan","name":"Jordan","role":"RMT","grad":"linear-gradient(135deg,#5eead4,#0d9488)","tags":["Prenatal","Relaxation"],"does":["massage","body"]}],"steps":["service","addons","staff","time","details"],"hours":{"open":600,"close":1200,"step":75},"busy":45,"closedDays":[1],"demoClient":{"name":"Sara Malik","phone":"(416) 555-0142","email":"sara@example.com"},"policy":"Pay at the spa. Free changes up to 24 hours before. RMT receipts are emailed for insurance.","cancelWindow":"24 hours","doneTitle":"You're booked, {name}!","donePerks":["📅 Added to your calendar","💬 Reminder text the day before","🧾 RMT receipt emailed after your visit"],"confetti":["#7c3aed","#ff4fa3","#ffc928","#2dd4bf","#ff6b5a"],"pack":{"label":"Picked for you","title":"Monthly reset: 4 deep tissue massages","body":"Built from what you book most. Use them any time in 6 months.","price":399,"was":440,"cta":"Get package","toast":"Package added. Your next 4 massages are covered."},"loyalty":{"label":"Lotus rewards","title":"2 visits to a free scalp massage","body":"Every visit earns points. You're 80% of the way there.","pct":80},"review":{"text":"I booked at 11 PM through the chat and had a 2:30 slot with Mei the next day. Easiest spa booking ever.","who":"Priya K. · Google review"},"info":[["Hours","Tue–Sun · 10 AM – 8 PM"],["Address","214 Lakeshore Rd E, Oakville"],["Parking","Free lot behind the building"],["Call","(905) 555-0186"]],"seedBookings":[{"service":"hydra","title":"Hydrating facial","who":"Ana","inDays":6,"start":840,"price":95,"key":"ana","src":"Online"},{"service":"deep","title":"Deep tissue massage","who":"Mei","inDays":-21,"start":960,"price":135,"key":"mei","addons":["stones"],"src":"Online"}],"owner":{"notes":["Prefers firm pressure, avoid lower back","Likes the lavender room, quiet session","Allergic to nut oils, use grapeseed","Books every 4 weeks, birthday in Dec"],"place":"Lotus & Stone Spa","unit":"treatments","revenue":1185,"agenda":[{"t":600,"title":"Swedish relaxation","who":"Hannah L. · Jordan","src":"Online","c":"#2dd4bf"},{"t":675,"title":"Deep tissue + hot stones","who":"Omar R. · Mei","src":"AI assistant","c":"#7c3aed"},{"t":750,"title":"Hydrating facial + LED","who":"Grace T. · Ana","src":"Online","c":"#ff4fa3"},{"t":900,"title":"Couples retreat","who":"Daniel & Mia · Mei, Jordan","src":"Phone","c":"#ffc928"},{"t":1050,"title":"Prenatal massage","who":"Leila S. · Jordan","src":"AI assistant","c":"#2dd4bf"},{"t":1125,"title":"Brightening peel","who":"Nina P. · Ana","src":"Walk-in","c":"#ff6b5a"}],"sim":[{"t":1125,"title":"Deep tissue massage","who":"Kevin M. · Mei","src":"Online","c":"#7c3aed","price":110},{"t":825,"title":"Reflexology","who":"Rosa D. · Jordan","src":"AI assistant","c":"#2dd4bf","price":70}],"top":[["Deep tissue",148],["Hydrating facial",96],["Couples retreat",61],["Swedish",57],["Hot stones add-on",88]],"idea":{"title":"Deep tissue 4-pack","body":"61% of deep tissue clients come back within 5 weeks. A 4-pack locks in those visits.","stat":"Est. +$3,900 / quarter"},"ai":[["Booked","23 treatments this week, 9 after hours"],["Answered","41 questions about parking, prices and gift cards"],["Saved","About 6 hours of phone time"]]},"ai":{"name":"Lotus assistant","short":"Assistant","placeholder":"Ask about treatments or times…","greeting":"Hi! I'm the Lotus assistant 🌸 I can book a treatment, move or cancel a visit, or answer any question. What would you like?","hello":"Hello! Looking to book, or have a question?","quick":["Deep tissue Saturday afternoon","Couples massage this weekend","Do you take insurance?","Gift cards?"],"askService":"Happy to! Which treatment would you like?","yes":"Yes!","done":"All set! Here's your booking:","remind":"Reminder text the day before","bye":"My pleasure. See you soon 🌿"},"faq":[{"keys":["insurance","receipt","rmt","benefit"],"a":"Yes. All massages with Mei and Jordan are by RMTs, and we email an insurance receipt after your visit. Most plans cover it."},{"keys":["gift","voucher"],"a":"We sell digital gift cards from $50. They arrive by email instantly and never expire 🎁","q":["Book a treatment","Thanks!"]},{"keys":["park"],"a":"Free parking in the lot behind the building. Enter from Navy Street."},{"keys":["hour","open","close"],"a":"We're open Tuesday to Sunday, 10 AM to 8 PM. Closed Mondays."},{"keys":["where","address","located","location"],"a":"214 Lakeshore Rd E, Oakville. Two minutes from the lake."}]};</script>
 <script>/* Shared booking-app engine. Each sample business supplies window.CFG; this file renders the whole app. */
 (function () {
   const C = window.CFG;
@@ -516,16 +608,34 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
   function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600); }
 
   // ---------- home ----------
+  function heroHtml() {
+    const book = `<button class="btn alt" data-act="book">${esc(C.bookLabel)}</button>`;
+    const ask = `<button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button>`;
+    const sk = C.skin;
+    if (sk === "spa") return `<section class="hero hero-arch"><div class="arch" aria-hidden="true"><span class="sun"></span><span class="leaf l1"></span><span class="leaf l2"></span><span class="stone s1"></span><span class="stone s2"></span><span class="stone s3"></span></div>
+        <div class="htxt"><div class="rating">${esc(C.city)} · ★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></div></section>`;
+    if (sk === "courts") {
+      const now = new Date(); const m0 = Math.max(C.hours.open, Math.ceil((now.getHours() * 60 + now.getMinutes()) / 60) * 60);
+      const sb = C.categories[0].services.map((sp) => { const cs = C.courts.filter((c) => !c.closed && c.sports.includes(sp.id)); const free = cs.filter((c) => !(hash(iso(today) + c.id + sp.id + m0) % 100 < (C.busy || 45))).length; return `<div class="sbx"><small>${esc(sp.name)}</small><b>${free}<i>/${cs.length}</i></b><small>courts free ${m0 < C.hours.close ? "at " + fmtTime(m0) : "tomorrow"}</small></div>`; }).join("");
+      return `<section class="hero hero-score"><div class="stripes" aria-hidden="true"></div><div class="rating">● LIVE · ${esc(C.city)} · ★ ${C.rating}</div><h2>${esc(C.heroTitle)}</h2><div class="board">${sb}</div><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "physio") {
+      const nx = firstFree("any", null, 1)[0];
+      return `<section class="hero hero-split"><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
+        <div class="trust"><span>✓ Direct billing</span><span>✓ No referral needed</span><span>✓ Same-week visits</span></div>
+        ${nx ? `<button class="nextfree" data-act="book"><span><small>Next available</small><b>${nx.date === iso(today) ? "Today" : fmtDay(fromIso(nx.date), { weekday: "long" })} · ${fmtTime(nx.m)}</b></span><span class="go">Book ›</span></button>` : ""}
+        <div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "pets") return `<section class="hero hero-sticker"><div class="stk" aria-hidden="true">${C.heroArt}</div><div class="burst" aria-hidden="true">Photo<br>when<br>ready!</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    return `<section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+  }
+
   function viewHome() {
     const pop = allServices().filter((s) => s.popular && !s.hidden);
     const up = upcoming()[0];
     return `<div class="screen">
       <div class="topbar"><div class="logo"><i aria-hidden="true">${C.logoMark}</i>${esc(C.name)}</div><button class="iconbtn" data-tab="ai" aria-label="Open the ${esc(C.ai.name)}">💬</button></div>
-      <section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div>
-        <div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div>
-        <h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
-        <div class="btns"><button class="btn alt" data-act="book">${esc(C.bookLabel)}</button><button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button></div>
-      </section>
+      ${heroHtml()}
       ${up ? `<div class="sec"><h3>Your next visit</h3>${bookingCard(up)}</div>` : ""}
       <div class="sec"><div class="pack"><div class="lbl">${esc(C.pack.label)}</div><h4>${esc(C.pack.title)}</h4><p>${esc(C.pack.body)}</p>
         <div class="row2"><div class="price">${money(C.pack.price)}<s>${money(C.pack.was)}</s></div><button class="btn" data-act="pack">${esc(C.pack.cta)}</button></div></div></div>
@@ -950,6 +1060,7 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
 
   if (location.hash === "#assistant") S.tab = "ai";
   if (location.hash === "#book") { S.tab = "book"; startFlow(); }
+  if (C.skin) document.body.classList.add("skin-" + C.skin);
   window.YB = { C, S, render, toast, esc, money, iso, fromIso, addDays, today, fmtDay, fmtTime, hash, allServices, svcById, staffById, save, upcoming, slotsFor, petById };
   render();
 })();

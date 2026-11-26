@@ -8,7 +8,7 @@
 <title>Peak Physio &amp; Rehab</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 :root {
   --p: #00a99d; --p-ink: #ffffff; --p-text: #00796f;
@@ -423,6 +423,99 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
 .o-modal select { height: 50px; border-radius: 14px; border: 2px solid var(--line); background: var(--sf); padding: 0 12px; font-size: 15px; font-weight: 600; color: var(--ink); }
 .o-toast { position: fixed; z-index: 60; left: 50%; bottom: 24px; transform: translate(-50%, 220%); opacity: 0; padding: 12px 18px; border-radius: 14px; background: var(--ink); color: #fff; font-weight: 700; font-size: 14px; transition: transform .35s cubic-bezier(.3,1.4,.5,1), opacity .2s; max-width: calc(100% - 32px); }
 .o-toast.on { transform: translate(-50%, 0); opacity: 1; }
+
+/* Skin: clean clinical. White, teal and a coral signal, list rows with dividers, crisp 10px corners, top navigation for the owner. */
+:root {
+  --p: #0f8f87; --p-ink: #ffffff; --p-text: #0b736c;
+  --a: #ff7a59; --a-ink: #ffffff;
+  --bg: #ffffff; --sf: #ffffff; --ink: #0f2a2a; --mut: #5b7373; --line: #e3ecec; --tint: #eef7f6;
+  --hero: linear-gradient(135deg, #0f8f87, #14b8a6);
+  --cta: #0f8f87; --cta-ink: #ffffff;
+  --pack-bg: #fff4ef; --pack-line: #ffd6c8; --pack-lbl: #d4532f;
+  --backdrop: linear-gradient(90deg, #eef7f6 0 50%, #0f8f87 50% 100%);
+  --pitch-ink: #0f2a2a;
+  --fd: "Sora", system-ui, sans-serif; --fb: "Figtree", system-ui, sans-serif;
+  --cell-bg: #eef7f6; --cell-line: #b7e2dd; --cell-ink: #0b736c;
+}
+.pitch h1 { font-size: 42px; font-weight: 600; letter-spacing: -.03em; }
+.pitch .tag { background: #0f8f87; color: #fff; border-radius: 6px; }
+.pitch li b { background: #0f8f87; color: #fff; border-radius: 6px; }
+.app { border-radius: 22px; box-shadow: 0 30px 70px -30px rgb(15 42 42 / .45), 0 0 0 1px #d4e4e3; }
+.logo { font-weight: 600; font-size: 19px; letter-spacing: -.02em; }
+.logo i { border-radius: 8px; background: var(--p); box-shadow: none; font-size: 20px; font-weight: 700; }
+.iconbtn { border-radius: 10px; }
+.topbar { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.hero-split { background: #fff; color: var(--ink); border-radius: 0; margin: 0; padding: 22px 18px 18px; border-bottom: 1px solid var(--line); }
+.hero-split::before, .hero-split::after { display: none; }
+.hero-split .rating { color: var(--p-text); }
+.hero-split h2 { font-size: 30px; font-weight: 600; letter-spacing: -.03em; max-width: none; }
+.hero-split p { color: var(--mut); max-width: none; }
+.trust { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.trust span { padding: 5px 10px; border-radius: 6px; background: var(--tint); color: var(--p-text); font-size: 12.5px; font-weight: 700; }
+.nextfree { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); border-left: 4px solid var(--a); margin-bottom: 14px; text-align: left; }
+.nextfree small { display: block; font-size: 12px; color: var(--mut); font-weight: 600; }
+.nextfree b { font-size: 17px; }
+.nextfree .go { font-weight: 800; color: var(--a); }
+.hero-split .btns .btn { flex: 1; }
+.hero-split .btns .btn.alt { background: var(--p); color: #fff; }
+.hero-split .btns .btn.glass { background: #fff; color: var(--p-text); border: 1.5px solid var(--p); }
+.btn { border-radius: 10px; font-weight: 700; }
+.sec h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .08em; color: var(--mut); font-weight: 600; }
+.sec h3 small { text-transform: none; letter-spacing: 0; }
+/* popular as a clean list */
+.hscroll { display: grid; margin: 0; padding: 0; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.tile { width: auto; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 12px 14px; }
+.tile:last-child { border-bottom: 0; }
+.tile .sw { height: 44px; width: 44px; margin: 0; font-size: 22px; border-radius: 10px; }
+.tile span { margin: 0; color: var(--p-text); font-weight: 700; }
+.team { flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: 12px; }
+.person { display: flex; align-items: center; gap: 12px; width: auto; text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.person:last-child { border-bottom: 0; }
+.person .av { width: 40px; height: 40px; margin: 0; font-size: 16px; }
+.person small { margin-left: auto; }
+.pack { border-radius: 12px; border-width: 1px; }
+.bk, .opt, .info div, .review, .stat, .toggle, .summary, .field input, .field textarea, .date, .slot, .cell, .chip { border-radius: 10px; }
+.opt { border-width: 1px; }
+.opt[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--p); }
+.list { gap: 8px; }
+.slot[aria-pressed="true"] { background: var(--p); color: #fff; border-color: var(--p); }
+.date { border-width: 1px; }
+.tabs { background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.tabs button { border-radius: 8px; }
+.prog { height: 4px; }
+.flowhead { border-bottom: 1px solid var(--line); }
+.tick { background: var(--p); }
+/* tab bar: top indicator line, no pills */
+.tabbar { padding-top: 0; }
+.tabbar button { border-radius: 0; border-top: 3px solid transparent; padding-top: 9px; }
+.tabbar button[aria-current="page"] { background: transparent; border-top-color: var(--p); }
+.tabbar button span { filter: grayscale(1); }
+.tabbar .ai span { border-radius: 8px; }
+.m { border-radius: 10px; }
+.m.me { border-bottom-right-radius: 2px; } .m.ai { border-bottom-left-radius: 2px; background: var(--tint); border: 0; }
+.quick button { border-radius: 8px; border-width: 1px; }
+/* owner: top navigation, white cards, thin lines */
+body.is-owner { background: #f5f9f9; }
+.modebar .seg { border-radius: 10px; } .modebar button { border-radius: 8px; }
+.o-shell { grid-template-columns: minmax(0, 1fr); }
+.o-side { position: static; display: flex; align-items: center; gap: 16px; padding: 8px 12px; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: none; }
+.o-side .logo { color: var(--ink); padding: 0 8px 0 4px; flex: none; }
+.o-side .logo i { background: var(--p); }
+.o-nav { display: flex; overflow-x: auto; scrollbar-width: none; gap: 0; }
+.o-nav button { flex: none; color: var(--mut); border-radius: 0; border-bottom: 3px solid transparent; padding: 12px 12px 9px; }
+.o-nav button:hover { background: var(--tint); }
+.o-nav button[aria-current="page"] { background: transparent; color: var(--p-text); border-bottom-color: var(--p); }
+.o-side .own { display: none; }
+.o-top h1 { font-weight: 600; font-size: 26px; letter-spacing: -.03em; }
+.o-card { border-radius: 12px; }
+.o-card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--mut); font-weight: 600; }
+.kpi b { font-weight: 600; }
+.kpi.hot { background: #fff; color: var(--ink); border: 1px solid var(--line); border-top: 4px solid var(--p); }
+.kpi.hot small { color: var(--mut); } .kpi.hot .d { color: var(--ok-ink); } .kpi.hot i { background: var(--tint); }
+.appt { border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px var(--line); border-left-width: 4px; }
+.chart .bar { fill: #9fd8d2; opacity: 1; } .chart .bar.wk { fill: var(--p); } .chart .bar.now { fill: var(--a); }
+.attn div { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--a); border-radius: 10px; }
+.pk { border-radius: 12px; border-width: 1px; }
 </style>
 <div class="modebar" id="modebar"><div class="seg" role="group" aria-label="Switch app"><button data-mode="client" aria-pressed="true">📱 Client app</button><button data-mode="owner" aria-pressed="false">🧑‍💼 Owner app</button></div></div>
 <div class="wrap">
@@ -431,7 +524,7 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
   <main class="app" id="app" aria-label="Peak Physio &amp; Rehab booking app"></main>
 </div>
 <div class="owner" id="owner" hidden></div>
-<script>window.CFG = {"id":"peak","name":"Peak Physio","logoMark":"✚","city":"Burlington","rating":"4.9","reviews":"538 reviews","heroArt":"🦵","heroTitle":"Move better, starting this week.","heroSub":"Physio, massage therapy and chiro under one roof. Same-week appointments and direct billing.","bookLabel":"Book an appointment","popularTitle":"Most booked","popularHint":"direct billing","teamTitle":"Our clinicians","serviceTitle":"What kind of care?","categories":[{"id":"physio","name":"Physio","services":[{"id":"assess","name":"Initial assessment","em":"📋","sw":"#e3f8f5","price":120,"dur":"60 min","desc":"First visit: full assessment and a treatment plan.","popular":true,"keys":["assessment","first visit","new patient","initial","physio"]},{"id":"follow","name":"Follow-up treatment","em":"🔁","sw":"#e0f2fe","price":90,"dur":"30 min","desc":"Hands-on care and exercise progressions.","popular":true,"keys":["follow","treatment","return"]},{"id":"sport","name":"Sports injury rehab","em":"🏃","sw":"#fef3c7","price":105,"dur":"45 min","desc":"Back to running, court or ice with a plan.","keys":["sport","running","knee","ankle","acl"]}]},{"id":"rmt","name":"Massage","services":[{"id":"rmt60","name":"Massage therapy","em":"💆","sw":"#fce7f3","price":115,"dur":"60 min","desc":"RMT massage for tension, recovery or pain.","popular":true,"keys":["massage","rmt"]}]},{"id":"chiro","name":"Chiro","services":[{"id":"chiro1","name":"Chiropractic visit","em":"🦴","sw":"#ede9fe","price":80,"dur":"20 min","desc":"Adjustment and mobility work.","keys":["chiro","adjust"]}]}],"addons":[],"staffTitle":"Choose a clinician","staff":[{"id":"kate","name":"Kate Morrison","role":"Physiotherapist","grad":"linear-gradient(135deg,#2dd4bf,#00a99d)","tags":["Sports injuries","Knees"],"does":["physio"]},{"id":"raj","name":"Raj Bhatt","role":"Physiotherapist","grad":"linear-gradient(135deg,#7dd3fc,#0284c7)","tags":["Back & neck","Post-surgery"],"does":["physio"]},{"id":"lena","name":"Lena Ortiz","role":"RMT","grad":"linear-gradient(135deg,#f9a8d4,#ec4899)","tags":["Deep tissue","Recovery"],"does":["rmt"]},{"id":"sam","name":"Dr. Sam Chen","role":"Chiropractor","grad":"linear-gradient(135deg,#c4b5fd,#7c3aed)","tags":["Spine","Posture"],"does":["chiro"]}],"steps":["service","staff","time","intake","details"],"hours":{"open":450,"close":1170,"step":45},"busy":46,"closedDays":[0],"intake":{"placeholder":"e.g. Knee pain after running, worse on stairs","areas":["Neck","Shoulder","Back","Hip","Knee","Ankle / foot","Wrist / hand"],"billingTitle":"Direct bill my insurance","billingBody":"We send the claim for you, so you only pay what your plan doesn't cover.","privacy":"Your answers go only to your clinician and are kept in your private health record."},"demoClient":{"name":"Daniel Okafor","phone":"(905) 555-0127","email":"daniel@example.com"},"policy":"Pay at the clinic. With direct billing you only pay your share. Please give 24 hours notice to change.","cancelWindow":"24 hours","doneTitle":"See you soon, {name}!","donePerks":["📝 Intake form saved to your file","🧾 Direct billing set up with your insurer","💬 Reminder text the day before, with parking info"],"confetti":["#00a99d","#ffd23f","#38bdf8","#ff7aa8","#12a150"],"pack":{"label":"Your plan","title":"Knee rehab plan: 6 follow-ups","body":"Kate recommends 6 visits over 8 weeks. Book them all now and keep your Tuesday 5:15 slot.","price":495,"was":540,"cta":"Book plan","toast":"6 follow-ups booked with Kate, Tuesdays at 5:15 PM."},"loyalty":{"label":"Your progress","title":"Visit 4 of 6 in your knee plan","body":"Home exercises are in your app. You're two-thirds through.","pct":66},"review":{"text":"Booked a same-week assessment at 10 PM, filled the intake on my phone and the clinic billed my insurance directly. Zero paperwork.","who":"Michelle A. · Google review"},"info":[["Hours","Mon–Sat · 7:30 AM – 7:30 PM"],["Address","1100 Brant St, Burlington"],["Parking","Free, at the front door"],["Billing","Direct to most insurance plans"]],"seedBookings":[{"service":"follow","title":"Follow-up treatment","who":"Kate Morrison","inDays":2,"start":1035,"price":90,"key":"kate","src":"Online"},{"service":"assess","title":"Initial assessment","who":"Kate Morrison","inDays":-12,"start":990,"price":120,"key":"kate","src":"Online"}],"owner":{"notes":["Right knee, ACL repair March 2026","Desk job, neck and shoulder tension","Insurance: 80% coverage, $1,000/yr","Prefers early morning appointments"],"place":"Peak Physio & Rehab","unit":"appointments","revenue":1915,"agenda":[{"t":450,"title":"Follow-up treatment","who":"Tom B. · Raj","src":"Online","c":"#38bdf8"},{"t":540,"title":"Initial assessment","who":"Aisha N. · Kate","src":"AI assistant","c":"#00a99d"},{"t":630,"title":"Chiropractic visit","who":"Greg H. · Dr. Chen","src":"Phone","c":"#7c3aed"},{"t":765,"title":"Massage therapy","who":"Joanna P. · Lena","src":"Online","c":"#ec4899"},{"t":990,"title":"Sports injury rehab","who":"Liam C. · Kate","src":"Online","c":"#ffd23f"},{"t":1080,"title":"Follow-up treatment","who":"Mark S. · Raj","src":"AI assistant","c":"#38bdf8"}],"sim":[{"t":855,"title":"Initial assessment","who":"Fatima R. · Raj","src":"Online","c":"#00a99d","price":120},{"t":1125,"title":"Massage therapy","who":"Chris D. · Lena","src":"AI assistant","c":"#ec4899","price":115}],"top":[["Follow-up treatment",304],["Massage therapy",188],["Initial assessment",126],["Sports rehab",92],["Chiropractic",71]],"idea":{"title":"Post-assessment care plan","body":"38% of new patients never book a second visit. Offer a 6-visit plan right after the assessment.","stat":"Est. +$6,100 / quarter"},"ai":[["Booked","31 appointments this week, 12 after hours"],["Answered","54 coverage and parking questions"],["Reminded","9 patients who missed follow-ups"]]},"ai":{"name":"Peak care assistant","short":"Assistant","placeholder":"Ask about appointments or coverage…","greeting":"Hi, I'm the Peak care assistant 👋 I can book you in, explain coverage, or help you pick the right type of visit.","hello":"Hi! Want to book, or have a question about coverage?","quick":["New patient, sore knee","Massage Thursday evening","Do you direct bill?","Do I need a referral?"],"askService":"Sure! Is this a first visit, a follow-up, massage or chiro?","yes":"Good news!","done":"You're booked. I've also sent your intake form:","remind":"Reminder text the day before","bye":"You're welcome. Feel better soon!"},"faq":[{"keys":["direct bill","insurance","coverage","covered","benefit"],"a":"Yes, we direct bill most insurance plans for physio, massage and chiro. Switch it on when you book and you'll only pay your share."},{"keys":["referral","doctor note"],"a":"No referral needed for physio in Ontario. Some insurance plans ask for one for massage, so check your plan if you're unsure."},{"keys":["wear","bring","clothes"],"a":"Wear comfy clothes you can move in. Shorts help for knee or hip visits. Bring your insurance card."},{"keys":["park"],"a":"Free parking right at the front door."},{"keys":["hour","open","close"],"a":"Monday to Saturday, 7:30 AM to 7:30 PM."}]};</script>
+<script>window.CFG = {"skin":"physio","id":"peak","name":"Peak Physio","logoMark":"✚","city":"Burlington","rating":"4.9","reviews":"538 reviews","heroArt":"🦵","heroTitle":"Move better, starting this week.","heroSub":"Physio, massage therapy and chiro under one roof. Same-week appointments and direct billing.","bookLabel":"Book an appointment","popularTitle":"Most booked","popularHint":"direct billing","teamTitle":"Our clinicians","serviceTitle":"What kind of care?","categories":[{"id":"physio","name":"Physio","services":[{"id":"assess","name":"Initial assessment","em":"📋","sw":"#e3f8f5","price":120,"dur":"60 min","desc":"First visit: full assessment and a treatment plan.","popular":true,"keys":["assessment","first visit","new patient","initial","physio"]},{"id":"follow","name":"Follow-up treatment","em":"🔁","sw":"#e0f2fe","price":90,"dur":"30 min","desc":"Hands-on care and exercise progressions.","popular":true,"keys":["follow","treatment","return"]},{"id":"sport","name":"Sports injury rehab","em":"🏃","sw":"#fef3c7","price":105,"dur":"45 min","desc":"Back to running, court or ice with a plan.","keys":["sport","running","knee","ankle","acl"]}]},{"id":"rmt","name":"Massage","services":[{"id":"rmt60","name":"Massage therapy","em":"💆","sw":"#fce7f3","price":115,"dur":"60 min","desc":"RMT massage for tension, recovery or pain.","popular":true,"keys":["massage","rmt"]}]},{"id":"chiro","name":"Chiro","services":[{"id":"chiro1","name":"Chiropractic visit","em":"🦴","sw":"#ede9fe","price":80,"dur":"20 min","desc":"Adjustment and mobility work.","keys":["chiro","adjust"]}]}],"addons":[],"staffTitle":"Choose a clinician","staff":[{"id":"kate","name":"Kate Morrison","role":"Physiotherapist","grad":"linear-gradient(135deg,#2dd4bf,#00a99d)","tags":["Sports injuries","Knees"],"does":["physio"]},{"id":"raj","name":"Raj Bhatt","role":"Physiotherapist","grad":"linear-gradient(135deg,#7dd3fc,#0284c7)","tags":["Back & neck","Post-surgery"],"does":["physio"]},{"id":"lena","name":"Lena Ortiz","role":"RMT","grad":"linear-gradient(135deg,#f9a8d4,#ec4899)","tags":["Deep tissue","Recovery"],"does":["rmt"]},{"id":"sam","name":"Dr. Sam Chen","role":"Chiropractor","grad":"linear-gradient(135deg,#c4b5fd,#7c3aed)","tags":["Spine","Posture"],"does":["chiro"]}],"steps":["service","staff","time","intake","details"],"hours":{"open":450,"close":1170,"step":45},"busy":46,"closedDays":[0],"intake":{"placeholder":"e.g. Knee pain after running, worse on stairs","areas":["Neck","Shoulder","Back","Hip","Knee","Ankle / foot","Wrist / hand"],"billingTitle":"Direct bill my insurance","billingBody":"We send the claim for you, so you only pay what your plan doesn't cover.","privacy":"Your answers go only to your clinician and are kept in your private health record."},"demoClient":{"name":"Daniel Okafor","phone":"(905) 555-0127","email":"daniel@example.com"},"policy":"Pay at the clinic. With direct billing you only pay your share. Please give 24 hours notice to change.","cancelWindow":"24 hours","doneTitle":"See you soon, {name}!","donePerks":["📝 Intake form saved to your file","🧾 Direct billing set up with your insurer","💬 Reminder text the day before, with parking info"],"confetti":["#00a99d","#ffd23f","#38bdf8","#ff7aa8","#12a150"],"pack":{"label":"Your plan","title":"Knee rehab plan: 6 follow-ups","body":"Kate recommends 6 visits over 8 weeks. Book them all now and keep your Tuesday 5:15 slot.","price":495,"was":540,"cta":"Book plan","toast":"6 follow-ups booked with Kate, Tuesdays at 5:15 PM."},"loyalty":{"label":"Your progress","title":"Visit 4 of 6 in your knee plan","body":"Home exercises are in your app. You're two-thirds through.","pct":66},"review":{"text":"Booked a same-week assessment at 10 PM, filled the intake on my phone and the clinic billed my insurance directly. Zero paperwork.","who":"Michelle A. · Google review"},"info":[["Hours","Mon–Sat · 7:30 AM – 7:30 PM"],["Address","1100 Brant St, Burlington"],["Parking","Free, at the front door"],["Billing","Direct to most insurance plans"]],"seedBookings":[{"service":"follow","title":"Follow-up treatment","who":"Kate Morrison","inDays":2,"start":1035,"price":90,"key":"kate","src":"Online"},{"service":"assess","title":"Initial assessment","who":"Kate Morrison","inDays":-12,"start":990,"price":120,"key":"kate","src":"Online"}],"owner":{"notes":["Right knee, ACL repair March 2026","Desk job, neck and shoulder tension","Insurance: 80% coverage, $1,000/yr","Prefers early morning appointments"],"place":"Peak Physio & Rehab","unit":"appointments","revenue":1915,"agenda":[{"t":450,"title":"Follow-up treatment","who":"Tom B. · Raj","src":"Online","c":"#38bdf8"},{"t":540,"title":"Initial assessment","who":"Aisha N. · Kate","src":"AI assistant","c":"#00a99d"},{"t":630,"title":"Chiropractic visit","who":"Greg H. · Dr. Chen","src":"Phone","c":"#7c3aed"},{"t":765,"title":"Massage therapy","who":"Joanna P. · Lena","src":"Online","c":"#ec4899"},{"t":990,"title":"Sports injury rehab","who":"Liam C. · Kate","src":"Online","c":"#ffd23f"},{"t":1080,"title":"Follow-up treatment","who":"Mark S. · Raj","src":"AI assistant","c":"#38bdf8"}],"sim":[{"t":855,"title":"Initial assessment","who":"Fatima R. · Raj","src":"Online","c":"#00a99d","price":120},{"t":1125,"title":"Massage therapy","who":"Chris D. · Lena","src":"AI assistant","c":"#ec4899","price":115}],"top":[["Follow-up treatment",304],["Massage therapy",188],["Initial assessment",126],["Sports rehab",92],["Chiropractic",71]],"idea":{"title":"Post-assessment care plan","body":"38% of new patients never book a second visit. Offer a 6-visit plan right after the assessment.","stat":"Est. +$6,100 / quarter"},"ai":[["Booked","31 appointments this week, 12 after hours"],["Answered","54 coverage and parking questions"],["Reminded","9 patients who missed follow-ups"]]},"ai":{"name":"Peak care assistant","short":"Assistant","placeholder":"Ask about appointments or coverage…","greeting":"Hi, I'm the Peak care assistant 👋 I can book you in, explain coverage, or help you pick the right type of visit.","hello":"Hi! Want to book, or have a question about coverage?","quick":["New patient, sore knee","Massage Thursday evening","Do you direct bill?","Do I need a referral?"],"askService":"Sure! Is this a first visit, a follow-up, massage or chiro?","yes":"Good news!","done":"You're booked. I've also sent your intake form:","remind":"Reminder text the day before","bye":"You're welcome. Feel better soon!"},"faq":[{"keys":["direct bill","insurance","coverage","covered","benefit"],"a":"Yes, we direct bill most insurance plans for physio, massage and chiro. Switch it on when you book and you'll only pay your share."},{"keys":["referral","doctor note"],"a":"No referral needed for physio in Ontario. Some insurance plans ask for one for massage, so check your plan if you're unsure."},{"keys":["wear","bring","clothes"],"a":"Wear comfy clothes you can move in. Shorts help for knee or hip visits. Bring your insurance card."},{"keys":["park"],"a":"Free parking right at the front door."},{"keys":["hour","open","close"],"a":"Monday to Saturday, 7:30 AM to 7:30 PM."}]};</script>
 <script>/* Shared booking-app engine. Each sample business supplies window.CFG; this file renders the whole app. */
 (function () {
   const C = window.CFG;
@@ -516,16 +609,34 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
   function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600); }
 
   // ---------- home ----------
+  function heroHtml() {
+    const book = `<button class="btn alt" data-act="book">${esc(C.bookLabel)}</button>`;
+    const ask = `<button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button>`;
+    const sk = C.skin;
+    if (sk === "spa") return `<section class="hero hero-arch"><div class="arch" aria-hidden="true"><span class="sun"></span><span class="leaf l1"></span><span class="leaf l2"></span><span class="stone s1"></span><span class="stone s2"></span><span class="stone s3"></span></div>
+        <div class="htxt"><div class="rating">${esc(C.city)} · ★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></div></section>`;
+    if (sk === "courts") {
+      const now = new Date(); const m0 = Math.max(C.hours.open, Math.ceil((now.getHours() * 60 + now.getMinutes()) / 60) * 60);
+      const sb = C.categories[0].services.map((sp) => { const cs = C.courts.filter((c) => !c.closed && c.sports.includes(sp.id)); const free = cs.filter((c) => !(hash(iso(today) + c.id + sp.id + m0) % 100 < (C.busy || 45))).length; return `<div class="sbx"><small>${esc(sp.name)}</small><b>${free}<i>/${cs.length}</i></b><small>courts free ${m0 < C.hours.close ? "at " + fmtTime(m0) : "tomorrow"}</small></div>`; }).join("");
+      return `<section class="hero hero-score"><div class="stripes" aria-hidden="true"></div><div class="rating">● LIVE · ${esc(C.city)} · ★ ${C.rating}</div><h2>${esc(C.heroTitle)}</h2><div class="board">${sb}</div><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "physio") {
+      const nx = firstFree("any", null, 1)[0];
+      return `<section class="hero hero-split"><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
+        <div class="trust"><span>✓ Direct billing</span><span>✓ No referral needed</span><span>✓ Same-week visits</span></div>
+        ${nx ? `<button class="nextfree" data-act="book"><span><small>Next available</small><b>${nx.date === iso(today) ? "Today" : fmtDay(fromIso(nx.date), { weekday: "long" })} · ${fmtTime(nx.m)}</b></span><span class="go">Book ›</span></button>` : ""}
+        <div class="btns">${book}${ask}</div></section>`;
+    }
+    if (sk === "pets") return `<section class="hero hero-sticker"><div class="stk" aria-hidden="true">${C.heroArt}</div><div class="burst" aria-hidden="true">Photo<br>when<br>ready!</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+    return `<section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div><div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div><h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p><div class="btns">${book}${ask}</div></section>`;
+  }
+
   function viewHome() {
     const pop = allServices().filter((s) => s.popular && !s.hidden);
     const up = upcoming()[0];
     return `<div class="screen">
       <div class="topbar"><div class="logo"><i aria-hidden="true">${C.logoMark}</i>${esc(C.name)}</div><button class="iconbtn" data-tab="ai" aria-label="Open the ${esc(C.ai.name)}">💬</button></div>
-      <section class="hero"><div class="art" aria-hidden="true">${C.heroArt}</div>
-        <div class="rating">★ ${C.rating} · ${esc(C.reviews)} · ${esc(C.city)}</div>
-        <h2>${esc(C.heroTitle)}</h2><p>${esc(C.heroSub)}</p>
-        <div class="btns"><button class="btn alt" data-act="book">${esc(C.bookLabel)}</button><button class="btn glass" data-tab="ai">✦ Ask ${esc(C.ai.short)}</button></div>
-      </section>
+      ${heroHtml()}
       ${up ? `<div class="sec"><h3>Your next visit</h3>${bookingCard(up)}</div>` : ""}
       <div class="sec"><div class="pack"><div class="lbl">${esc(C.pack.label)}</div><h4>${esc(C.pack.title)}</h4><p>${esc(C.pack.body)}</p>
         <div class="row2"><div class="price">${money(C.pack.price)}<s>${money(C.pack.was)}</s></div><button class="btn" data-act="pack">${esc(C.pack.cta)}</button></div></div></div>
@@ -950,6 +1061,7 @@ body.is-owner .modebar .seg { box-shadow: 0 0 0 1px var(--line); }
 
   if (location.hash === "#assistant") S.tab = "ai";
   if (location.hash === "#book") { S.tab = "book"; startFlow(); }
+  if (C.skin) document.body.classList.add("skin-" + C.skin);
   window.YB = { C, S, render, toast, esc, money, iso, fromIso, addDays, today, fmtDay, fmtTime, hash, allServices, svcById, staffById, save, upcoming, slotsFor, petById };
   render();
 })();

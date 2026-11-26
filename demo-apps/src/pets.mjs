@@ -23,6 +23,7 @@ export const pitch = {
   points: ["Saved pet profiles with breed, size and coat notes", "Prices adjust to your pet's size automatically", "Premium AI assistant books grooms from a quick message", "Front desk view with today's pets and package ideas"],
 };
 export const cfg = {
+  skin: "pets",
   id: "wag", name: "Wag & Wash", logoMark: "🐾", city: "Pickering", rating: "5.0", reviews: "367 reviews",
   heroArt: "🐶", heroTitle: "Fresh, fluffy and happy.", heroSub: "Gentle grooming for dogs and cats. Book in a minute and get a photo when they're ready.",
   bookLabel: "Book a groom", popularTitle: "Favourite grooms", popularHint: "small dog prices", teamTitle: "Meet the groomers",

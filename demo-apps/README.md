@@ -17,9 +17,10 @@ All four apps share one engine in `src/`:
 
 - `engine.js` / `engine.css`: the client app (booking flow, AI assistant, My visits)
 - `owner.js` / `owner.css`: the owner app (dashboard, calendar, clients, services, team, packages, AI assistant, reports, settings)
+- `skin-*.css`: each business's own look (calm luxe spa, bold night-court club, clean clinical physio, playful sticker groomer)
 - `spa.mjs`, `courts.mjs`, `physio.mjs`, `pets.mjs`: one file per business with its name, colours, fonts, services, staff, FAQs and sample data
 
-To add an industry, copy one of the business files, change its content, add its name to the list in `build.mjs`, then run:
+To add an industry, copy one of the business files (and a skin), change its content, add its name to the list in `build.mjs`, then run:
 
 ```bash
 node demo-apps/src/build.mjs demo-apps/build
