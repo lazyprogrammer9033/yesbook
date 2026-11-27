@@ -1,0 +1,4 @@
+:HL["/yesbook/_next/static/chunks/1hqz_6owucsr3.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":64,"c":"$Q2"}]]
+0:{"b":"drVu4QbPBWk4qIYB2MPc6","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
