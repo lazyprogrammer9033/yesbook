@@ -1,0 +1,96 @@
+import Link from "next/link";
+import { Check } from "lucide-react";
+import { PageHero, CtaBand, Mark } from "@/components/site/section";
+import { FeatureDemo } from "@/components/demos/feature-demos";
+import { IconTile } from "@/components/site/icon-tile";
+import { Reveal } from "@/components/motion/reveal";
+import { JsonLd } from "@/components/site/json-ld";
+import { VideoShowcase } from "@/components/site/video-showcase";
+import { t } from "@/content/en";
+import { pageMeta, productLd, breadcrumbLd } from "@/lib/seo";
+import { tone } from "@/lib/tone";
+import { cn } from "@/lib/utils";
+
+export const metadata = pageMeta({
+  title: "Yesbook features",
+  description:
+    "Online and in-store booking, client records, staff and services, SMS reminders, reports, automatic secure backups and a premium AI phone agent. Everything your business needs in one branded app.",
+  path: "/product/",
+  keywords: ["salon software features", "salon scheduling app", "salon client records app"],
+});
+
+export default function ProductPage() {
+  return (
+    <>
+      <JsonLd data={[productLd, breadcrumbLd([{ name: "Home", path: "/" }, { name: "Product", path: "/product/" }])]} />
+      <PageHero
+        eyebrow="Yesbook features"
+        title={
+          <>
+            One app. <Mark>Every</Mark> booking tool you need.
+          </>
+        }
+        lede="Built for the way salons, sports courts, studios and clinics really work, then branded as your own. Here's everything inside."
+        blobs={["green", "yellow"]}
+      >
+        <nav aria-label="Features on this page">
+          <ul className="flex flex-wrap gap-2">
+            {t.features.map((f) => (
+              <li key={f.id}>
+                <Link
+                  href={`#${f.id}`}
+                  className={cn("inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 font-semibold transition-transform hover:-translate-y-0.5", tone[f.tone].tint)}
+                >
+                  <IconTile id={f.id} tone={f.tone} size="sm" className="size-8 rounded-full [&_svg]:size-4" />
+                  {f.title.replace(" (premium)", "")}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </PageHero>
+
+      <section aria-labelledby="demos-title" className="pb-16 sm:pb-20">
+        <div className="container-x">
+          <h2 id="demos-title" className="mb-8 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">{t.videos.title}</h2>
+          <VideoShowcase />
+        </div>
+      </section>
+
+      <div className="grid gap-6 pb-12">
+        {t.features.map((f, i) => (
+          <section key={f.id} id={f.id} aria-labelledby={`${f.id}-title`} className={cn("py-14 sm:py-20", i % 2 === 1 && "bg-soft")}>
+            <div className="container-x grid items-center gap-12 lg:grid-cols-2">
+              <Reveal className={cn("grid gap-5", i % 2 === 1 && "lg:order-2")}>
+                <IconTile id={f.id} tone={f.tone} size="lg" />
+                <h2 id={`${f.id}-title`} className="text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05]">
+                  {f.title}
+                </h2>
+                <p className="text-lg text-muted">{f.body}</p>
+                <ul className="grid gap-2.5 sm:grid-cols-2">
+                  {f.points.map((p) => (
+                    <li key={p} className="flex items-start gap-2.5 font-medium">
+                      <span className={cn("mt-0.5 grid size-6 shrink-0 place-items-center rounded-full text-pine", tone[f.tone].bg)}>
+                        <Check aria-hidden className="size-3.5" strokeWidth={3} />
+                      </span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                {f.id === "ai-agent" && (
+                  <Link href="/ai-agent/" className="w-fit font-semibold text-green-ink underline decoration-2 underline-offset-4">
+                    Meet the AI agent
+                  </Link>
+                )}
+              </Reveal>
+              <Reveal delay={0.1} className={cn(i % 2 === 1 && "lg:order-1")}>
+                <FeatureDemo id={f.id} tone={f.tone} className="mx-auto w-full max-w-md" />
+              </Reveal>
+            </div>
+          </section>
+        ))}
+      </div>
+      <CtaBand />
+    </>
+  );
+}

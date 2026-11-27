@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+/* Dark mode follows a `.dark` class on <html> (set before paint by the theme script). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Yesbook brand tokens: direction A+ "Fresh Confirm, Bright".
+ * A family of bright, saturated colours on clean white (kids-show colour strategy):
+ * green carries the brand, Sunny Yellow is the main call to action,
+ * and sky blue, cherry red, tangerine and bubblegum colour icons, cards and shapes.
+ * Body text always uses --fg / --muted so it passes WCAG 2.2 AA.
+ */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --soft: #f3f9f6;
+  --fg: #0b2a22;
+  --muted: #43574f;
+  --line: #e1ebe6;
+  --ink: #0b2a22; /* outline colour for "sticker" elements */
+
+  --brand: #12a150; /* Yes Green */
+  --brand-ink: #0a7a3a; /* green that is safe for text and buttons with white text */
+  --on-brand: #ffffff;
+  --yellow: #ffc928; /* Sunny Yellow */
+  --yellow-deep: #dba300;
+  --green: #12a150;
+  --green-ink: #0a7a3a;
+  --blue: #2ea8ff;
+  --blue-ink: #0b69b8;
+  --red: #ff5a4e;
+  --orange: #ff9a1f;
+  --pink: #ff5fa2;
+
+  --tint-brand: color-mix(in oklab, var(--brand) 14%, var(--surface));
+  --tint-green: color-mix(in oklab, var(--green) 16%, var(--surface));
+  --tint-yellow: color-mix(in oklab, var(--yellow) 28%, var(--surface));
+  --tint-blue: color-mix(in oklab, var(--blue) 16%, var(--surface));
+  --tint-red: color-mix(in oklab, var(--red) 15%, var(--surface));
+  --tint-orange: color-mix(in oklab, var(--orange) 18%, var(--surface));
+  --tint-pink: color-mix(in oklab, var(--pink) 15%, var(--surface));
+
+  --glass: rgb(255 255 255 / 0.72);
+  --shadow: 0 1px 2px rgb(11 42 34 / 0.06), 0 14px 36px -14px rgb(11 42 34 / 0.22);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0f1530; /* Night Sky */
+  --surface: #161e40;
+  --soft: #121a3a;
+  --fg: #f4f7ff;
+  --muted: #b7c0dd;
+  --line: #2a3463;
+  --ink: #f4f7ff;
+
+  --brand: #3ddc84;
+  --brand-ink: #5ee69c;
+  --on-brand: #0b2a22;
+  --yellow: #ffd23f;
+  --yellow-deep: #b88f00;
+  --green: #3ddc84;
+  --green-ink: #5ee69c;
+  --blue: #5cbcff;
+  --blue-ink: #8ccfff;
+  --red: #ff7a70;
+  --orange: #ffad4d;
+  --pink: #ff85b8;
+
+  --tint-brand: color-mix(in oklab, var(--brand) 16%, var(--surface));
+  --tint-green: color-mix(in oklab, var(--green) 16%, var(--surface));
+  --tint-yellow: color-mix(in oklab, var(--yellow) 16%, var(--surface));
+  --tint-blue: color-mix(in oklab, var(--blue) 16%, var(--surface));
+  --tint-red: color-mix(in oklab, var(--red) 16%, var(--surface));
+  --tint-orange: color-mix(in oklab, var(--orange) 16%, var(--surface));
+  --tint-pink: color-mix(in oklab, var(--pink) 16%, var(--surface));
+
+  --glass: rgb(22 30 64 / 0.72);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-soft: var(--soft);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-on-brand: var(--on-brand);
+  --color-tint-brand: var(--tint-brand);
+  --color-green: var(--green);
+  --color-green-ink: var(--green-ink);
+  --color-yellow: var(--yellow);
+  --color-yellow-deep: var(--yellow-deep);
+  --color-blue: var(--blue);
+  --color-blue-ink: var(--blue-ink);
+  --color-red: var(--red);
+  --color-orange: var(--orange);
+  --color-pink: var(--pink);
+  --color-pine: #0b2a22; /* fixed dark ink for text on bright fills, both themes */
+  --color-tint-green: var(--tint-green);
+  --color-tint-yellow: var(--tint-yellow);
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-red: var(--tint-red);
+  --color-tint-orange: var(--tint-orange);
+  --color-tint-pink: var(--tint-pink);
+  --color-glass: var(--glass);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-fredoka), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: var(--shadow);
+  --radius-4xl: 2rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--yellow);
+    color: #0b2a22;
+  }
+  :focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Utility patterns used across the site */
+@utility container-x {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+@utility sticker {
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--shadow-color, var(--blue));
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+}
+
+@utility eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes acc-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes acc-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+}
+
+/* Above-the-fold entrance: pure CSS so headlines paint immediately (good LCP). */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+}
+@utility rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html[data-cookie-ok] #cookie-notice {
+  display: none;
+}

@@ -1,0 +1,50 @@
+# Builds the site and uploads it to IONOS over SFTP.
+# Runs on every push to main, or manually from the Actions tab.
+# Needs these repository secrets (Settings > Secrets and variables > Actions):
+#   IONOS_SFTP_HOST      e.g. access-5012345678.webspace-host.com
+#   IONOS_SFTP_USER      your SFTP user
+#   IONOS_SFTP_PASSWORD  your SFTP password
+#   IONOS_SFTP_PATH      folder on the server, e.g. /yesbook  (the domain's document root)
+name: Deploy to IONOS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ionos
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check secrets are set
+        id: check
+        env:
+          HOST: ${{ secrets.IONOS_SFTP_HOST }}
+        run: |
+          if [ -z "$HOST" ]; then
+            echo "IONOS secrets are not set yet, so the site was built but not uploaded."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Upload to IONOS (SFTP)
+        if: steps.check.outputs.ready == 'true'
+        env:
+          HOST: ${{ secrets.IONOS_SFTP_HOST }}
+          USER: ${{ secrets.IONOS_SFTP_USER }}
+          PASS: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          REMOTE: ${{ secrets.IONOS_SFTP_PATH }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -e "set sftp:auto-confirm yes; set net:max-retries 3; mirror --reverse --delete --verbose out/ ${REMOTE:-/}; bye" -u "$USER","$PASS" sftp://$HOST
